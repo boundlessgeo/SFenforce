@@ -1,8 +1,11 @@
 Ext.define("SFenforce.view.Main", {
     extend: 'Ext.Panel',
     config: {
-        layout: 'fit'
+        layout: 'card'
     },
+    requires: [
+        'SFenforce.view.Login'
+    ],
     constructor: function() {
         this.callParent();
         var streets = new OpenLayers.Layer.XYZ(
@@ -51,6 +54,7 @@ Ext.define("SFenforce.view.Main", {
             map : map,
             extent: [-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212]
         });
-        this.add(mapdemo);
+        this.add([Ext.create("SFenforce.view.Login"), mapdemo]);
+
     }
 });
