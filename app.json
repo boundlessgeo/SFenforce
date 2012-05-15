@@ -39,6 +39,12 @@
             "path": "app.js",
             "bundle": true,  /* Indicates that all class dependencies are concatenated into this file when build */
             "update": "delta"
+        },
+        {
+            "path": "externals/openlayers/lib/OpenLayers.js"
+        },
+        {
+            "path": "externals/GXM/lib/GXM.loader.js"
         }
     ],
 
@@ -59,6 +65,12 @@
         {
             "path": "resources/css/app.css",
             "update": "delta"
+        },
+        {
+            "path": "externals/openlayers/theme/default/style.css"
+        },
+        {
+            "path": "externals/GXM/resources/css/gxm.css"
         }
     ],
 
