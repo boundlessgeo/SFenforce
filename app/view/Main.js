@@ -1,49 +1,56 @@
 Ext.define("SFenforce.view.Main", {
-    extend: 'Ext.tab.Panel',
-    requires: [
-        'Ext.TitleBar',
-        'Ext.Video'
-    ],
+    extend: 'Ext.Panel',
     config: {
-        tabBarPosition: 'bottom',
+        layout: 'fit'
+    },
+    constructor: function() {
+        this.callParent();
+        var streets = new OpenLayers.Layer.XYZ(
+            "MapBox Streets",
+        [
+            "http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png",
+            "http://b.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png",
+            "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png",
+            "http://d.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png"
+        ], {
+            attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a> | " +
+                "Data &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> " +
+                "and contributors, CC-BY-SA",
+            sphericalMercator: true,
+            wrapDateLine: true,
+            transitionEffect: "resize",
+            buffer: 1,
+            numZoomLevels: 17
+        });
 
-        items: [
-            {
-                title: 'Welcome',
-                iconCls: 'home',
+        var blockfaces = new OpenLayers.Layer.WMS(
+            "Blockfaces",
+            "http://sfpark.demo.opengeo.org/geoserver/wms?",
+            {layers: "sfpark:BLOCKFACE_AVAILABILITY", format: "image/png", transparent: true}
+        );
 
-                styleHtmlContent: true,
-                scrollable: true,
-
-                items: {
-                    docked: 'top',
-                    xtype: 'titlebar',
-                    title: 'Welcome to Sencha Touch 2'
-                },
-
-                html: [
-                    "You've just generated a new Sencha Touch 2 project. What you're looking at right now is the ",
-                    "contents of <a target='_blank' href=\"app/view/Main.js\">app/view/Main.js</a> - edit that file ",
-                    "and refresh to change what's rendered here."
-                ].join("")
-            },
-            {
-                title: 'Get Started',
-                iconCls: 'action',
-
-                items: [
-                    {
-                        docked: 'top',
-                        xtype: 'titlebar',
-                        title: 'Getting Started'
-                    },
-                    {
-                        xtype: 'video',
-                        url: 'http://av.vimeo.com/64284/137/87347327.mp4?token=1330978144_f9b698fea38cd408d52a2393240c896c',
-                        posterUrl: 'http://b.vimeocdn.com/ts/261/062/261062119_640.jpg'
+        // OpenLayers specific setup
+        var map = new OpenLayers.Map({
+            projection: "EPSG:900913",
+            theme: null,
+            controls : [
+                new OpenLayers.Control.Zoom(),
+                new OpenLayers.Control.TouchNavigation({
+                    dragPanOptions : {
+                        interval : 100,
+                        enableKinetic : true
                     }
-                ]
-            }
-        ]
+                }),
+                new OpenLayers.Control.Attribution()
+            ]
+        });
+
+        map.addLayers([streets, blockfaces]);
+
+        var mapdemo = Ext.create('GXM.Map', {
+            map : map,
+            extent: [-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212]
+        });
+        this.add(mapdemo);
     }
 });
