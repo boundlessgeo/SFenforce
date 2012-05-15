@@ -8,26 +8,16 @@ Ext.define('SFenforce.store.Beats', {
     ],
     
     config: {
-        autoLoad: false,
+        autoLoad: true,
         
         model: 'SFenforce.model.Beats',
         
         proxy: {
-            type: 'gx_protocol',
-            protocol: new OpenLayers.Protocol.Script({
-                url: "http://sfmta.demo.opengeo.org/geoserver/wfs",
-                callbackKey: "format_options",
-                callbackPrefix: "callback:",
-                params: {
-                    service: "WFS",
-                    version: "1.1.0",
-                    request: "GetFeature",
-                    typeName: "SFenforce:beats",
-                    outputFormat: "json"
-                }
-            }),
+            type: 'ajax',
+            url: "beats.json",
             reader: {
-                type: 'feature'
+                type: 'json',
+                rootProperty: 'features'
             }
         }
     }
