@@ -1,3 +1,11 @@
+Ext.Loader.setConfig({
+    enabled: true,
+    disableCaching: false,
+    paths: {
+        GeoExt: "externals/geoext2/src/GeoExt"
+    }
+});
+
 Ext.application({
     name: 'SFenforce',
 
@@ -6,6 +14,7 @@ Ext.application({
     ],
 
     views: ['Main'],
+    stores: ['Beats'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
