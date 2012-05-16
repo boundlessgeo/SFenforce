@@ -10,8 +10,18 @@ Ext.define('SFenforce.controller.Login', {
         this.control({
             'login': {
                 'login': function(form) {
-                    this.getMainPanel().setActiveItem(1);
-                    app.userInfo = Ext.ModelMgr.create(form.getValues(), 'SFenforce.model.Pco');
+                    var userInfo = Ext.ModelMgr.create(form.getValues(), 'SFenforce.model.Pco');
+                    var errors = userInfo.validate();
+                    if (errors.isValid()) {
+                        this.getMainPanel().setActiveItem(1);
+                        app.userInfo = userInfo;
+                    } else {
+                        var message = '';
+                        Ext.each(errors.items,function(rec,i){
+                            message += rec._message+"<br>";
+                        });
+                        Ext.Msg.alert(null, message, function(){});
+                    }
                 }
             }
         });

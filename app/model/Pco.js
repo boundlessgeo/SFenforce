@@ -6,8 +6,12 @@ Ext.define('SFenforce.model.Pco', {
         fields: [
             {name: 'name', type: 'string'},
             {name: 'beats', convert: function(v) { 
-                return v ? v.split(",") : []; 
+                return v ? v.split(",") : null;
             }} // array of string
+        ],
+        validations: [
+            {type: 'presence', name: 'name', message: "Please enter PCO"},
+            {type: 'presence', name: 'beats', message: "Please select at least one beat"}
         ]
     }
 });
