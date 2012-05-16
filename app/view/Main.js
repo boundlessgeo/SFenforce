@@ -26,10 +26,10 @@ Ext.define("SFenforce.view.Main", {
             numZoomLevels: 17
         });
 
-        var blockfaces = new OpenLayers.Layer.WMS(
-            "Blockfaces",
+        var parking = new OpenLayers.Layer.WMS(
+            "Parking spaces",
             "http://sfpark.demo.opengeo.org/geoserver/wms?",
-            {layers: "sfpark:BLOCKFACE_AVAILABILITY", format: "image/png", transparent: true}
+            {layers: "SFenforce:parkingspaces", format: "image/png", transparent: true}
         );
 
         // OpenLayers specific setup
@@ -48,7 +48,7 @@ Ext.define("SFenforce.view.Main", {
             ]
         });
 
-        map.addLayers([streets, blockfaces]);
+        map.addLayers([streets, parking]);
 
         var mapdemo = Ext.create('GXM.Map', {
             map : map,
