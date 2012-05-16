@@ -1,6 +1,11 @@
 Ext.define('SFenforce.view.Login', {
     extend: 'Ext.form.FormPanel',
-    requires: ['SFenforce.view.MultiSelect', 'Ext.form.FieldSet', 'SFenforce.store.Beats'],
+    requires: [
+        'SFenforce.model.Pco', 
+        'SFenforce.view.MultiSelect', 
+        'Ext.form.FieldSet', 
+        'SFenforce.store.Beats'
+    ],
     formInstructions: "Login to the enforcement application",
     initialize: function() {
         var me = this;
@@ -20,7 +25,7 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'button',
                     text: 'Login',
                     handler: function() {
-                        console.log(this.getValues());
+                        var pco = Ext.ModelMgr.create(this.getValues(), 'SFenforce.model.Pco');
                         var app = this.up('panel');
                         app.setActiveItem(1);
                     },
@@ -33,6 +38,7 @@ Ext.define('SFenforce.view.Login', {
                 clearIcon: true
             }, {
                 xtype: 'multiselectfield',
+                name: "beats",
                 label: "Beats",
                 displayField: 'name',
                 valueField: 'name',
