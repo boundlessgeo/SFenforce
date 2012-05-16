@@ -11,6 +11,10 @@ Ext.define('SFenforce.store.Beats', {
         autoLoad: true,
         
         model: 'SFenforce.model.Beats',
+
+        sorters: [{
+            property: 'name'
+        }],
         
         proxy: {
             type: 'ajax',
