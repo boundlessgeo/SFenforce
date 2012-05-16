@@ -1,6 +1,6 @@
 Ext.define('SFenforce.view.Login', {
     extend: 'Ext.form.FormPanel',
-    requires: ['Ext.form.FieldSet', 'SFenforce.store.Beats'],
+    requires: ['SFenforce.view.MultiSelect', 'Ext.form.FieldSet', 'SFenforce.store.Beats'],
     formInstructions: "Login to the enforcement application",
     initialize: function() {
         var me = this;
@@ -20,6 +20,7 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'button',
                     text: 'Login',
                     handler: function() {
+                        console.log(this.getValues());
                         var app = this.up('panel');
                         app.setActiveItem(1);
                     },
@@ -31,12 +32,10 @@ Ext.define('SFenforce.view.Login', {
                 label: 'Surveyor',
                 clearIcon: true
             }, {
-                xtype: 'list', 
+                xtype: 'multiselectfield',
                 label: "Beats",
-                height: 200, 
-                mode: 'MULTI',
-                scrollable: true, 
-                itemTpl: ['{name}'], 
+                displayField: 'name',
+                valueField: 'name',
                 store: 'Beats'
             }]
         }]);
