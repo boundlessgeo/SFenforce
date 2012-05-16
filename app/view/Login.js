@@ -7,6 +7,8 @@ Ext.define('SFenforce.view.Login', {
         'SFenforce.store.Beats'
     ],
     formInstructions: "Login to the enforcement application",
+    pcoLabel: "PCO",
+    beatsLabel: "Beats",
     initialize: function() {
         var me = this;
         me.add([{
@@ -33,12 +35,12 @@ Ext.define('SFenforce.view.Login', {
             }, {
                 xtype: 'textfield',
                 name: 'name',
-                label: 'Surveyor',
+                label: this.pcoLabel,
                 clearIcon: true
             }, {
                 xtype: 'multiselectfield',
                 name: "beats",
-                label: "Beats",
+                label: this.beatsLabel,
                 displayField: 'name',
                 valueField: 'name',
                 store: 'Beats'
