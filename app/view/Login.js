@@ -14,7 +14,7 @@ Ext.define('SFenforce.view.Login', {
         me.add([{
             xtype: 'fieldset',
             id: 'fieldset',
-            instructions: this.formInstructions,
+            instructions: {title: this.formInstructions, docked: 'top'},
             defaults: {
                 required: true,
                 labelAlign: 'left',
@@ -22,8 +22,8 @@ Ext.define('SFenforce.view.Login', {
             },
             items: [{
                 xtype: 'toolbar',
-                docked: 'top',
-                items: [{
+                docked: 'bottom',
+                items: [{xtype: 'spacer', flex: 1}, {
                     xtype: 'button',
                     id: 'login-btn',
                     text: 'Login',

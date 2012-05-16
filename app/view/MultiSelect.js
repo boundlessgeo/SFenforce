@@ -149,7 +149,7 @@ Ext.define('SFenforce.view.MultiSelect', {
             me.setValue(itemStringArray.join(','));
             this.listPanel.down('list').deselectAll();
         } else {
-            me.setValue('None');
+            me.setValue(null);
         }
     }
 });
