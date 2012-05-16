@@ -1,5 +1,6 @@
 Ext.define("SFenforce.view.Main", {
     extend: 'Ext.Panel',
+    alias: 'widget.main',
     config: {
         layout: 'card'
     },

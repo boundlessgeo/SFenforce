@@ -1,7 +1,7 @@
 Ext.define('SFenforce.view.Login', {
     extend: 'Ext.form.FormPanel',
+    alias: 'widget.login',
     requires: [
-        'SFenforce.model.Pco', 
         'SFenforce.view.MultiSelect', 
         'Ext.form.FieldSet', 
         'SFenforce.store.Beats'
@@ -23,11 +23,10 @@ Ext.define('SFenforce.view.Login', {
                 docked: 'top',
                 items: [{
                     xtype: 'button',
+                    id: 'login-btn',
                     text: 'Login',
                     handler: function() {
-                        var pco = Ext.ModelMgr.create(this.getValues(), 'SFenforce.model.Pco');
-                        var app = this.up('panel');
-                        app.setActiveItem(1);
+                        this.fireEvent("login", this);
                     },
                     scope: this
                 }]

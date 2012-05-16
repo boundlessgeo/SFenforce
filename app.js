@@ -13,8 +13,13 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    views: ['Main'],
+    cfg: {
+        userInfo: null
+    },
+
+    views: ['Login', 'Main'],
     stores: ['Beats'],
+    controllers: ['Login'],
 
     icon: {
         '57': 'resources/icons/Icon.png',
