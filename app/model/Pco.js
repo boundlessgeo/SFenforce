@@ -6,7 +6,10 @@ Ext.define('SFenforce.model.Pco', {
         fields: [
             {name: 'name', type: 'string'},
             {name: 'beats', convert: function(v) { 
-                return v ? v.split(",") : null;
+                if(v && typeof v == 'string'){
+                    v = v.split(",");
+                }
+                return v;
             }} // array of string
         ],
         validations: [

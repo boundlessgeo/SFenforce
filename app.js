@@ -2,7 +2,8 @@ Ext.Loader.setConfig({
     enabled: true,
     disableCaching: false,
     paths: {
-        GeoExt: "externals/geoext2/src/GeoExt"
+        GeoExt: "externals/geoext2/src/GeoExt", 
+        GXM: "externals/GXM/lib/GXM"
     }
 });
 
@@ -13,12 +14,10 @@ Ext.application({
         'Ext.MessageBox'
     ],
 
-    cfg: {
-        userInfo: null
-    },
+    userInfo: null,
 
-    views: ['Login', 'Main'],
-    stores: ['Beats'],
+    views: ['Login', 'Main', 'Map'],
+    stores: ['Beats', 'Pco'],
     controllers: ['Login'],
 
     icon: {
@@ -43,8 +42,6 @@ Ext.application({
         // Destroy the #appLoadingIndicator element
         Ext.fly('appLoadingIndicator').destroy();
 
-        // Initialize the main view
-        Ext.Viewport.add(Ext.create('SFenforce.view.Main'));
     },
 
     onUpdated: function() {
