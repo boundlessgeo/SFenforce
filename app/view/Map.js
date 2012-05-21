@@ -50,7 +50,7 @@ initialize:function(){
 
         this.setPlugins([
             new GXM.plugin.Tracker({
-                trackSuspended: false,
+                trackSuspended: true,
                 allowHighAccuracy: false
             })
         ]);
