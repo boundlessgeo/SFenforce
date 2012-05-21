@@ -3,4 +3,4 @@
 	url = https://github.com/openlayers/openlayers.git
 [submodule "externals/GXM"]
 	path = externals/GXM
-	url = https://github.com/geoext/GXM.git
+	url = https://github.com/opengeo/GXM.git
