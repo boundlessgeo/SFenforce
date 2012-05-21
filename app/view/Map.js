@@ -16,7 +16,7 @@ initialize:function(){
             wrapDateLine: true,
             transitionEffect: "resize",
             buffer: 1,
-            numZoomLevels: 17,
+            numZoomLevels: 18,
             isBaseLayer: true
         });
 
