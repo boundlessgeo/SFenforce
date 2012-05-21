@@ -42,9 +42,6 @@
         },
         {
             "path": "externals/openlayers/lib/OpenLayers.js"
-        },
-        {
-            "path": "externals/GXM/lib/GXM.loader.js"
         }
     ],
 

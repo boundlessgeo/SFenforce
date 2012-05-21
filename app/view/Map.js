@@ -1,4 +1,5 @@
 Ext.define("SFenforce.view.Map",{
+requires: ['GXM.plugin.Tracker'],
 extend: 'GXM.Map',
 initialize:function(){
         var streets = new OpenLayers.Layer.XYZ(
