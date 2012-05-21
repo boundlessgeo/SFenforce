@@ -3,8 +3,8 @@ Ext.define('SFenforce.store.Beats', {
     
     requires: [
         'SFenforce.model.Beats',
-        'GeoExt.data.proxy.Protocol',
-        'GeoExt.data.reader.Feature'
+        'GXM.data.proxy.Protocol',
+        'GXM.data.reader.Feature'
     ],
     
     config: {
@@ -15,14 +15,15 @@ Ext.define('SFenforce.store.Beats', {
         sorters: [{
             property: 'name'
         }],
-        
+
         proxy: {
-            type: 'ajax',
-            url: "beats.json",
-            reader: {
-                type: 'json',
-                rootProperty: 'features'
-            }
+            type: 'gxm_protocol',
+            protocol: new OpenLayers.Protocol.WFS({
+                url: "/geoserver/wfs",
+                featureType: "beats",
+                featureNS: "http://www.sfpark.org/SFenforce"
+            }),
+            reader: 'gxm_feature'
         }
     }
 });
