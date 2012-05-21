@@ -1,8 +1,9 @@
 // Parking Citation Officer
 Ext.define('SFenforce.model.Pco', {
+    requires: ['Ext.data.identifier.Uuid'],
     extend: 'Ext.data.Model',
-    
     config: {
+        identifier: 'uuid',
         fields: [
             {name: 'name', type: 'string'},
             {name: 'beats', convert: function(v) { 
