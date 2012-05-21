@@ -14,7 +14,7 @@ Ext.define('SFenforce.model.Pco', {
             }} // array of string
         ],
         validations: [
-            {type: 'presence', name: 'name', message: "Please enter PCO"},
+            {type: 'presence', name: 'name', message: "Please enter badge number"},
             {type: 'presence', name: 'beats', message: "Please select at least one beat"}
         ]
     }
