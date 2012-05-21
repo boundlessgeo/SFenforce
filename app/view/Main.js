@@ -17,6 +17,8 @@ Ext.define('SFenforce.view.Main', {
             },
             items: [{
                 iconMask: true,
+                id: 'locateButton',
+                hidden: true,
                 iconCls: 'locate'
             }]
         }

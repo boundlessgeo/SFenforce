@@ -34,6 +34,9 @@ Ext.define('SFenforce.controller.Login', {
     },    
       
     showLogin: function(){
+        this.getMain().on('back', function() {
+            this.getMain().getNavigationBar().down('#locateButton').hide();
+        }, this);
         this.getMain().push(Ext.create('SFenforce.view.Login'));
         if(SFenforce.userInfo){
             this.getLogin().setValues(SFenforce.userInfo);
@@ -74,6 +77,7 @@ Ext.define('SFenforce.controller.Login', {
         });
         this.getMain().pop();
         this.getMain().push(map);
+        this.getMain().getNavigationBar().down('#locateButton').show();
     },
     
     onMainBeforePop:Ext.emptyFn
