@@ -2,7 +2,6 @@ Ext.Loader.setConfig({
     enabled: true,
     disableCaching: false,
     paths: {
-        GeoExt: "externals/geoext2/src/GeoExt", 
         GXM: "externals/GXM/lib/GXM"
     }
 });
