@@ -96,11 +96,19 @@ Ext.define('SFenforce.view.MultiSelect', {
             }
             picker.show();
         } else { //reworked code to split csv string into array and select correct list items
+            var values;
+            var val = this.getValue();
+            if (Ext.isEmpty(val)) {
+                values = [];
+            } else if (Ext.isString(val)) {
+                values = val.split(',');
+            } else if (Ext.isArray(val)) {
+                values = val;
+            }
             var listPanel = this.getTabletPicker(),
                 list = listPanel.down('list'),
                 store = list.getStore(),
-                itemStringArray = new Array(),
-                values = this.getValue() ? this.getValue().split(','): [],
+                itemStringArray = [],
                 v = 0,
                 vNum = values.length;
             if (!listPanel.getParent()) {
