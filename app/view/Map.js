@@ -1,6 +1,6 @@
 Ext.define("SFenforce.view.Map",{
 extend: 'GXM.Map',
-constructor:function(){
+initialize:function(){
         var streets = new OpenLayers.Layer.XYZ(
             "MapBox Streets",
         [
