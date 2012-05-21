@@ -4,6 +4,3 @@
 [submodule "externals/GXM"]
 	path = externals/GXM
 	url = https://github.com/geoext/GXM.git
-[submodule "externals/geoext2"]
-	path = externals/geoext2
-	url = https://github.com/geoext/geoext2
