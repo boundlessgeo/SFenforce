@@ -1,6 +1,6 @@
 Ext.Loader.setConfig({
     enabled: true,
-    disableCaching: false,
+    disableCaching: true,
     paths: {
         GXM: "externals/GXM/lib/GXM"
     }
