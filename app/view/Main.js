@@ -14,7 +14,11 @@ Ext.define('SFenforce.view.Main', {
         navigationBar: {
             backButton: {
                 iconCls: 'back'
-            }
+            },
+            items: [{
+                iconMask: true,
+                iconCls: 'locate'
+            }]
         }
     },
 

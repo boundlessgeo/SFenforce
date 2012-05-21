@@ -46,7 +46,14 @@ initialize:function(){
         map.addLayers([streets, parking]);
         
         this.setMap(map);
-        
+
+        this.setPlugins([
+            new GXM.plugin.Tracker({
+                trackSuspended: false,
+                allowHighAccuracy: false
+            })
+        ]);
+
         this.callParent(arguments);
     }
 });
