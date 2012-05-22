@@ -33,8 +33,8 @@ Ext.define('SFenforce.view.Login', {
                     scope: this
                 }]
             }, {
-                xtype: 'textfield',
-                name: 'name',
+                xtype: 'numberfield',
+                name: 'badge',
                 label: this.nameLabel,
                 clearIcon: true
             }, {

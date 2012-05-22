@@ -4,8 +4,9 @@ Ext.define('SFenforce.model.Pco', {
     extend: 'Ext.data.Model',
     config: {
         identifier: 'uuid',
+        idProperty: 'badge'
         fields: [
-            {name: 'name', type: 'string'},
+            {name: 'badge', type: 'string'},
             {name: 'beats', convert: function(v) { 
                 if(v && typeof v == 'string'){
                     v = v.split(",");
@@ -14,7 +15,7 @@ Ext.define('SFenforce.model.Pco', {
             }} // array of string
         ],
         validations: [
-            {type: 'presence', name: 'name', message: "Please enter badge number"},
+            {type: 'presence', name: 'badge', message: "Please enter badge number"},
             {type: 'presence', name: 'beats', message: "Please select at least one beat"}
         ]
     }
