@@ -24,7 +24,7 @@ initialize:function(){
         var parking = new OpenLayers.Layer.WMS(
             "Parking spaces",
             "http://sfpark.demo.opengeo.org/geoserver/wms?",
-            {layers: "SFenforce:parkingspaces", format: "image/png", transparent: true, styles: 'spaces_opportunities'}
+            {layers: "SFenforce:ParkingSpaces", format: "image/png", transparent: true, styles: 'spaces_opportunities'}
         );
 
         // OpenLayers specific setup
