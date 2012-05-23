@@ -4,7 +4,7 @@ Ext.define('SFenforce.model.Pco', {
     extend: 'Ext.data.Model',
     config: {
         identifier: 'uuid',
-        idProperty: 'badge'
+        idProperty: 'badge',
         fields: [
             {name: 'badge', type: 'string'},
             {name: 'beats', convert: function(v) { 
