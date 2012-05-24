@@ -31,7 +31,7 @@ Ext.define('SFenforce.view.MultiSelect', {
                         ui: 'action',
                         height: '20px',
                         width: '50%',
-                        docked: 'bottom',
+                        docked: 'top',
                         style: 'margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;',
                         listeners: {
                             tap: this.onButtonTap,
