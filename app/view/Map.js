@@ -4,24 +4,33 @@ extend: 'GXM.Map',
 initialize:function(){
         // work around the GFI issue in GeoServer for now
         this.setMaxWidth(1100);
-        var streets = new OpenLayers.Layer.XYZ(
-            "MapBox Streets",
-        [
-            "http://a.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png",
-            "http://b.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png",
-            "http://c.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png",
-            "http://d.tiles.mapbox.com/v3/mapbox.mapbox-streets/${z}/${x}/${y}.png"
-        ], {
-            attribution: "Tiles &copy; <a href='http://mapbox.com/'>MapBox</a> | " +
-                "Data &copy; <a href='http://www.openstreetmap.org/'>OpenStreetMap</a> " +
-                "and contributors, CC-BY-SA",
-            sphericalMercator: true,
-            wrapDateLine: true,
-            transitionEffect: "resize",
+
+        var options = {
+            projection: "EPSG:900913",
+            maxExtent: new OpenLayers.Bounds(
+                -128 * 156543.0339, -128 * 156543.0339,
+                128 * 156543.0339, 128 * 156543.0339
+            ),
+            maxResolution: 156543.03390625,
+            numZoomLevels: 19,
+            units: "m",
             buffer: 1,
-            numZoomLevels: 18,
-            isBaseLayer: true
-        });
+            transitionEffect: "resize",
+            tileOptions: {crossOriginKeyword: null}
+        };
+
+        var streets = new OpenLayers.Layer.OSM("MapQuest OpenStreetMap",
+            [
+                "http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
+                "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
+                "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
+                "http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png"
+            ],
+            OpenLayers.Util.applyDefaults({
+                attribution: "Tiles Courtesy of <a href='http://open.mapquest.co.uk/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png' border='0'>",
+                type: "osm"
+            }, options)
+        );
 
         var parking = new OpenLayers.Layer.WMS(
             "Parking spaces",
