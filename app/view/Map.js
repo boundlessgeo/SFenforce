@@ -29,6 +29,16 @@ initialize:function(){
             {layers: "SFenforce:ParkingSpaces", format: "image/png", transparent: true, styles: 'spaces_opportunities'}
         );
 
+        var highlight = new OpenLayers.Layer.Vector(null, {
+            style: {
+                graphicName: 'star',
+                strokeColor: '#00FF00',
+                strokeWidth: 2,
+                fillOpacity: 0,
+                pointRadius: 5
+            }
+        });
+
         // OpenLayers specific setup
         var map = new OpenLayers.Map({
             projection: "EPSG:900913",
@@ -44,19 +54,29 @@ initialize:function(){
                 new OpenLayers.Control.Attribution(),
                 new OpenLayers.Control.WMSGetFeatureInfo({maxFeatures: 1, infoFormat: "application/vnd.ogc.gml", autoActivate: true, eventListeners: {
                     getfeatureinfo: function(evt) {
-                        Ext.Viewport.add({
-                            xtype: 'gxm_featurepopup',
-                            top: evt.xy.y,
-                            left: evt.xy.x,
-                            tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
-                            feature: evt.features[0]
-                        });
+                        if (evt.features && evt.features[0]) {
+                            var feature = evt.features[0];
+                            feature.geometry.transform('EPSG:4326', 'EPSG:900913');
+                            highlight.addFeatures([feature]);
+                            Ext.Viewport.add({
+                                xtype: 'gxm_featurepopup',
+                                listeners: {
+                                    hide: function() {
+                                        highlight.destroyFeatures();
+                                    }
+                                },
+                                top: evt.xy.y + 25,
+                                left: evt.xy.x + 25,
+                                tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
+                                feature: feature
+                            });
+                        }
                     }
                 }})
             ]
         });
 
-        map.addLayers([streets, parking]);
+        map.addLayers([streets, parking, highlight]);
         
         this.setMap(map);
 
