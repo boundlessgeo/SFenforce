@@ -66,7 +66,7 @@ initialize:function(){
                                         highlight.destroyFeatures();
                                     }
                                 },
-                                width: 150, 
+                                width: 350, 
                                 height: 150,
                                 top: evt.xy.y + 25,
                                 left: evt.xy.x + 25,
@@ -81,7 +81,21 @@ initialize:function(){
                                         tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
                                         feature: feature
                                     }, {
-                                        html: 'Placeholder for WFS transaction to update citation opportunity'
+                                        xtype: 'formpanel',
+                                        items: [{
+                                            xtype: 'selectfield',
+                                            label: "Status",
+                                            store: Ext.create("Ext.data.ArrayStore", {
+                                                fields: ['value', 'text'],
+                                                data: [['first', 'First Option'], ['second', 'Second Option'], ['third', 'Third Option']]
+                                            })
+                                        }, {
+                                            xtype: 'toolbar',
+                                            items: [{
+                                                xtype: 'button',
+                                                text: 'Save'
+                                            }]
+                                        }]
                                     }]
                                 }]
                             });
