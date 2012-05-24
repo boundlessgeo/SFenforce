@@ -1,3 +1,21 @@
+div.olControlAttribution {
+    border-top: 2px solid rgba(70,70,70,0.65);
+    border-left: 2px solid rgba(70,70,70,0.65);
+    border-top-left-radius: 10px;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    font-size: 10px;
+    padding: 3px 5px;
+    background-color: rgba(70,70,70,0.35);
+    color: black;
+    text-shadow: 0 0 2px #fff;
+}
+
+div.olControlAttribution a {
+    color: navy
+}
+
 /* line 3, ../themes/stylesheets/sencha-touch/default/core/_reset.scss */
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3,
 h4, h5, h6, pre, code, form, fieldset, legend,
