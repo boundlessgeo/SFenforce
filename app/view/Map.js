@@ -1,7 +1,9 @@
 Ext.define("SFenforce.view.Map",{
-requires: ['GXM.plugin.Tracker'],
+requires: ['GXM.FeaturePopup', 'GXM.plugin.Tracker'],
 extend: 'GXM.Map',
 initialize:function(){
+        // work around the GFI issue in GeoServer for now
+        this.setMaxWidth(1100);
         var streets = new OpenLayers.Layer.XYZ(
             "MapBox Streets",
         [
@@ -23,7 +25,7 @@ initialize:function(){
 
         var parking = new OpenLayers.Layer.WMS(
             "Parking spaces",
-            "http://sfpark.demo.opengeo.org/geoserver/wms?",
+            "/geoserver/wms?",
             {layers: "SFenforce:ParkingSpaces", format: "image/png", transparent: true, styles: 'spaces_opportunities'}
         );
 
@@ -39,8 +41,18 @@ initialize:function(){
                         enableKinetic : true
                     }
                 }),
-                new OpenLayers.Control.Attribution()//,
-                //new OpenLayers.Control.Geolocation()
+                new OpenLayers.Control.Attribution(),
+                new OpenLayers.Control.WMSGetFeatureInfo({maxFeatures: 1, infoFormat: "application/vnd.ogc.gml", autoActivate: true, eventListeners: {
+                    getfeatureinfo: function(evt) {
+                        Ext.Viewport.add({
+                            xtype: 'gxm_featurepopup',
+                            top: evt.xy.y,
+                            left: evt.xy.x,
+                            tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
+                            feature: evt.features[0]
+                        });
+                    }
+                }})
             ]
         });
 
