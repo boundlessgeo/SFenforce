@@ -27,12 +27,10 @@ Ext.define('SFenforce.view.MultiSelect', {
                     },
                     items: { //new button to trigger formatting/setting new field value with joined string
                         xtype: 'button',
+                        margin: 2,
                         text: 'Done',
                         ui: 'action',
-                        height: '20px',
-                        width: '50%',
                         docked: 'top',
-                        style: 'margin-top: 10px; margin-bottom: 10px; margin-left: auto; margin-right: auto;',
                         listeners: {
                             tap: this.onButtonTap,
                             scope: this
