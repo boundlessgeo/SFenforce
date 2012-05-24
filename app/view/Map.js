@@ -1,5 +1,5 @@
 Ext.define("SFenforce.view.Map",{
-requires: ['GXM.FeaturePopup', 'GXM.plugin.Tracker'],
+requires: ['Ext.carousel.Carousel', 'GXM.FeaturePopup', 'GXM.plugin.Tracker'],
 extend: 'GXM.Map',
 initialize:function(){
         // work around the GFI issue in GeoServer for now
@@ -59,16 +59,31 @@ initialize:function(){
                             feature.geometry.transform('EPSG:4326', 'EPSG:900913');
                             highlight.addFeatures([feature]);
                             Ext.Viewport.add({
-                                xtype: 'gxm_featurepopup',
+                                xtype: 'panel', 
+                                layout: 'fit',
                                 listeners: {
                                     hide: function() {
                                         highlight.destroyFeatures();
                                     }
                                 },
+                                width: 150, 
+                                height: 150,
                                 top: evt.xy.y + 25,
                                 left: evt.xy.x + 25,
-                                tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
-                                feature: feature
+                                modal: true, 
+                                hideOnMaskTap: true, 
+                                items: [{
+                                    xtype: 'carousel', 
+                                    items: [{
+                                        xtype: 'gxm_featurepopup',
+                                        centered: false, 
+                                        modal: false,
+                                        tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
+                                        feature: feature
+                                    }, {
+                                        html: 'Placeholder for WFS transaction to update citation opportunity'
+                                    }]
+                                }]
                             });
                         }
                     }
