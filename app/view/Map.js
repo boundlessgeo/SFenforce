@@ -48,10 +48,10 @@ initialize:function(){
             }, options)
         );
 
-        var parking = new OpenLayers.Layer.WMS(
-            "Parking spaces",
+        var citation = new OpenLayers.Layer.WMS(
+            "Citation opportunites",
             "/geoserver/wms?",
-            {layers: "SFenforce:ParkingSpaces", format: "image/png", transparent: true, styles: 'spaces_opportunities'}
+            {layers: "SFenforce:CITATION_OPPORTUNITY_TMP", format: "image/png", transparent: true}
         );
 
         var highlight = new OpenLayers.Layer.Vector(null, {
@@ -130,7 +130,7 @@ initialize:function(){
             ]
         });
 
-        map.addLayers([streets, parking, highlight]);
+        map.addLayers([streets, citation, highlight]);
         
         this.setMap(map);
 
