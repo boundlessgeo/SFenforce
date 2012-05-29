@@ -4,7 +4,8 @@ Ext.define('SFenforce.model.Beats', {
     config: {
         fields: [
             {name: 'id', type: 'string'},
-            {name: 'name', type: 'string', mapping: 'attributes.BEATNAME'}
+            {name: 'name', type: 'string', mapping: 'attributes.BEATNAME'},
+            {name: 'geometry'}
         ]
     }
 });

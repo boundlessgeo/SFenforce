@@ -44,11 +44,24 @@ Ext.define('SFenforce.controller.Login', {
     },    
     
     validateLogin: function(form) {
-        var userInfo = Ext.create('SFenforce.model.Pco', form.getValues());
+        var values = form.getValues();
+        var userInfo = Ext.create('SFenforce.model.Pco', values);
         var errors = userInfo.validate();
         if (errors.isValid()) {
+            var ids = values['beats'].split(",");
+            var store = Ext.getStore('Beats');
+            var bounds = null;
+			store.each(function(record) {
+                if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
+                    if (bounds === null) {
+                        bounds = record.get('geometry').getBounds();
+                    } else {
+                        bounds.extend(record.get('geometry').getBounds());
+                    }
+                }
+            });
             this.storeLogin(userInfo);
-            this.showMap();
+            this.showMap(bounds);
         } else {
             var message = '';
             Ext.each(errors.items,function(rec,i){
@@ -71,9 +84,9 @@ Ext.define('SFenforce.controller.Login', {
         action.resume();
     },
     
-    showMap: function(){
+    showMap: function(bounds){
         var map = Ext.create('SFenforce.view.Map',{
-            mapExtent: [-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212]
+            mapExtent: bounds.toArray()
         });
         this.getMain().pop();
         this.getMain().push(map);

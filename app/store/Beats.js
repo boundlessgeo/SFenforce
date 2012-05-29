@@ -20,6 +20,8 @@ Ext.define('SFenforce.store.Beats', {
             type: 'gxm_protocol',
             protocol: new OpenLayers.Protocol.WFS({
                 url: "/geoserver/wfs",
+                version: "1.1.0",
+                srsName: "EPSG:900913",
                 featureType: "PCO_BEATS",
                 featureNS: "http://www.sfpark.org/SFenforce"
             }),
