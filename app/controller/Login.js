@@ -52,7 +52,7 @@ Ext.define('SFenforce.controller.Login', {
             if (values['zoomtobeats'] === true) {
                 var ids = values['beats'].split(",");
                 var store = Ext.getStore('Beats');
-			    store.each(function(record) {
+                store.each(function(record) {
                     if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
                         if (bounds === null) {
                             bounds = record.get('geometry').getBounds();
