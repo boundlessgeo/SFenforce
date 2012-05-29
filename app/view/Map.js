@@ -103,7 +103,7 @@ initialize:function(){
                                         xtype: 'gxm_featurepopup',
                                         centered: false, 
                                         modal: false,
-                                        tpl: new Ext.XTemplate("{feature.attributes.PARKING_SP}<br/>{feature.attributes.STREET_NAM}"),
+                                        tpl: new Ext.XTemplate("{feature.attributes.PARKING_SPACE_ID}<br/>{feature.attributes.POST_ID}"),
                                         feature: feature
                                     }, {
                                         xtype: 'formpanel',
