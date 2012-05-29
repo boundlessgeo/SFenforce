@@ -2,7 +2,7 @@ Ext.define('SFenforce.store.Beats', {
     extend: 'Ext.data.JsonStore',
     
     requires: [
-        'SFenforce.model.Beats',
+        'SFenforce.model.Beat',
         'GXM.data.proxy.Protocol',
         'GXM.data.reader.Feature'
     ],
@@ -10,7 +10,7 @@ Ext.define('SFenforce.store.Beats', {
     config: {
         autoLoad: true,
         
-        model: 'SFenforce.model.Beats',
+        model: 'SFenforce.model.Beat',
 
         sorters: [{
             property: 'name'

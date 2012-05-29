@@ -1,4 +1,4 @@
-Ext.define('SFenforce.model.Beats', {
+Ext.define('SFenforce.model.Beat', {
     extend: 'Ext.data.Model',
     
     config: {
