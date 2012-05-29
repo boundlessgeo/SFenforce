@@ -2,9 +2,6 @@ Ext.define("SFenforce.view.Map",{
 requires: ['Ext.carousel.Carousel', 'GXM.FeaturePopup', 'GXM.plugin.Tracker'],
 extend: 'GXM.Map',
 initialize:function(){
-        // work around the GFI issue in GeoServer for now
-        this.setMaxWidth(1100);
-
         var options = {
             projection: "EPSG:900913",
             maxExtent: new OpenLayers.Bounds(
