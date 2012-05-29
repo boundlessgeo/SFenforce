@@ -3,7 +3,10 @@ SFenforce
 
 Enforcement app for City of San Francisco.
 
-Go into externals/openlayers/build and build the full.cfg profile for now (TODO: make an application specific profile).
+Copy the application-specific OpenLayers build profile named openlayers.cfg into the externals/openlayers/build directory.
+Go into externals/openlayers/build and build using:
+
+./build.py -c closure openlayers.cfg
 
 For debugging purposes you can change the reference in index.html to lib/OpenLayers.js instead.
 
