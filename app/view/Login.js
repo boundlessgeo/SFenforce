@@ -46,6 +46,11 @@ Ext.define('SFenforce.view.Login', {
                 displayField: 'name',
                 valueField: 'name',
                 store: 'Beats'
+            }, {
+                xtype: 'checkboxfield',
+                required: false,
+                name: 'zoomtobeats',
+                label: "Zoom to beats' extent"
             }]
         }]);
         me.callParent();

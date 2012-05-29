@@ -48,18 +48,23 @@ Ext.define('SFenforce.controller.Login', {
         var userInfo = Ext.create('SFenforce.model.Pco', values);
         var errors = userInfo.validate();
         if (errors.isValid()) {
-            var ids = values['beats'].split(",");
-            var store = Ext.getStore('Beats');
             var bounds = null;
-			store.each(function(record) {
-                if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
-                    if (bounds === null) {
-                        bounds = record.get('geometry').getBounds();
-                    } else {
-                        bounds.extend(record.get('geometry').getBounds());
+            if (values['zoomtobeats'] === true) {
+                var ids = values['beats'].split(",");
+                var store = Ext.getStore('Beats');
+			    store.each(function(record) {
+                    if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
+                        if (bounds === null) {
+                            bounds = record.get('geometry').getBounds();
+                        } else {
+                            bounds.extend(record.get('geometry').getBounds());
+                        }
                     }
-                }
-            });
+                });
+            } else {
+                // city-wide view
+                bounds = new OpenLayers.Bounds(-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212);
+            }
             this.storeLogin(userInfo);
             this.showMap(bounds);
         } else {
