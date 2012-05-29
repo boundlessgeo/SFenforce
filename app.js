@@ -16,7 +16,7 @@ Ext.application({
     userInfo: null,
 
     views: ['Login', 'Main', 'Map'],
-    stores: ['Beats', 'Pco'],
+    stores: ['Beats', 'Pco', 'DispositionCodes'],
     controllers: ['Login'],
 
     icon: {

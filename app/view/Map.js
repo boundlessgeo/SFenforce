@@ -88,11 +88,8 @@ initialize:function(){
                                     xtype: 'formpanel',
                                     items: [{
                                         xtype: 'selectfield',
-                                        label: "Status",
-                                        store: Ext.create("Ext.data.ArrayStore", {
-                                            fields: ['value', 'text'],
-                                            data: [['first', 'First Option'], ['second', 'Second Option'], ['third', 'Third Option']]
-                                        })
+                                        label: "Category",
+                                        store:  Ext.getStore('DispositionCodes')
                                     }, {
                                         xtype: 'toolbar',
                                         items: [{
