@@ -49,19 +49,68 @@ initialize:function(){
         );
 
         var citation = new OpenLayers.Layer.WMS(
-            "Citation opportunites",
+            "Citation opportunities",
             "/geoserver/wms?",
-            {layers: "SFenforce:CITATION_OPPORTUNITY_TMP", format: "image/png", transparent: true}
+            {layers: "SFenforce:CITATION_OPPORTUNITY_TMP", format: "image/png", transparent: true},
+            {minResolution: 1}
         );
 
-        var highlight = new OpenLayers.Layer.Vector(null, {
-            style: {
-                graphicName: 'star',
-                strokeColor: '#00FF00',
-                strokeWidth: 2,
-                fillOpacity: 0,
-                pointRadius: 5
-            }
+        OpenLayers.Feature.Vector.style['default']['pointRadius'] = 8;
+        OpenLayers.Feature.Vector.style['select']['pointRadius'] = 8;
+
+        var citation_vector = new OpenLayers.Layer.Vector(
+            "Citation opportunities", {
+                protocol: new OpenLayers.Protocol.WFS({
+                    url: "/geoserver/wfs",
+                    featureType: "CITATION_OPPORTUNITY_TMP",
+                    featureNS: "http://www.sfpark.org/SFenforce",
+                    geometryName: "GEOM",
+                    version: "1.1.0",
+                    srsName: "EPSG:900913"
+                }),
+                eventListeners: {
+                    "featureselected": function(evt) { 
+                        var feature = evt.feature;
+                        Ext.Viewport.add({
+                            xtype: 'panel', 
+                            layout: 'fit',
+                            width: 350, 
+                            height: 150,
+                            centered: true,
+                            modal: true, 
+                            hideOnMaskTap: true, 
+                            items: [{
+                                xtype: 'carousel', 
+                                items: [{
+                                    xtype: 'gxm_featurepopup',
+                                    centered: false, 
+                                    modal: false,
+                                    tpl: new Ext.XTemplate("{feature.attributes.PARKING_SPACE_ID}<br/>{feature.attributes.POST_ID}"),
+                                    feature: feature
+                                }, {
+                                    xtype: 'formpanel',
+                                    items: [{
+                                        xtype: 'selectfield',
+                                        label: "Status",
+                                        store: Ext.create("Ext.data.ArrayStore", {
+                                            fields: ['value', 'text'],
+                                            data: [['first', 'First Option'], ['second', 'Second Option'], ['third', 'Third Option']]
+                                        })
+                                    }, {
+                                        xtype: 'toolbar',
+                                        items: [{
+                                            xtype: 'button',
+                                            text: 'Save'
+                                        }]
+                                    }]
+                                }]
+                            }]
+                        });
+                    }
+                },
+                maxResolution: 1,
+                renderers: ['Canvas'],
+                strategies: [new OpenLayers.Strategy.BBOX()]
         });
 
         // OpenLayers specific setup
@@ -77,60 +126,11 @@ initialize:function(){
                     }
                 }),
                 new OpenLayers.Control.Attribution(),
-                new OpenLayers.Control.WMSGetFeatureInfo({maxFeatures: 1, infoFormat: "application/vnd.ogc.gml", autoActivate: true, eventListeners: {
-                    getfeatureinfo: function(evt) {
-                        if (evt.features && evt.features[0]) {
-                            var feature = evt.features[0];
-                            feature.geometry.transform('EPSG:4326', 'EPSG:900913');
-                            highlight.addFeatures([feature]);
-                            Ext.Viewport.add({
-                                xtype: 'panel', 
-                                layout: 'fit',
-                                listeners: {
-                                    hide: function() {
-                                        highlight.destroyFeatures();
-                                    }
-                                },
-                                width: 350, 
-                                height: 150,
-                                top: evt.xy.y + 25,
-                                left: evt.xy.x + 25,
-                                modal: true, 
-                                hideOnMaskTap: true, 
-                                items: [{
-                                    xtype: 'carousel', 
-                                    items: [{
-                                        xtype: 'gxm_featurepopup',
-                                        centered: false, 
-                                        modal: false,
-                                        tpl: new Ext.XTemplate("{feature.attributes.PARKING_SPACE_ID}<br/>{feature.attributes.POST_ID}"),
-                                        feature: feature
-                                    }, {
-                                        xtype: 'formpanel',
-                                        items: [{
-                                            xtype: 'selectfield',
-                                            label: "Status",
-                                            store: Ext.create("Ext.data.ArrayStore", {
-                                                fields: ['value', 'text'],
-                                                data: [['first', 'First Option'], ['second', 'Second Option'], ['third', 'Third Option']]
-                                            })
-                                        }, {
-                                            xtype: 'toolbar',
-                                            items: [{
-                                                xtype: 'button',
-                                                text: 'Save'
-                                            }]
-                                        }]
-                                    }]
-                                }]
-                            });
-                        }
-                    }
-                }})
+                new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true})
             ]
         });
 
-        map.addLayers([streets, citation, highlight]);
+        map.addLayers([streets, citation, citation_vector]);
         
         this.setMap(map);
 
