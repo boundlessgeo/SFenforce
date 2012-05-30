@@ -4,8 +4,9 @@ Ext.define('SFenforce.view.Login', {
     requires: [
         'SFenforce.view.MultiSelect', 
         'Ext.form.FieldSet', 
+        'Ext.field.Number',
         'SFenforce.store.Beats',
-        'Ext.field.Number'
+        'SFenforce.store.Pco'
     ],
     formInstructions: "Login to the enforcement application",
     nameLabel: "Badge number",
