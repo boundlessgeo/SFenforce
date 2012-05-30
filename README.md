@@ -1,7 +1,5 @@
-SFenforce
+testmobile
 =========
-
-Enforcement app for City of San Francisco.
 
 Copy the application-specific OpenLayers build profile named openlayers.cfg into the externals/openlayers/build directory.
 Go into externals/openlayers/build and build using:
