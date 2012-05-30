@@ -92,13 +92,16 @@ initialize:function(){
                                         feature: feature
                                     }, {
                                         xtype: 'formpanel',
+                                        id: 'updateForm',
                                         items: [{
                                             xtype: 'selectfield',
+                                            name: 'code',
                                             label: "Category",
                                             store:  Ext.getStore('DispositionCodes')
                                         }, {
                                             xtype: 'toolbar',
                                             items: [{
+                                                id: 'saveButton',
                                                 xtype: 'button',
                                                 text: 'Save'
                                             }]
