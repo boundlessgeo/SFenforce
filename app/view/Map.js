@@ -58,15 +58,24 @@ Ext.define("SFenforce.view.Map",{
                 value: beats[i]
             }));
         }
-        var filter;
+        var beatFilter;
         if (filters.length > 1) {
-            filter = new OpenLayers.Filter.Logical({
+            beatFilter = new OpenLayers.Filter.Logical({
                 type: OpenLayers.Filter.Logical.OR,
                 filters: filters
             });
         } else {
-            filter = filters[0];
+            beatFilter = filters[0];
         }
+        var nullFilter = new OpenLayers.Filter.Comparison({
+            type: OpenLayers.Filter.Comparison.GREATER_THAN,
+            property: 'PARKING_SESSION_ID',
+            value: -1
+        });
+        var filter = new OpenLayers.Filter.Logical({
+            type: OpenLayers.Filter.Logical.AND,
+            filters: [nullFilter, beatFilter]
+        });
 
         var style = new OpenLayers.Style({
             pointRadius: 7,
