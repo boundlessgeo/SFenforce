@@ -1,5 +1,5 @@
 Ext.define("SFenforce.view.Map",{
-requires: ['Ext.carousel.Carousel', 'GXM.FeaturePopup', 'GXM.plugin.Tracker'],
+requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
 extend: 'GXM.Map',
 initialize:function(){
         var options = {
@@ -44,26 +44,30 @@ initialize:function(){
                 type: "osm"
             }, options)
         );
-
+/*
         var citation = new OpenLayers.Layer.WMS(
             "Citation opportunities",
             "/geoserver/wms?",
             {layers: "SFenforce:CITATION_OPPORTUNITY_TMP", format: "image/png", transparent: true},
             {minResolution: 1}
         );
-
+*/
         OpenLayers.Feature.Vector.style['default']['pointRadius'] = 8;
         OpenLayers.Feature.Vector.style['select']['pointRadius'] = 8;
 
         var citation_vector = new OpenLayers.Layer.Vector(
             "Citation opportunities", {
+                visibility: true,
+                alwaysInRange: true,
                 protocol: new OpenLayers.Protocol.WFS({
                     url: "/geoserver/wfs",
                     featureType: "CITATION_OPPORTUNITY_TMP",
                     featureNS: "http://www.sfpark.org/SFenforce",
                     geometryName: "GEOM",
                     version: "1.1.0",
-                    srsName: "EPSG:900913"
+                    srsName: "EPSG:900913",
+                    outputFormat: 'json',
+                    readFormat: new OpenLayers.Format.GeoJSON()
                 }),
                 eventListeners: {
                     "featureselected": function(evt) { 
@@ -104,7 +108,7 @@ initialize:function(){
                 },
                 maxResolution: 1,
                 renderers: ['Canvas'],
-                strategies: [new OpenLayers.Strategy.BBOX()]
+                strategies: [new OpenLayers.Strategy.BBOX({autoActivate:true})]
         });
 
         // OpenLayers specific setup
@@ -124,7 +128,7 @@ initialize:function(){
             ]
         });
 
-        map.addLayers([streets, citation, citation_vector]);
+        map.addLayers([streets, /*citation,*/ citation_vector]);
         
         this.setMap(map);
 
