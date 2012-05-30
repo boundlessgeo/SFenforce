@@ -1,8 +1,8 @@
 Ext.define("SFenforce.view.Map",{
-requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
-extend: 'GXM.Map',
-alias: 'widget.map',
-initialize:function(){
+    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
+    extend: 'GXM.Map',
+    alias: 'widget.map',
+    initialize:function(){
         var options = {
             projection: "EPSG:900913",
             maxExtent: new OpenLayers.Bounds(
@@ -45,21 +45,12 @@ initialize:function(){
                 type: "osm"
             }, options)
         );
-/*
-        var citation = new OpenLayers.Layer.WMS(
-            "Citation opportunities",
-            "/geoserver/wms?",
-            {layers: "SFenforce:CITATION_OPPORTUNITY_TMP", format: "image/png", transparent: true},
-            {minResolution: 1}
-        );
-*/
+
         OpenLayers.Feature.Vector.style['default']['pointRadius'] = 8;
         OpenLayers.Feature.Vector.style['select']['pointRadius'] = 8;
 
         var citation_vector = new OpenLayers.Layer.Vector(
             "Citation opportunities", {
-                visibility: true,
-                alwaysInRange: true,
                 protocol: new OpenLayers.Protocol.WFS({
                     url: "/geoserver/wfs",
                     featureType: "CITATION_OPPORTUNITY_TMP",
@@ -116,9 +107,8 @@ initialize:function(){
                         }
                     }
                 },
-                maxResolution: 1,
                 renderers: ['Canvas'],
-                strategies: [new OpenLayers.Strategy.BBOX({autoActivate:true})]
+                strategies: [new OpenLayers.Strategy.BBOX()]
         });
 
         // OpenLayers specific setup
@@ -138,7 +128,7 @@ initialize:function(){
             ]
         });
 
-        map.addLayers([streets, /*citation,*/ citation_vector]);
+        map.addLayers([streets, citation_vector]);
         
         this.setMap(map);
 
