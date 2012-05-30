@@ -50,9 +50,11 @@ Ext.define('SFenforce.controller.Login', {
         var errors = userInfo.validate();
         if (errors.isValid()) {
             var bounds = null;
+            var ids = values['beats'];
+            if (Ext.isString(ids)) { 
+                ids = ids.split(",");
+            }
             if (values['zoomtobeats'] === true) {
-                var ids = values['beats'];
-                if(Ext.isString(ids)){ids = ids.split(",");}
                 var store = Ext.getStore('Beats');
                 store.each(function(record) {
                     if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
@@ -68,7 +70,7 @@ Ext.define('SFenforce.controller.Login', {
                 bounds = new OpenLayers.Bounds(-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212);
             }
             this.storeLogin(userInfo);
-            this.showMap(bounds);
+            this.showMap(bounds, ids);
         } else {
             var message = '';
             Ext.each(errors.items,function(rec,i){
@@ -107,8 +109,9 @@ Ext.define('SFenforce.controller.Login', {
         }
     },
     
-    showMap: function(bounds){
+    showMap: function(bounds, beats){
         var map = Ext.create('SFenforce.view.Map',{
+            beats: beats,
             mapExtent: bounds.toArray()
         });
         this.getMain().pop();

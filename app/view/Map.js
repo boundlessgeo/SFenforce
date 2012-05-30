@@ -1,6 +1,9 @@
 Ext.define("SFenforce.view.Map",{
     requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
     extend: 'GXM.Map',
+    config: {
+        beats: null
+    },
     alias: 'widget.map',
     initialize:function(){
         var options = {
@@ -49,8 +52,28 @@ Ext.define("SFenforce.view.Map",{
         OpenLayers.Feature.Vector.style['default']['pointRadius'] = 8;
         OpenLayers.Feature.Vector.style['select']['pointRadius'] = 8;
 
+        var beats = this.getBeats();
+        var filters = [];
+        for (var i=0, ii=beats.length; i<ii; ++i) {
+            filters.push(new OpenLayers.Filter.Comparison({
+                type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                property: 'PCO_BEAT',
+                value: beats[i]
+            }));
+        }
+        var filter;
+        if (filters.length > 1) {
+            filter = new OpenLayers.Filter.Logical({
+                type: OpenLayers.Filter.Logical.OR,
+                filters: filters
+            });
+        } else {
+            filter = filters[0];
+        }
+
         var citation_vector = new OpenLayers.Layer.Vector(
             "Citation opportunities", {
+                filter: filter,
                 protocol: new OpenLayers.Protocol.WFS({
                     url: "/geoserver/wfs",
                     featureType: "CITATION_OPPORTUNITY_TMP",
