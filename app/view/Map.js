@@ -49,9 +49,6 @@ Ext.define("SFenforce.view.Map",{
             }, options)
         );
 
-        OpenLayers.Feature.Vector.style['default']['pointRadius'] = 8;
-        OpenLayers.Feature.Vector.style['select']['pointRadius'] = 8;
-
         var beats = this.getBeats();
         var filters = [];
         for (var i=0, ii=beats.length; i<ii; ++i) {
@@ -71,9 +68,56 @@ Ext.define("SFenforce.view.Map",{
             filter = filters[0];
         }
 
+        var style = new OpenLayers.Style({
+            pointRadius: 7,
+            fillOpacity: 0.4,
+            graphicName: 'circle'
+        }, {
+            rules: [
+                new OpenLayers.Rule({
+                    filter: new OpenLayers.Filter.Comparison({
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: 'MTR_EXPIRED_OPP_ID',
+                        value: null
+                    }),
+                    symbolizer: {
+                        fillColor: '#FF0000'
+                    }
+                }),
+                new OpenLayers.Rule({
+                    filter: new OpenLayers.Filter.Comparison({
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: 'COMML_OCC_OPP_ID',
+                        value: null
+                    }),
+                    symbolizer: {
+                        fillColor: '#FF0000'
+                    }
+                }),
+                new OpenLayers.Rule({
+                    filter: new OpenLayers.Filter.Comparison({
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: 'OVER_TL_OPP_ID',
+                        value: null
+                    }),
+                    symbolizer: {
+                        fillColor: '#FF0000'
+                    }
+                }),
+                new OpenLayers.Rule({
+                    elseFilter: true,
+                    symbolizer: {
+                        fillColor: '#00FF00'
+                    }
+                })
+            ]
+        });
+
+        /* TODO: specific select render intent so we can see which feature is selected */
         var citation_vector = new OpenLayers.Layer.Vector(
             "Citation opportunities", {
                 filter: filter,
+                styleMap: new OpenLayers.StyleMap(style),
                 protocol: new OpenLayers.Protocol.WFS({
                     url: "/geoserver/wfs",
                     featureType: "CITATION_OPPORTUNITY_TMP",
