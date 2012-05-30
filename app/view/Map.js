@@ -73,38 +73,44 @@ initialize:function(){
                 eventListeners: {
                     "featureselected": function(evt) { 
                         var feature = evt.feature;
-                        Ext.Viewport.add({
-                            xtype: 'panel', 
-                            layout: 'fit',
-                            width: 350, 
-                            height: 150,
-                            centered: true,
-                            modal: true, 
-                            hideOnMaskTap: true, 
-                            items: [{
-                                xtype: 'carousel', 
+                        if (!this.popup) {
+                            this.popup = Ext.Viewport.add({
+                                xtype: 'panel', 
+                                layout: 'fit',
+                                width: 350, 
+                                height: 150,
+                                centered: true,
+                                modal: true, 
+                                hideOnMaskTap: true, 
                                 items: [{
-                                    xtype: 'gxm_featurepopup',
-                                    centered: false, 
-                                    modal: false,
-                                    tpl: new Ext.XTemplate("{feature.attributes.PARKING_SPACE_ID}<br/>{feature.attributes.POST_ID}"),
-                                    feature: feature
-                                }, {
-                                    xtype: 'formpanel',
+                                    xtype: 'carousel', 
                                     items: [{
-                                        xtype: 'selectfield',
-                                        label: "Category",
-                                        store:  Ext.getStore('DispositionCodes')
+                                        xtype: 'gxm_featurepopup',
+                                        centered: false, 
+                                        modal: false,
+                                        tpl: new Ext.XTemplate("{feature.attributes.PARKING_SPACE_ID}<br/>{feature.attributes.POST_ID}"),
+                                        feature: feature
                                     }, {
-                                        xtype: 'toolbar',
+                                        xtype: 'formpanel',
                                         items: [{
-                                            xtype: 'button',
-                                            text: 'Save'
+                                            xtype: 'selectfield',
+                                            label: "Category",
+                                            store:  Ext.getStore('DispositionCodes')
+                                        }, {
+                                            xtype: 'toolbar',
+                                            items: [{
+                                                xtype: 'button',
+                                                text: 'Save'
+                                            }]
                                         }]
                                     }]
                                 }]
-                            }]
-                        });
+                            });
+                        } else {
+                            this.popup.down('gxm_featurepopup').setFeature(feature);
+                            this.popup.getItems().get(0).setActiveItem(0);
+                            this.popup.show();
+                        }
                     }
                 },
                 maxResolution: 1,
