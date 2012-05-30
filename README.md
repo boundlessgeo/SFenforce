@@ -19,5 +19,3 @@ this will output everything needed in build/testing
 To create a production build perform the following steps:
 
     sencha app build production
-    mkdir build/production/externals/openlayers/build/
-    cp externals/openlayers/build/OpenLayers.js build/production/externals/openlayers/build/
