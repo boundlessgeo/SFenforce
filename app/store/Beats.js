@@ -23,7 +23,9 @@ Ext.define('SFenforce.store.Beats', {
                 version: "1.1.0",
                 srsName: "EPSG:900913",
                 featureType: "PCO_BEATS",
-                featureNS: "http://www.sfpark.org/SFenforce"
+                featureNS: "http://www.sfpark.org/SFenforce",
+                outputFormat: 'json',
+                readFormat: new OpenLayers.Format.GeoJSON()
             }),
             reader: 'gxm_feature'
         }
