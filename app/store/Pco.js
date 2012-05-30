@@ -1,13 +1,9 @@
 Ext.define('SFenforce.store.Pco',{
-   extend: 'Ext.data.JsonStore',
+   extend: 'Ext.data.Store',
    requires: ['Ext.data.proxy.LocalStorage'],
    config: {
+       storeId: 'pcoStore',
        model: 'SFenforce.model.Pco',
-       proxy: {
-           type: 'localstorage',
-           id: 'sfenforce-pco'
-       },
-       autoSync: true,
        autoLoad: true
    } 
 });

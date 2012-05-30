@@ -11,16 +11,15 @@ Ext.define('SFenforce.controller.Login', {
             login: 'login'
         },
 
-        before: {
-            showLogin: 'findLogin'
-        },
-
         control: {
             main: {
                 beforepop: 'onMainBeforePop'
             },
             login: {
                 login: 'validateLogin'
+            },
+            '.login [name="badge"]': {
+                keyup: 'findBeats'
             }
         },
 
@@ -38,9 +37,6 @@ Ext.define('SFenforce.controller.Login', {
             this.getMain().getNavigationBar().down('#locateButton').hide();
         }, this);
         this.getMain().push(Ext.create('SFenforce.view.Login'));
-        if(SFenforce.userInfo){
-            this.getLogin().setValues(SFenforce.userInfo);
-        }
     },    
     
     validateLogin: function(form) {
@@ -50,7 +46,8 @@ Ext.define('SFenforce.controller.Login', {
         if (errors.isValid()) {
             var bounds = null;
             if (values['zoomtobeats'] === true) {
-                var ids = values['beats'].split(",");
+                var ids = values['beats'];
+                if(Ext.isString(ids)){ids = ids.split(",");}
                 var store = Ext.getStore('Beats');
                 store.each(function(record) {
                     if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
@@ -77,7 +74,14 @@ Ext.define('SFenforce.controller.Login', {
     },
     
     storeLogin: function(pcoRecord){
-        Ext.getStore('Pco').setData([pcoRecord]);
+        var store = Ext.getStore('pcoStore');
+        if(!store.getData().getByKey(pcoRecord.get("badge"))){
+            store.add(pcoRecord);    
+        }
+        store.getProxy().batch({
+                operations: {update:[pcoRecord]},
+                listeners: store.getBatchListeners()
+        });
         SFenforce.userInfo = pcoRecord.data;
     },
     
@@ -87,6 +91,15 @@ Ext.define('SFenforce.controller.Login', {
             SFenforce.userInfo = store.getAt(0).data;
         }
         action.resume();
+    },
+    
+    findBeats: function(input, evt){
+        var store = Ext.getStore('pcoStore');
+        var rec = store.getById(input.getValue());
+        if(rec){
+            var fld = Ext.ComponentQuery.query('.login [name="beats"]');
+            fld && fld[0].setValue(rec.get('beats'));
+        }
     },
     
     showMap: function(bounds){
