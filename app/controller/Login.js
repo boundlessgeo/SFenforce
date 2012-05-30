@@ -8,7 +8,10 @@ Ext.define('SFenforce.controller.Login', {
                 xtype: 'main',
                 selector: 'main'
             },
-            login: 'login'
+            login: 'login',
+            lastRefresh: '#lastRefresh',
+            refreshButton: '#refreshButton',
+            locateButton: '#locateButton'
         },
 
         control: {
@@ -34,7 +37,9 @@ Ext.define('SFenforce.controller.Login', {
       
     showLogin: function(){
         this.getMain().on('back', function() {
-            this.getMain().getNavigationBar().down('#locateButton').hide();
+            this.getLocateButton().hide();
+            this.getRefreshButton().hide();
+            this.getLastRefresh().hide();
         }, this);
         this.getMain().push(Ext.create('SFenforce.view.Login'));
     },    
@@ -108,7 +113,10 @@ Ext.define('SFenforce.controller.Login', {
         });
         this.getMain().pop();
         this.getMain().push(map);
-        this.getMain().getNavigationBar().down('#locateButton').show();
+        this.getLocateButton().show();
+        this.getRefreshButton().show();
+        this.getLastRefresh().setHtml('Last refresh: ' + Ext.Date.format(new Date(), 'H:i A'));
+        this.getLastRefresh().show();
     },
     
     onMainBeforePop:Ext.emptyFn

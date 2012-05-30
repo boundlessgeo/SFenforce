@@ -20,6 +20,15 @@ Ext.define('SFenforce.view.Main', {
                 id: 'locateButton',
                 hidden: true,
                 iconCls: 'locate'
+            }, {
+                id: 'refreshButton',
+                iconMask: true,
+                iconCls: 'refresh',
+                hidden: true
+            }, {
+                id: 'lastRefresh',
+                hidden: true,
+                xtype: 'container'
             }]
         }
     },

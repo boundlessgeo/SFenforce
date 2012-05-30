@@ -1,6 +1,7 @@
 Ext.define("SFenforce.view.Map",{
 requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
 extend: 'GXM.Map',
+alias: 'widget.map',
 initialize:function(){
         var options = {
             projection: "EPSG:900913",
