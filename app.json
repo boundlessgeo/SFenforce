@@ -92,7 +92,6 @@
      * Extra resources to be copied along when build
      */
     "resources": [
-        "data",
         "externals/openlayers/build",
         "resources/icons",
         "resources/startup"
