@@ -122,9 +122,9 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
-        var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces","http://sfpark.demo.opengeo.org/geoserver/wms",{
-            layers:'sfpark:spaces',
-            styles:'spaces_nodata',
+        var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces","/geoserver/wms",{
+            layers:'SFenforce:PARKING_SPACE_INVENTORY',
+            styles:'sfenforce_nodata',
             version: '1.1.0',
             transparent: true,
             filter: new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter))
@@ -164,7 +164,7 @@ Ext.define("SFenforce.view.Map",{
                                     xtype: 'carousel', 
                                     items: [{
                                         xtype: 'gxm_featurepopup',
-                                        centered: false, 
+                                       centered: false, 
                                         modal: false,
                                         tpl: new Ext.XTemplate('{feature.attributes.POST_ID}<br/>', 
                                             '<tpl if="feature.attributes.OVER_TIME_LIMIT_FLAG == 1">Overtime<br/></tpl>',
