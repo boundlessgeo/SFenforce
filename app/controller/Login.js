@@ -22,7 +22,7 @@ Ext.define('SFenforce.controller.Login', {
                 login: 'validateLogin'
             },
             '.login [name="badge"]': {
-                keyup: 'findBeats'
+                change: 'findBeats'
             }
         },
 
