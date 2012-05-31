@@ -94,7 +94,9 @@ Ext.define('SFenforce.controller.Login', {
         if (idx > -1) {
             var rec = store.getAt(idx);
             var fld = Ext.ComponentQuery.query('.login [name="beats"]');
-            fld && fld[0].setValue(rec.get('beats'));
+            if (fld && fld[0] && fld[0].getValue() == null) {
+                fld[0].setValue(rec.get('beats'));
+            }
         }
     },
     
