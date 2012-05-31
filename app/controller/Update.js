@@ -48,12 +48,14 @@ Ext.define('SFenforce.controller.Update', {
                 version: "1.1.0"
             });
             var xml = format.write([feature]);
-            console.log(xml);
             var url = "/geoserver/wfs";
             OpenLayers.Request.POST({
                 url: url,
                 callback: function(response) {
-                    // TODO handle success and exceptions
+                    var success = format.read(response.responseText).success;
+                    if (!success) {
+                        Ext.Msg.alert('Error', 'Failure updating disposition code');
+                    }
                 },
                 data: xml
             });
