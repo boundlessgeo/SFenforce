@@ -56,6 +56,8 @@ Ext.define('SFenforce.controller.Update', {
                         Ext.Msg.alert('Error', 'Failure updating disposition code');
                     } else {
                         this.getPopupPanel().hide();
+                        feature.attributes[field] = 1;
+                        feature.layer.drawFeature(feature);
                     }
                 },
                 scope: this,

@@ -128,6 +128,18 @@ Ext.define("SFenforce.view.Map",{
                     }
                 }),
                 new OpenLayers.Rule({
+                    name: 'Cited',
+                    filter: new OpenLayers.Filter.Comparison({
+                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                        property: 'DISPOSITION_CODE',
+                        value: 1
+                    }),
+                    symbolizer: {
+                        fillColor: '#22FF11',
+                        pointRadius: 4
+                    }
+                }),
+                new OpenLayers.Rule({
                     name: "Paid / Vacant",
                     elseFilter: true,
                     symbolizer: {
