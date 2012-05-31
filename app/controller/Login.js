@@ -90,8 +90,9 @@ Ext.define('SFenforce.controller.Login', {
     
     findBeats: function(input, evt){
         var store = Ext.getStore('pcoStore');
-        var rec = store.getById(input.getValue());
-        if(rec){
+        var idx = store.findExact('badge', input.getValue());
+        if (idx > -1) {
+            var rec = store.getAt(idx);
             var fld = Ext.ComponentQuery.query('.login [name="beats"]');
             fld && fld[0].setValue(rec.get('beats'));
         }
