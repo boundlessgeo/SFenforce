@@ -144,6 +144,7 @@ Ext.define("SFenforce.view.Map",{
                             this.popup = Ext.Viewport.add({
                                 xtype: 'panel', 
                                 layout: 'fit',
+                                id: 'popuppanel',
                                 width: 350, 
                                 height: 150,
                                 centered: true,
