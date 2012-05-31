@@ -78,45 +78,60 @@ Ext.define("SFenforce.view.Map",{
         });
 
         var style = new OpenLayers.Style({
-            pointRadius: 7,
-            fillOpacity: 0.4,
+            pointRadius: 6,
+            fillOpacity: 0.85,
             graphicName: 'circle'
         }, {
             rules: [
                 new OpenLayers.Rule({
+                    name: 'Over Time',
+                    filter: new OpenLayers.Filter.Logical({
+                        type: OpenLayers.Filter.Logical.OR,
+                        filters:[
+                            new OpenLayers.Filter.Comparison({
+                                type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                                property: 'METER_EXPIRED_FLAG',
+                                value: 1
+                            }),
+                            new OpenLayers.Filter.Comparison({
+                                type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                                property: 'OVER_TIME_LIMIT_FLAG',
+                                value: 1
+                            })
+                        ]
+                    }),
+                    symbolizer: {
+                        fillColor: '#EFEF20'
+                    }
+                }),
+                new OpenLayers.Rule({
+                    name: 'Commercial Space',
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'MTR_EXPIRED_OPP_ID',
-                        value: null
+                        property: 'COMMERCIAL_OCCUPIED_FLAG',
+                        value: 1
                     }),
                     symbolizer: {
                         fillColor: '#FF0000'
                     }
                 }),
                 new OpenLayers.Rule({
+                    name: 'No Data',
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'COMML_OCC_OPP_ID',
-                        value: null
+                        property: 'ENFORCEMENT_GROUP',
+                        value: 0
                     }),
                     symbolizer: {
-                        fillColor: '#FF0000'
+                        fillColor: '#000000',
+                        pointRadius: 4
                     }
                 }),
                 new OpenLayers.Rule({
-                    filter: new OpenLayers.Filter.Comparison({
-                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'OVER_TL_OPP_ID',
-                        value: null
-                    }),
-                    symbolizer: {
-                        fillColor: '#FF0000'
-                    }
-                }),
-                new OpenLayers.Rule({
+                    name: "Paid / Vacant",
                     elseFilter: true,
                     symbolizer: {
-                        fillColor: '#00FF00'
+                        fillColor: '#B2B2B2'
                     }
                 })
             ]
