@@ -1,4 +1,4 @@
-testmobile
+SFenforce
 =========
 
 Copy the application-specific OpenLayers build profile named openlayers.cfg into the externals/openlayers/build directory.

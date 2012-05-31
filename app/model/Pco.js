@@ -2,7 +2,6 @@
 Ext.define('SFenforce.model.Pco', {
     extend: 'Ext.data.Model',
     config: {
-        idProperty: 'badge',
         fields: [
             {name: 'badge', type: 'number'},
             {name: 'beats', convert: function(v) { 

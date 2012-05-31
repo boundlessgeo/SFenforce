@@ -1,12 +1,11 @@
 Ext.define('SFenforce.controller.Update', {
     extend: 'Ext.app.Controller',
-    requires: ['SFenforce.view.Main', 'SFenforce.view.Map'],
     config: {
         refs: {
             updateForm: '#updateForm',
             saveButton: '#saveButton',
             popup: 'gxm_featurepopup',
-            map: 'map'
+            popupPanel: '#popuppanel'
         },
 
         control: {
@@ -55,8 +54,11 @@ Ext.define('SFenforce.controller.Update', {
                     var success = format.read(response.responseText).success;
                     if (!success) {
                         Ext.Msg.alert('Error', 'Failure updating disposition code');
+                    } else {
+                        this.getPopupPanel().hide();
                     }
                 },
+                scope: this,
                 data: xml
             });
         }
