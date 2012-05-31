@@ -3,8 +3,8 @@ Ext.define('SFenforce.model.DispositionCode', {
     
     config: {
         fields: [
-            {name: 'value', type: 'integer'},
-            {name: 'text', type: 'string'}
+            {name: 'value', type: 'integer', mapping: 'attributes.VALUE'},
+            {name: 'text', type: 'string', mapping: 'attributes.DESCRIPTION'}
         ]
     }
 });
