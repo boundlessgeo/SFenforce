@@ -118,7 +118,7 @@ Ext.define('SFenforce.controller.Login', {
         this.getMain().push(map);
         this.getLocateButton().show();
         this.getRefreshButton().show();
-        this.getLastRefresh().setHtml('Last refresh: ' + Ext.Date.format(new Date(), 'H:i A'));
+        this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
         this.getLastRefresh().show();
     },
     
