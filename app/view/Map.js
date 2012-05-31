@@ -67,14 +67,14 @@ Ext.define("SFenforce.view.Map",{
         } else {
             beatFilter = filters[0];
         }
-        var nullFilter = new OpenLayers.Filter.Comparison({
+        var sessionFilter = new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.GREATER_THAN,
             property: 'PARKING_SESSION_ID',
             value: -1
         });
         var filter = new OpenLayers.Filter.Logical({
             type: OpenLayers.Filter.Logical.AND,
-            filters: [nullFilter, beatFilter]
+            filters: [sessionFilter, beatFilter]
         });
 
         var style = new OpenLayers.Style({
@@ -122,6 +122,16 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
+        var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces","http://sfpark.demo.opengeo.org/geoserver/wms",{
+            layers:'sfpark:spaces',
+            styles:'spaces_nodata',
+            version: '1.1.0',
+            transparent: true,
+            filter: new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter))
+        },{
+            buffer: 1,
+            isBaseLayer: false
+        });
         /* TODO: specific select render intent so we can see which feature is selected */
         var citation_vector = new OpenLayers.Layer.Vector(
             "Citation opportunities", {
@@ -208,7 +218,7 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
-        map.addLayers([streets, citation_vector]);
+        map.addLayers([streets, citation_vector, nodata_spaces]);
         
         this.setMap(map);
 
