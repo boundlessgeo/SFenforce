@@ -31,10 +31,6 @@ Ext.define('SFenforce.controller.Login', {
         }
     },
 
-    init: function() {
-        //Ext.getStore('Categories').on('load', this.onStoreLoad, this);
-    },    
-      
     showLogin: function(){
         this.getMain().on('back', function() {
             this.getLocateButton().hide();
@@ -90,14 +86,6 @@ Ext.define('SFenforce.controller.Login', {
                 listeners: store.getBatchListeners()
         });
         SFenforce.userInfo = pcoRecord.data;
-    },
-    
-    findLogin: function(action){
-        var store = Ext.getStore('Pco');
-        if(store.getTotalCount()){
-            SFenforce.userInfo = store.getAt(0).data;
-        }
-        action.resume();
     },
     
     findBeats: function(input, evt){
