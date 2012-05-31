@@ -155,7 +155,11 @@ Ext.define("SFenforce.view.Map",{
                                         xtype: 'gxm_featurepopup',
                                         centered: false, 
                                         modal: false,
-                                        tpl: new Ext.XTemplate("{feature.attributes.PARKING_SPACE_ID}<br/>{feature.attributes.POST_ID}"),
+                                        tpl: new Ext.XTemplate('{feature.attributes.POST_ID}<br/>', 
+                                            '<tpl if="feature.attributes.OVER_TIME_LIMIT_FLAG == 1">Overtime</tpl>',
+                                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired</tpl>',
+                                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>'
+                                        ),
                                         feature: feature
                                     }, {
                                         xtype: 'formpanel',
