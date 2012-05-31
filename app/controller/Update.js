@@ -47,7 +47,7 @@ Ext.define('SFenforce.controller.Update', {
                 version: "1.1.0"
             });
             var xml = format.write([feature]);
-            var url = "/geoserver/wfs";
+            var url = "/geoserver22beta2/wfs";
             OpenLayers.Request.POST({
                 url: url,
                 callback: function(response) {

@@ -19,7 +19,7 @@ Ext.define('SFenforce.store.Beats', {
         proxy: {
             type: 'gxm_protocol',
             protocol: new OpenLayers.Protocol.WFS({
-                url: "/geoserver/wfs",
+                url: "/geoserver22beta2/wfs",
                 version: "1.1.0",
                 srsName: "EPSG:900913",
                 featureType: "PCO_BEATS",
