@@ -20,7 +20,7 @@ Ext.define('SFenforce.controller.Update', {
         var attributes = this.getPopup().getFeature().attributes;
         var fids = [];
         var table = 'RT_CITATION_OPPORTUNITY';
-        var featureNS = "http://www.sfpark.org/SFenforce";
+        var featureNS = SFenforce.util.Config.getFeatureNS();
         var field = 'DISPOSITION_CODE';
         var fields = ['MTR_EXPIRED_OPP_ID', 'OVER_TL_OPP_ID', 'COMML_OCC_OPP_ID'];
         for (var i=0, ii=fields.length; i<ii; ++i) {

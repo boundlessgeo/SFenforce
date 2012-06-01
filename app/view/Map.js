@@ -174,7 +174,7 @@ Ext.define("SFenforce.view.Map",{
                 protocol: new OpenLayers.Protocol.WFS({
                     url: SFenforce.util.Config.getGeoserverUrl(),
                     featureType: "CITATION_OPPORTUNITY_TMP",
-                    featureNS: "http://www.sfpark.org/SFenforce",
+                    featureNS: SFenforce.util.Config.getFeatureNS(),
                     geometryName: "GEOM",
                     version: "1.1.0",
                     srsName: "EPSG:900913",

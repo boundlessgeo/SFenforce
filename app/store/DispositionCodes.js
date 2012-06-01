@@ -19,7 +19,7 @@ Ext.define('SFenforce.store.DispositionCodes', {
                 version: "1.1.0",
                 srsName: "EPSG:900913",
                 featureType: "DISPOSITION_CODES_TMP",
-                featureNS: "http://www.sfpark.org/SFenforce",
+                featureNS: SFenforce.util.Config.getFeatureNS(),
                 outputFormat: 'json',
                 readFormat: new OpenLayers.Format.GeoJSON()
             }),
