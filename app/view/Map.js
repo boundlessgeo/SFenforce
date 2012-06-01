@@ -172,7 +172,6 @@ Ext.define("SFenforce.view.Map",{
                                        centered: false, 
                                         modal: false,
                                         tpl: new Ext.XTemplate('{feature.attributes.POST_ID}<br/>', 
-                                            '<tpl if="feature.attributes.OVER_TIME_LIMIT_FLAG == 1">Overtime<br/></tpl>',
                                             '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
                                             '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>'
                                         ),
