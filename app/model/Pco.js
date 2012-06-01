@@ -12,8 +12,7 @@ Ext.define('SFenforce.model.Pco', {
             }} // array of string
         ],
         validations: [
-            {type: 'presence', name: 'badge', message: "Please enter badge number"},
-            {type: 'presence', name: 'beats', message: "Please select at least one beat"}
+            {type: 'presence', name: 'badge', message: "Please enter badge number"}
         ],
         proxy: {
            type: 'localstorage',

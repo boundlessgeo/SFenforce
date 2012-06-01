@@ -50,32 +50,39 @@ Ext.define("SFenforce.view.Map",{
         );
 
         var beats = this.getBeats();
-        var filters = [];
-        for (var i=0, ii=beats.length; i<ii; ++i) {
-            filters.push(new OpenLayers.Filter.Comparison({
-                type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                property: 'PCO_BEAT',
-                value: beats[i]
-            }));
-        }
-        var beatFilter;
-        if (filters.length > 1) {
-            beatFilter = new OpenLayers.Filter.Logical({
-                type: OpenLayers.Filter.Logical.OR,
-                filters: filters
-            });
-        } else {
-            beatFilter = filters[0];
+        var beatFilter = null;
+        if (beats !== null) {
+            var filters = [];
+            for (var i=0, ii=beats.length; i<ii; ++i) {
+                filters.push(new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                    property: 'PCO_BEAT',
+                    value: beats[i]
+                }));
+            }
+            if (filters.length > 1) {
+                beatFilter = new OpenLayers.Filter.Logical({
+                    type: OpenLayers.Filter.Logical.OR,
+                    filters: filters
+                });
+            } else {
+                beatFilter = filters[0];
+            }
         }
         var sessionFilter = new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.GREATER_THAN,
             property: 'PARKING_SESSION_ID',
             value: -1
         });
-        var filter = new OpenLayers.Filter.Logical({
-            type: OpenLayers.Filter.Logical.AND,
-            filters: [sessionFilter, beatFilter]
-        });
+        var filter;
+        if (beatFilter !== null) {
+            filter = new OpenLayers.Filter.Logical({
+                type: OpenLayers.Filter.Logical.AND,
+                filters: [sessionFilter, beatFilter]
+            });
+        } else {
+            filter = sessionFilter;
+        }
 
         var style = new OpenLayers.Style({
             pointRadius: 6,
@@ -154,7 +161,7 @@ Ext.define("SFenforce.view.Map",{
             styles:'sfenforce_nodata',
             version: '1.1.0',
             transparent: true,
-            filter: new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter))
+            filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
         },{
             buffer: 1,
             isBaseLayer: false

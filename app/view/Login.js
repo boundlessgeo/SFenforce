@@ -42,6 +42,7 @@ Ext.define('SFenforce.view.Login', {
             }, {
                 xtype: 'multiselectfield',
                 name: "beats",
+                required: false,
                 label: this.beatsLabel,
                 usePicker: false,
                 displayField: 'name',
