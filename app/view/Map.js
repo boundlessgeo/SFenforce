@@ -91,31 +91,10 @@ Ext.define("SFenforce.view.Map",{
         }, {
             rules: [
                 new OpenLayers.Rule({
-                    name: 'Over Time',
-                    filter: new OpenLayers.Filter.Logical({
-                        type: OpenLayers.Filter.Logical.OR,
-                        filters:[
-                            new OpenLayers.Filter.Comparison({
-                                type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                                property: 'METER_EXPIRED_FLAG',
-                                value: 1
-                            }),
-                            new OpenLayers.Filter.Comparison({
-                                type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                                property: 'OVER_TIME_LIMIT_FLAG',
-                                value: 1
-                            })
-                        ]
-                    }),
-                    symbolizer: {
-                        fillColor: '#EFEF20'
-                    }
-                }),
-                new OpenLayers.Rule({
-                    name: 'Commercial Space',
+                    name: 'Unpaid vehicle',
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'COMMERCIAL_OCCUPIED_FLAG',
+                        property: 'METER_EXPIRED_FLAG',
                         value: 1
                     }),
                     symbolizer: {
@@ -123,15 +102,14 @@ Ext.define("SFenforce.view.Map",{
                     }
                 }),
                 new OpenLayers.Rule({
-                    name: 'No Data',
+                    name: 'Vehicle at commercial space',
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'ENFORCEMENT_GROUP',
-                        value: 0
+                        property: 'COMMERCIAL_OCCUPIED_FLAG',
+                        value: 1
                     }),
                     symbolizer: {
-                        fillColor: '#000000',
-                        pointRadius: 4
+                        fillColor: '#EFEF20'
                     }
                 }),
                 new OpenLayers.Rule({
@@ -144,13 +122,6 @@ Ext.define("SFenforce.view.Map",{
                     symbolizer: {
                         fillColor: '#22FF11',
                         pointRadius: 4
-                    }
-                }),
-                new OpenLayers.Rule({
-                    name: "Paid / Vacant",
-                    elseFilter: true,
-                    symbolizer: {
-                        fillColor: '#B2B2B2'
                     }
                 })
             ]
