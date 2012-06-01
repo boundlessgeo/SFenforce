@@ -157,7 +157,7 @@ Ext.define("SFenforce.view.Map",{
         });
 
         var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces", SFenforce.util.Config.getGeoserverUrl(),{
-            layers:'SFenforce:PARKING_SPACE_INVENTORY',
+            layers:'SFenforce:CITATION_OPPORTUNITY_TMP',
             styles:'sfenforce_nodata',
             version: '1.1.0',
             transparent: true,

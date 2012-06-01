@@ -13,26 +13,10 @@
         <Rule>
           <Title>Black Dot</Title>
           <ogc:Filter>
-            <ogc:And>
-              <ogc:Or>
-                <ogc:PropertyIsEqualTo>
-                  <ogc:PropertyName>SMART_METER_FLAG</ogc:PropertyName>
-                  <ogc:Literal>N</ogc:Literal>
-                </ogc:PropertyIsEqualTo>
-                <ogc:PropertyIsEqualTo>
-                  <ogc:PropertyName>SENSOR_FLAG</ogc:PropertyName>
-                  <ogc:Literal>N</ogc:Literal>
-                </ogc:PropertyIsEqualTo>
-                <ogc:PropertyIsEqualTo>
-                  <ogc:PropertyName>ACTIVE_METER_FLAG</ogc:PropertyName>
-                  <ogc:Literal>U</ogc:Literal>
-                </ogc:PropertyIsEqualTo>
-              </ogc:Or>
               <ogc:PropertyIsEqualTo>
-                <ogc:PropertyName>JURISDICTION</ogc:PropertyName>
-                <ogc:Literal>SFMTA</ogc:Literal>
+                <ogc:PropertyName>ENFORCEMENT_GROUP</ogc:PropertyName>
+                <ogc:Literal>0</ogc:Literal>
               </ogc:PropertyIsEqualTo>
-            </ogc:And>
           </ogc:Filter>
           <PointSymbolizer>
             <Graphic>
