@@ -15,7 +15,7 @@ Ext.define('SFenforce.store.DispositionCodes', {
         proxy: {
             type: 'gxm_protocol',
             protocol: new OpenLayers.Protocol.WFS({
-                url: "/geoserver22beta2/wfs",
+                url: SFenforce.util.Config.getGeoserverUrl(),
                 version: "1.1.0",
                 srsName: "EPSG:900913",
                 featureType: "DISPOSITION_CODES_TMP",

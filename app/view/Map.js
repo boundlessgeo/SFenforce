@@ -156,7 +156,7 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
-        var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces","/geoserver22beta2/wms",{
+        var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces", SFenforce.util.Config.getGeoserverUrl(),{
             layers:'SFenforce:PARKING_SPACE_INVENTORY',
             styles:'sfenforce_nodata',
             version: '1.1.0',
@@ -172,7 +172,7 @@ Ext.define("SFenforce.view.Map",{
                 filter: filter,
                 styleMap: new OpenLayers.StyleMap(style),
                 protocol: new OpenLayers.Protocol.WFS({
-                    url: "/geoserver22beta2/wfs",
+                    url: SFenforce.util.Config.getGeoserverUrl(),
                     featureType: "CITATION_OPPORTUNITY_TMP",
                     featureNS: "http://www.sfpark.org/SFenforce",
                     geometryName: "GEOM",

@@ -2,9 +2,12 @@ Ext.Loader.setConfig({
     enabled: true,
     disableCaching: true,
     paths: {
-        GXM: "externals/GXM/lib/GXM"
+        GXM: "externals/GXM/lib/GXM",
+        SFenforce: "app"
     }
 });
+
+Ext.require('SFenforce.util.Config');
 
 Ext.application({
     name: 'SFenforce',
