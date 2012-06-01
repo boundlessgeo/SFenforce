@@ -127,6 +127,9 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
+        var styleMap = new OpenLayers.StyleMap(style);
+        styleMap.styles["select"] = styleMap.styles["select"].clone();
+        styleMap.styles["select"].defaultStyle.strokeColor = 'blue';
         var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces", SFenforce.util.Config.getGeoserverUrl(),{
             layers:'SFenforce:CITATION_OPPORTUNITY_TMP',
             styles:'sfenforce_nodata',
@@ -141,7 +144,7 @@ Ext.define("SFenforce.view.Map",{
         var citation_vector = new OpenLayers.Layer.Vector(
             "Citation opportunities", {
                 filter: filter,
-                styleMap: new OpenLayers.StyleMap(style),
+                styleMap: styleMap,
                 protocol: new OpenLayers.Protocol.WFS({
                     url: SFenforce.util.Config.getGeoserverUrl(),
                     featureType: "CITATION_OPPORTUNITY_TMP",
