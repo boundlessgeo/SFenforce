@@ -4,6 +4,7 @@ Ext.define('SFenforce.controller.Map', {
     config: {
         refs: {
             refreshButton: '#refreshButton',
+            zoomButton: '#zoomButton',
             lastRefresh: '#lastRefresh',
             map: 'map'
         },
@@ -11,9 +12,18 @@ Ext.define('SFenforce.controller.Map', {
         control: {
             refreshButton: {
                 tap: 'doRefresh'
+            },
+            zoomButton: {
+                tap: 'zoomToBeats'
             }
         }
 
+    },
+
+    zoomToBeats: function() {
+        var bounds = SFenforce.util.Config.getBeatsBounds();
+        var map = this.getMap().getMap();
+        map.zoomToExtent(bounds);
     },
 
     doUpdate: function() {

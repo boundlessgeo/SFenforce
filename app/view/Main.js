@@ -21,6 +21,11 @@ Ext.define('SFenforce.view.Main', {
                 hidden: true,
                 iconCls: 'locate'
             }, {
+                id: 'zoomButton',
+                iconMask: true,
+                iconCls: 'favorites',
+                hidden: true
+            }, {
                 id: 'refreshButton',
                 iconMask: true,
                 iconCls: 'refresh',

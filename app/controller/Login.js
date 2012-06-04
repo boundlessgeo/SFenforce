@@ -11,6 +11,7 @@ Ext.define('SFenforce.controller.Login', {
             login: 'login',
             lastRefresh: '#lastRefresh',
             refreshButton: '#refreshButton',
+            zoomButton: '#zoomButton',
             locateButton: '#locateButton'
         },
 
@@ -34,6 +35,7 @@ Ext.define('SFenforce.controller.Login', {
     showLogin: function(){
         this.getMain().on('back', function() {
             this.getLocateButton().hide();
+            this.getZoomButton().hide();
             this.getRefreshButton().hide();
             this.getLastRefresh().hide();
         }, this);
@@ -50,20 +52,19 @@ Ext.define('SFenforce.controller.Login', {
             if (Ext.isString(ids)) { 
                 ids = ids.split(",");
             }
-            if (values['zoomtobeats'] === true) {
-                var store = Ext.getStore('Beats');
-                store.each(function(record) {
-                    if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
-                        if (bounds === null) {
-                            bounds = record.get('geometry').getBounds();
-                        } else {
-                            bounds.extend(record.get('geometry').getBounds());
-                        }
+            var store = Ext.getStore('Beats');
+            store.each(function(record) {
+                if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
+                    if (bounds === null) {
+                        bounds = record.get('geometry').getBounds();
+                    } else {
+                        bounds.extend(record.get('geometry').getBounds());
                     }
-                });
-            } else {
-                // city-wide view
-                bounds = new OpenLayers.Bounds(-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212);
+                }
+            });
+            SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
+            if (values['zoomtobeats'] !== true) {
+                bounds = SFenforce.util.Config.getBounds();
             }
             this.storeLogin(userInfo);
             this.showMap(bounds, ids);
@@ -108,6 +109,7 @@ Ext.define('SFenforce.controller.Login', {
         this.getMain().pop();
         this.getMain().push(map);
         this.getLocateButton().show();
+        this.getZoomButton().show();
         this.getRefreshButton().show();
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
         this.getLastRefresh().show();
