@@ -35,9 +35,11 @@ Ext.define('SFenforce.controller.Map', {
 
     doRefresh: function() {
         var map = this.getMap().getMap();
-        var layer = map.getLayersByClass('OpenLayers.Layer.Vector')[0];
+        var layer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
         layer.events.on({'loadend': this.doUpdate, scope: this});
         layer.refresh({force: true});
+        layer = map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0];
+        layer.redraw(true);
     }
 
 });

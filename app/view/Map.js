@@ -130,19 +130,21 @@ Ext.define("SFenforce.view.Map",{
         var styleMap = new OpenLayers.StyleMap(style);
         styleMap.styles["select"] = styleMap.styles["select"].clone();
         styleMap.styles["select"].defaultStyle.strokeColor = 'blue';
-        var nodata_spaces = new OpenLayers.Layer.WMS("No Data Spaces", SFenforce.util.Config.getGeoserverUrl(),{
-            layers:'SFenforce:CITATION_OPPORTUNITY_TMP',
-            styles:'sfenforce_nodata',
-            version: '1.1.0',
-            transparent: true,
-            filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
-        },{
-            buffer: 1,
-            isBaseLayer: false
-        });
-        /* TODO: specific select render intent so we can see which feature is selected */
+        var nodata_spaces = new OpenLayers.Layer.WMS(
+            SFenforce.util.Config.getNoDataLayerName(), 
+            SFenforce.util.Config.getGeoserverUrl(), {
+                layers:'SFenforce:CITATION_OPPORTUNITY_TMP',
+                styles:'sfenforce_nodata',
+                version: '1.1.1',
+                transparent: true,
+                filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
+            },{
+                buffer: 1,
+                isBaseLayer: false
+            }
+        );
         var citation_vector = new OpenLayers.Layer.Vector(
-            "Citation opportunities", {
+            SFenforce.util.Config.getCitationLayerName(), {
                 filter: filter,
                 styleMap: styleMap,
                 protocol: new OpenLayers.Protocol.WFS({

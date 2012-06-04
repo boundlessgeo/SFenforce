@@ -1,6 +1,6 @@
 Ext.Loader.setConfig({
     enabled: true,
-    disableCaching: true,
+    disableCaching: false,
     paths: {
         GXM: "externals/GXM/lib/GXM",
         SFenforce: "app"
