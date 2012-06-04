@@ -158,15 +158,51 @@ Ext.define("SFenforce.view.Map",{
                     readFormat: new OpenLayers.Format.GeoJSON()
                 }),
                 eventListeners: {
-                    "featureselected": function(evt) { 
+                    "featureselected": function(evt) {
                         var feature = evt.feature;
+                        var lonlat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y); 
+                        var xy = this.getMap().getViewPortPxFromLonLat(lonlat);
                         if (!this.popup) {
                             this.popup = Ext.Viewport.add({
                                 xtype: 'panel', 
                                 layout: 'fit',
+                                listeners: {
+                                    'show': function() {
+                                        var mapBox = Ext.fly(this.getMap().div).getBox(true);
+                                        //assumed viewport takes up whole body element of map panel
+                                        var popupPos =  [this.popup.getLeft(), this.popup.getTop()];
+                                        popupPos[0] -= mapBox.x;
+                                        popupPos[1] -= mapBox.y;
+                                        var panelSize = [mapBox.width, mapBox.height]; // [X,Y]
+                                        var popupSize = [this.popup.getWidth(), this.popup.getHeight()];
+                                        var newPos = [popupPos[0], popupPos[1]];
+                                        //For now, using native OpenLayers popup padding.  This may not be ideal.
+                                        var padding = this.getMap().paddingForPopups;
+                                        // X
+                                        if(popupPos[0] < padding.left) {
+                                            newPos[0] = padding.left;
+                                        } else if(popupPos[0] + popupSize[0] > panelSize[0] - padding.right) {
+                                            newPos[0] = panelSize[0] - padding.right - popupSize[0];
+                                        }
+                                        // Y
+                                        if(popupPos[1] < padding.top) {
+                                            newPos[1] = padding.top;
+                                        } else if(popupPos[1] + popupSize[1] > panelSize[1] - padding.bottom) {
+                                            newPos[1] = panelSize[1] - padding.bottom - popupSize[1];
+                                        }
+                                        var dx = popupPos[0] - newPos[0];
+                                        var dy = popupPos[1] - newPos[1];
+                                        this.getMap().pan(dx, dy);
+                                        this.popup.setLeft(newPos[0]+mapBox.x);
+                                        this.popup.setTop(newPos[1]+mapBox.y);
+                                    },
+                                    scope: this
+                                },
                                 id: 'popuppanel',
                                 width: 350, 
                                 height: 150,
+                                top: xy.y + 15,
+                                left: xy.x + 15,
                                 centered: true,
                                 modal: true, 
                                 hideOnMaskTap: true, 
@@ -200,12 +236,18 @@ Ext.define("SFenforce.view.Map",{
                                     }]
                                 }]
                             });
+                            // work around the issue that show is not fired the first time
+                            this.popup.hide(); 
+                            this.popup.show();
                         } else {
                             this.popup.down('gxm_featurepopup').setFeature(feature);
                             this.popup.getItems().get(0).setActiveItem(0);
+                            this.popup.setTop(xy.y + 15);
+                            this.popup.setLeft(xy.x + 15);
                             this.popup.show();
                         }
-                    }
+                    },
+                    scope: this
                 },
                 renderers: ['Canvas'],
                 strategies: [new OpenLayers.Strategy.BBOX()]
