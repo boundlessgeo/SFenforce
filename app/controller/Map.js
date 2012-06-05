@@ -27,6 +27,10 @@ Ext.define('SFenforce.controller.Map', {
     zoomToBeats: function() {
         var bounds = SFenforce.util.Config.getBeatsBounds();
         var map = this.getMap().getMap();
+        //turn off tracking if it is on
+        var locationToggle = this.getLocateButton();
+        locationToggle.setPressedButtons([]);
+        locationToggle.fireEvent('toggle', locationToggle, locationToggle.query('> button')[0], false);
         map.zoomToExtent(bounds);
     },
 
@@ -54,5 +58,6 @@ Ext.define('SFenforce.controller.Map', {
             tracker.init(map);
         }
         tracker.setTrackSuspended(!pressed);
+        button.setUi((pressed) ? 'confirm' : 'action');
     }
 });
