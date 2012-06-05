@@ -6,6 +6,7 @@ Ext.define('SFenforce.controller.Map', {
             refreshButton: '#refreshButton',
             zoomButton: '#zoomButton',
             lastRefresh: '#lastRefresh',
+            locateButton: '#locateButton',
             map: 'map'
         },
 
@@ -15,6 +16,9 @@ Ext.define('SFenforce.controller.Map', {
             },
             zoomButton: {
                 tap: 'zoomToBeats'
+            },
+            locateButton: {
+                toggle: 'toggleTracker'
             }
         }
 
@@ -40,6 +44,15 @@ Ext.define('SFenforce.controller.Map', {
         layer.refresh({force: true});
         layer = map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0];
         layer.redraw(true);
+    },
+    
+    toggleTracker: function(cmp, button, pressed){
+        var map = this.getMap();
+        var tracker = map.getGeo();
+        if(!tracker){
+            tracker = map._tracker;
+            tracker.init(map);
+        }
+        tracker.setTrackSuspended(!pressed);
     }
-
 });
