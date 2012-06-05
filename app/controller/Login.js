@@ -12,7 +12,7 @@ Ext.define('SFenforce.controller.Login', {
             loginButton: '#loginButton',
             lastRefresh: '#lastRefresh',
             locateButton: '#locateButton',
-            navbarItems: 'main titlebar component',
+            navbarItems: 'main titlebar component component',
             zoomSelector: '#zoomSelector',
             zoomTo: 'login [name="zoomTo"]'
         },
@@ -46,13 +46,13 @@ Ext.define('SFenforce.controller.Login', {
     },    
     
     showNavButtons: function(){
-        Ext.each(this.getNavbarItems(),function(cmp){
+        Ext.each(Ext.ComponentQuery.query('main titlebar component component'),function(cmp){
             cmp.show();
         });
     },
     
     hideNavButtons: function(){
-        Ext.each(this.getNavbarItems(),function(cmp){
+        Ext.each(Ext.ComponentQuery.query('main titlebar component component'),function(cmp){
             cmp.hide();
         });
     },
@@ -146,7 +146,10 @@ Ext.define('SFenforce.controller.Login', {
         this.getMain().push(map);
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
         if(SFenforce.userInfo.zoomTo == 'mylocation'){
-           this.getLocateButton().setPressedButtons(Ext.ComponentQuery.query('#locateButton > button'));
+           var locationToggle = this.getLocateButton();
+           var locationButton = Ext.ComponentQuery.query('#locateButton > button')[0];
+           locationToggle.setPressedButtons([locationButton]);
+           locationToggle.fireEvent('toggle', locationToggle, locationButton, true);
         }
     },
     
