@@ -126,7 +126,7 @@ Ext.define("SFenforce.view.Map",{
                 })
             ]
         });
-
+        SFenforce.util.Config.setStyle(style.clone());
         var styleMap = new OpenLayers.StyleMap(style);
         styleMap.styles["select"] = styleMap.styles["select"].clone();
         styleMap.styles["select"].defaultStyle.strokeColor = 'blue';
@@ -167,7 +167,14 @@ Ext.define("SFenforce.view.Map",{
                                 xtype: 'panel', 
                                 layout: 'fit',
                                 listeners: {
+                                    'hide': function() {
+                                        if (!this.popup._silent) {
+                                            var ctrl = this.getMap().getControlsByClass('OpenLayers.Control.SelectFeature')[0];
+                                            ctrl.unselectAll();
+                                        }
+                                    },
                                     'show': function() {
+                                        this.popup.down('#updateForm').getItems().get(0).setValue(SFenforce.util.Config.getDefaultDispositionValue());
                                         var mapBox = Ext.fly(this.getMap().div).getBox(true);
                                         //assumed viewport takes up whole body element of map panel
                                         var popupPos =  [this.popup.getLeft(), this.popup.getTop()];
@@ -237,7 +244,9 @@ Ext.define("SFenforce.view.Map",{
                                 }]
                             });
                             // work around the issue that show is not fired the first time
-                            this.popup.hide(); 
+                            this.popup._silent = true;
+                            this.popup.hide();
+                            delete this.popup._silent;
                             this.popup.show();
                         } else {
                             this.popup.down('gxm_featurepopup').setFeature(feature);

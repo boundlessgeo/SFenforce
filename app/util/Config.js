@@ -8,7 +8,9 @@ Ext.define('SFenforce.util.Config', {
         geoserverUrl: '/geoserver/ows',
         featureNS: 'http://www.sfpark.org/SFenforce',
         noDataLayerName: "No Data Spaces",
-        citationLayerName: "Citation opportunities"
+        citationLayerName: "Citation opportunities",
+        style: null,
+        defaultDispositionValue: 1
     },
 
     constructor: function(config) {

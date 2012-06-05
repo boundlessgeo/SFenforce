@@ -14,7 +14,10 @@ Ext.define('SFenforce.controller.Login', {
             locateButton: '#locateButton',
             navbarItems: 'main titlebar component component',
             zoomSelector: '#zoomSelector',
-            zoomTo: 'login [name="zoomTo"]'
+            zoomTo: 'login [name="zoomTo"]',
+            refreshButton: '#refreshButton',
+
+            legendButton: '#legendButton'
         },
 
         control: {
