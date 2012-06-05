@@ -75,29 +75,29 @@ Ext.define('SFenforce.controller.Login', {
                 ids = ids.split(",");
             }
             var store = Ext.getStore('Beats');
-            if(values['zoomTo'] != 'mylocation'){
+            store.each(function(record) {
+                if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
+                    if (bounds === null) {
+                        bounds = record.get('geometry').getBounds();
+                    } else {
+                        bounds.extend(record.get('geometry').getBounds());
+                    }
+                }
+            });
+            //store the beat bounds
+            SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
+                                    
+            if(values['zoomTo'] == 'allbeats') {
+                bounds = null;
                 store.each(function(record) {
-                    if(values['zoomTo'] == 'mybeats'){
-                        if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
-                            if (bounds === null) {
-                                bounds = record.get('geometry').getBounds();
-                            } else {
-                                bounds.extend(record.get('geometry').getBounds());
-                            }
-                        }
-                    } else if(values['zoomTo'] == 'allbeats') {
-                        if (bounds === null) {
-                            bounds = record.get('geometry').getBounds();
-                        } else {
-                            bounds.extend(record.get('geometry').getBounds());
-                        }
+                    if(bounds === null) {
+                        bounds = record.get('geometry').getBounds();
+                    } else {
+                        bounds.extend(record.get('geometry').getBounds());
                     }
                 });
-                SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
-            } else {
-                //set something for the map to start with
-                bounds = SFenforce.util.Config.getBounds();
             }
+            
             this.storeLogin(userInfo);
             this.showMap(bounds || SFenforce.util.Config.getBounds(), ids);
         } else {
