@@ -2,9 +2,10 @@ Ext.define('SFenforce.view.Login', {
     extend: 'Ext.form.FormPanel',
     alias: 'widget.login',
     requires: [
-        'SFenforce.view.MultiSelect', 
-        'Ext.form.FieldSet', 
+        'SFenforce.view.MultiSelect',
+        'Ext.form.FieldSet',
         'Ext.field.Number',
+        'Ext.field.Hidden',
         'SFenforce.store.Beats',
         'SFenforce.store.Pco'
     ],
@@ -16,7 +17,10 @@ Ext.define('SFenforce.view.Login', {
         me.add([{
             xtype: 'fieldset',
             id: 'fieldset',
-            instructions: {title: this.formInstructions, docked: 'top'},
+            instructions: {
+                title: this.formInstructions,
+                docked: 'top'
+            },
             defaults: {
                 required: true,
                 labelAlign: 'left',
@@ -26,17 +30,18 @@ Ext.define('SFenforce.view.Login', {
                 xtype: 'toolbar',
                 docked: 'bottom',
                 layout: {
-                    align:'stretch', 
+                    align: 'stretch',
                     pack: 'center'
                 },
                 items: [{
-                        xtype: 'spacer',
-                        flex: 2
-                    }, {
-                        xtype: 'button',
-                        id: 'loginButton',
-                        flex: 1,
-                        text: 'Login'
+                    xtype: 'spacer',
+                    flex: 2
+                }, {
+                    xtype: 'button',
+                    id: 'loginButton',
+                    flex: 1,
+                    ui: 'confirm',
+                    text: 'Login'
                 }]
             }, {
                 xtype: 'numberfield',
@@ -53,10 +58,46 @@ Ext.define('SFenforce.view.Login', {
                 valueField: 'name',
                 store: 'Beats'
             }, {
-                xtype: 'checkboxfield',
-                required: false,
-                name: 'zoomtobeats',
-                label: "Zoom to beats' extent"
+                xtype: 'toolbar',
+                id: 'zoomSelectorToolbar',
+                layoyut: {
+                    pack: 'center',
+                    align: 'center'
+                },
+                items: [{
+                    xtype: 'label',
+                    html: 'Zoom To : ',
+                    width: 100
+                }, {
+                    xtype: 'segmentedbutton',
+                    id: "zoomSelector",
+                    submit: false,
+                    required: false,
+                    allowDepress: false,
+                    allowMultiple: false,
+                    flex: 1,
+                    layout: {
+                        pack: 'center'
+                    },
+                    items: [{
+                        text: "My Beats",
+                        value: "mybeats",
+                        pressed: true,
+                        flex: 1
+                    }, {
+                        text: "All Beats",
+                        value: "allbeats",
+                        flex: 1
+                    }, {
+                        text: "My Location",
+                        value: "mylocation",
+                        flex: 1
+                    }]
+                }]
+            }, {
+                xtype: 'hiddenfield',
+                name: 'zoomTo',
+                submit: false
             }]
         }]);
         me.callParent();
