@@ -1,6 +1,6 @@
 Ext.define('SFenforce.controller.Legend', {
     extend: 'Ext.app.Controller',
-    requires: ['SFenforce.view.FeatureRenderer'],
+    requires: ['Ext.Label', 'SFenforce.view.FeatureRenderer'],
     config: {
         refs: {
             legendButton: '#legendButton'
