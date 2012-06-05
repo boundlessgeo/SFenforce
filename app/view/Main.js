@@ -42,6 +42,11 @@ Ext.define('SFenforce.view.Main', {
                 iconMask: true,
                 iconCls: 'favorites',
                 hidden: true
+            }, {
+                id: 'legendButton',
+                iconMask: true,
+                iconCls: 'bookmarks',
+                hidden: true
             }]
         }
     },

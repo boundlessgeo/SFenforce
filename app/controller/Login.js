@@ -1,6 +1,6 @@
 Ext.define('SFenforce.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['SFenforce.view.FeatureRenderer', 'SFenforce.model.Pco','SFenforce.view.Main'],
+    requires: ['SFenforce.model.Pco','SFenforce.view.Main'],
     config: {
         refs: {
             main: {
@@ -13,7 +13,8 @@ Ext.define('SFenforce.controller.Login', {
             lastRefresh: '#lastRefresh',
             refreshButton: '#refreshButton',
             zoomButton: '#zoomButton',
-            locateButton: '#locateButton'
+            locateButton: '#locateButton',
+            legendButton: '#legendButton'
         },
 
         control: {
@@ -39,6 +40,7 @@ Ext.define('SFenforce.controller.Login', {
             this.getZoomButton().hide();
             this.getRefreshButton().hide();
             this.getLastRefresh().hide();
+            this.getLegendButton().hide();
         }, this);
         this.getMain().push(Ext.create('SFenforce.view.Login'));
     },    
@@ -109,22 +111,11 @@ Ext.define('SFenforce.controller.Login', {
         });
         this.getMain().pop();
         this.getMain().push(map);
-        var style = SFenforce.util.Config.getStyle();
-        for (var i=0, ii=style.rules.length; i<ii; ++i) {
-            var rule = style.rules[i];
-            this.getMain().getNavigationBar().add([{
-                xtype: 'featurerenderer',
-                symbolType: "Point",
-                symbolizers: [Ext.apply(style.defaultStyle, rule.symbolizer)]
-            }, {
-                xtype: 'label', 
-                html: rule.name
-            }]);
-        }
         this.getLocateButton().show();
         this.getZoomButton().show();
         this.getRefreshButton().show();
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
+        this.getLegendButton().show();
         this.getLastRefresh().show();
     },
     
