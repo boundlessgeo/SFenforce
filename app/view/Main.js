@@ -4,7 +4,9 @@ Ext.define('SFenforce.view.Main', {
 
     requires: [
         'SFenforce.view.Login',
-        'SFenforce.view.Map'
+        'SFenforce.view.Map',
+        'Ext.SegmentedButton',
+        'Ext.Label'
     ],
 
     config: {
@@ -16,15 +18,13 @@ Ext.define('SFenforce.view.Main', {
                 iconCls: 'back'
             },
             items: [{
-                iconMask: true,
+                xtype: 'segmentedbutton',
                 id: 'locateButton',
                 hidden: true,
-                iconCls: 'locate'
-            }, {
-                id: 'zoomButton',
-                iconMask: true,
-                iconCls: 'favorites',
-                hidden: true
+                items:[{
+                    iconMask: true,
+                    iconCls: 'locate'
+                }]
             }, {
                 id: 'refreshButton',
                 iconMask: true,
@@ -33,7 +33,15 @@ Ext.define('SFenforce.view.Main', {
             }, {
                 id: 'lastRefresh',
                 hidden: true,
-                xtype: 'container'
+                xtype: 'label'
+            },{
+                xtype: 'spacer',
+                flex: 1
+            }, {
+                id: 'zoomButton',
+                iconMask: true,
+                iconCls: 'favorites',
+                hidden: true
             }]
         }
     },

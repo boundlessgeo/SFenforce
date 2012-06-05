@@ -273,13 +273,19 @@ Ext.define("SFenforce.view.Map",{
         map.addLayers([streets, citation_vector, nodata_spaces]);
         
         this.setMap(map);
-
-        this.setPlugins([
-            new GXM.plugin.Tracker({
+        
+        this._tracker = new GXM.plugin.Tracker({
                 trackSuspended: true,
-                allowHighAccuracy: false
-            })
-        ]);
+                allowHighAccuracy: true,
+                locationStyle:{
+                    graphicName: 'circle',
+                    strokeColor: '#ff0000',
+                    strokeWidth: 1,
+                    fillOpacity: 0.5,
+                    fillColor: '#0000ff',
+                    pointRadius: 8
+                }
+        });
 
         this.callParent(arguments);
     }
