@@ -167,6 +167,12 @@ Ext.define("SFenforce.view.Map",{
                                 xtype: 'panel', 
                                 layout: 'fit',
                                 listeners: {
+                                    'hide': function() {
+                                        if (!this.popup._silent) {
+                                            var ctrl = this.getMap().getControlsByClass('OpenLayers.Control.SelectFeature')[0];
+                                            ctrl.unselectAll();
+                                        }
+                                    },
                                     'show': function() {
                                         var mapBox = Ext.fly(this.getMap().div).getBox(true);
                                         //assumed viewport takes up whole body element of map panel
@@ -237,7 +243,9 @@ Ext.define("SFenforce.view.Map",{
                                 }]
                             });
                             // work around the issue that show is not fired the first time
-                            this.popup.hide(); 
+                            this.popup._silent = true;
+                            this.popup.hide();
+                            delete this.popup._silent;
                             this.popup.show();
                         } else {
                             this.popup.down('gxm_featurepopup').setFeature(feature);
