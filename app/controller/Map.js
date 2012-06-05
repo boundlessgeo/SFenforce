@@ -29,8 +29,11 @@ Ext.define('SFenforce.controller.Map', {
         var map = this.getMap().getMap();
         //turn off tracking if it is on
         var locationToggle = this.getLocateButton();
-        locationToggle.setPressedButtons([]);
-        locationToggle.fireEvent('toggle', locationToggle, locationToggle.query('> button')[0], false);
+        var tracker = this.getMap().getGeo();
+        if(tracker && !tracker.getTrackSuspended()){
+            locationToggle.setPressedButtons([]);
+            locationToggle.fireEvent('toggle', locationToggle, locationToggle.query('> button')[0], false);            
+        }
         map.zoomToExtent(bounds);
     },
 
