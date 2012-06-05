@@ -9,6 +9,7 @@ Ext.define('SFenforce.controller.Login', {
                 selector: 'main'
             },
             login: 'login',
+            loginButton: '#loginButton',
             lastRefresh: '#lastRefresh',
             refreshButton: '#refreshButton',
             zoomButton: '#zoomButton',
@@ -19,8 +20,8 @@ Ext.define('SFenforce.controller.Login', {
             main: {
                 beforepop: 'onMainBeforePop'
             },
-            login: {
-                login: 'validateLogin'
+            loginButton: {
+                tap: 'validateLogin'
             },
             '.login [name="badge"]': {
                 change: 'findBeats'
@@ -42,8 +43,8 @@ Ext.define('SFenforce.controller.Login', {
         this.getMain().push(Ext.create('SFenforce.view.Login'));
     },    
     
-    validateLogin: function(form) {
-        var values = form.getValues();
+    validateLogin: function(btn) {
+        var values = this.getLogin().getValues();
         var userInfo = Ext.create('SFenforce.model.Pco', values);
         var errors = userInfo.validate();
         if (errors.isValid()) {

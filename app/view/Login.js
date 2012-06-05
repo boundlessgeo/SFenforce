@@ -25,14 +25,18 @@ Ext.define('SFenforce.view.Login', {
             items: [{
                 xtype: 'toolbar',
                 docked: 'bottom',
-                items: [{xtype: 'spacer', flex: 1}, {
-                    xtype: 'button',
-                    id: 'login-btn',
-                    text: 'Login',
-                    handler: function() {
-                        this.fireEvent("login", this);
-                    },
-                    scope: this
+                layout: {
+                    align:'stretch', 
+                    pack: 'center'
+                },
+                items: [{
+                        xtype: 'spacer',
+                        flex: 2
+                    }, {
+                        xtype: 'button',
+                        id: 'loginButton',
+                        flex: 1,
+                        text: 'Login'
                 }]
             }, {
                 xtype: 'numberfield',
