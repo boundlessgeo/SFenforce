@@ -1,6 +1,6 @@
 Ext.define('SFenforce.controller.Login', {
     extend: 'Ext.app.Controller',
-    requires: ['SFenforce.model.Pco','SFenforce.view.Main'],
+    requires: ['SFenforce.view.FeatureRenderer', 'SFenforce.model.Pco','SFenforce.view.Main'],
     config: {
         refs: {
             main: {
@@ -109,6 +109,18 @@ Ext.define('SFenforce.controller.Login', {
         });
         this.getMain().pop();
         this.getMain().push(map);
+        var style = SFenforce.util.Config.getStyle();
+        for (var i=0, ii=style.rules.length; i<ii; ++i) {
+            var rule = style.rules[i];
+            this.getMain().getNavigationBar().add([{
+                xtype: 'featurerenderer',
+                symbolType: "Point",
+                symbolizers: [Ext.apply(style.defaultStyle, rule.symbolizer)]
+            }, {
+                xtype: 'label', 
+                html: rule.name
+            }]);
+        }
         this.getLocateButton().show();
         this.getZoomButton().show();
         this.getRefreshButton().show();
