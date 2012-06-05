@@ -9,7 +9,8 @@ Ext.define('SFenforce.util.Config', {
         featureNS: 'http://www.sfpark.org/SFenforce',
         noDataLayerName: "No Data Spaces",
         citationLayerName: "Citation opportunities",
-        style: null
+        style: null,
+        defaultDispositionValue: 1
     },
 
     constructor: function(config) {

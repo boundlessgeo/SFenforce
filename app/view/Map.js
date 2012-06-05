@@ -174,6 +174,7 @@ Ext.define("SFenforce.view.Map",{
                                         }
                                     },
                                     'show': function() {
+                                        this.popup.down('#updateForm').getItems().get(0).setValue(SFenforce.util.Config.getDefaultDispositionValue());
                                         var mapBox = Ext.fly(this.getMap().div).getBox(true);
                                         //assumed viewport takes up whole body element of map panel
                                         var popupPos =  [this.popup.getLeft(), this.popup.getTop()];
