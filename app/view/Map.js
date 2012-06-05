@@ -133,7 +133,7 @@ Ext.define("SFenforce.view.Map",{
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(), 
             SFenforce.util.Config.getGeoserverUrl(), {
-                layers:'SFenforce:CITATION_OPPORTUNITY_TMP',
+                layers:'SFenforce:CITATION_OPPORTUNITY_VW',
                 styles:'sfenforce_nodata',
                 version: '1.1.1',
                 transparent: true,
@@ -149,7 +149,7 @@ Ext.define("SFenforce.view.Map",{
                 styleMap: styleMap,
                 protocol: new OpenLayers.Protocol.WFS({
                     url: SFenforce.util.Config.getGeoserverUrl(),
-                    featureType: "CITATION_OPPORTUNITY_TMP",
+                    featureType: "CITATION_OPPORTUNITY_VW",
                     featureNS: SFenforce.util.Config.getFeatureNS(),
                     geometryName: "GEOM",
                     version: "1.1.0",
