@@ -11,20 +11,27 @@ Ext.define('SFenforce.controller.Login', {
             login: 'login',
             loginButton: '#loginButton',
             lastRefresh: '#lastRefresh',
-            refreshButton: '#refreshButton',
-            zoomButton: '#zoomButton',
-            locateButton: '#locateButton'
+            locateButton: '#locateButton',
+            navbarItems: 'main titlebar component',
+            zoomSelector: '#zoomSelector',
+            zoomTo: 'login [name="zoomTo"]'
         },
 
         control: {
-            main: {
-                beforepop: 'onMainBeforePop'
+            login: {
+                show: 'hideNavButtons'
+            },
+            map: {
+                show: 'showNavButtons'
             },
             loginButton: {
                 tap: 'validateLogin'
             },
             '.login [name="badge"]': {
                 change: 'findBeats'
+            },
+            zoomSelector: {
+                toggle: 'setZoomTo'
             }
         },
 
@@ -34,14 +41,28 @@ Ext.define('SFenforce.controller.Login', {
     },
 
     showLogin: function(){
-        this.getMain().on('back', function() {
-            this.getLocateButton().hide();
-            this.getZoomButton().hide();
-            this.getRefreshButton().hide();
-            this.getLastRefresh().hide();
-        }, this);
         this.getMain().push(Ext.create('SFenforce.view.Login'));
+        this.setZoomTo(this.getZoomSelector());
     },    
+    
+    showNavButtons: function(){
+        Ext.each(this.getNavbarItems(),function(cmp){
+            cmp.show();
+        });
+    },
+    
+    hideNavButtons: function(){
+        Ext.each(this.getNavbarItems(),function(cmp){
+            cmp.hide();
+        });
+    },
+    
+    setZoomTo: function(btnGroup){
+        var pressedBtn = btnGroup.getPressedButtons()[0]; //should always be 1 & only 1 pressed
+        if(pressedBtn){
+            this.getZoomTo().setValue(pressedBtn.value);
+        }
+    },
     
     validateLogin: function(btn) {
         var values = this.getLogin().getValues();
@@ -54,21 +75,31 @@ Ext.define('SFenforce.controller.Login', {
                 ids = ids.split(",");
             }
             var store = Ext.getStore('Beats');
-            store.each(function(record) {
-                if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
-                    if (bounds === null) {
-                        bounds = record.get('geometry').getBounds();
-                    } else {
-                        bounds.extend(record.get('geometry').getBounds());
+            if(values['zoomTo'] != 'mylocation'){
+                store.each(function(record) {
+                    if(values['zoomTo'] == 'mybeats'){
+                        if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
+                            if (bounds === null) {
+                                bounds = record.get('geometry').getBounds();
+                            } else {
+                                bounds.extend(record.get('geometry').getBounds());
+                            }
+                        }
+                    } else if(values['zoomTo'] == 'allbeats') {
+                        if (bounds === null) {
+                            bounds = record.get('geometry').getBounds();
+                        } else {
+                            bounds.extend(record.get('geometry').getBounds());
+                        }
                     }
-                }
-            });
-            SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
-            if (values['zoomtobeats'] !== true) {
+                });
+                SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
+            } else {
+                //set something for the map to start with
                 bounds = SFenforce.util.Config.getBounds();
             }
             this.storeLogin(userInfo);
-            this.showMap(bounds, ids);
+            this.showMap(bounds || SFenforce.util.Config.getBounds(), ids);
         } else {
             var message = '';
             Ext.each(errors.items,function(rec,i){
@@ -92,12 +123,16 @@ Ext.define('SFenforce.controller.Login', {
     
     findBeats: function(input, evt){
         var store = Ext.getStore('pcoStore');
-        var idx = store.findExact('badge', input.getValue());
+        var idx = store.findExact('badge', ''+input.getValue()); //ensure we are using a string
         if (idx > -1) {
             var rec = store.getAt(idx);
-            var fld = Ext.ComponentQuery.query('.login [name="beats"]');
-            if (fld && fld[0] && fld[0].getValue() == null) {
-                fld[0].setValue(rec.get('beats'));
+            var beatsFld = Ext.ComponentQuery.query('login [name="beats"]')[0];
+            var zoomType = Ext.ComponentQuery.query('#zoomSelector button[value='+rec.get('zoomTo')+']');
+            if (beatsFld && beatsFld.getValue() == null) {
+                beatsFld.setValue(rec.get('beats'));
+                if(zoomType.length){
+                    this.setZoomTo(this.getZoomSelector().setPressedButtons(zoomType));
+                }
             }
         }
     },
@@ -109,11 +144,10 @@ Ext.define('SFenforce.controller.Login', {
         });
         this.getMain().pop();
         this.getMain().push(map);
-        this.getLocateButton().show();
-        this.getZoomButton().show();
-        this.getRefreshButton().show();
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
-        this.getLastRefresh().show();
+        if(SFenforce.userInfo.zoomTo == 'mylocation'){
+           this.getLocateButton().setPressedButtons(Ext.ComponentQuery.query('#locateButton > button'));
+        }
     },
     
     onMainBeforePop:Ext.emptyFn
