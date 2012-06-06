@@ -85,10 +85,15 @@ Ext.define("SFenforce.view.Map",{
         }
 
         var style = new OpenLayers.Style({
-            pointRadius: 6,
-            fillOpacity: 0.85,
+            pointRadius: "${getSize}",
             graphicName: 'circle'
         }, {
+            context: {
+                getSize: function(feature) {
+                    var map = feature.layer.map;
+                    return (map.getScale() < 2500) ? 10 : 5;
+                }
+            },
             rules: [
                 new OpenLayers.Rule({
                     name: 'Unpaid vehicle',
