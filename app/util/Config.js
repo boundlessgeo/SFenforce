@@ -2,25 +2,64 @@ Ext.define('SFenforce.util.Config', {
     singleton : true,
 
     config : {
-        /* @private */
-        beatsBounds: null,
+        /**
+         * @cfg {OpenLayers.Bounds} bounds
+         * The bounds of the all the beats in EPSG:900913.
+         */
         bounds: new OpenLayers.Bounds(-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212),
+
+        /**
+         * @cfg {String} geoserverUrl
+         * The URL where GeoServer WMS/WFS can be accessed. This needs to be on the same origin as the web app.
+         */
         geoserverUrl: '/geoserver/ows',
+
+        /**
+         * @cfg {String} featureNS
+         * The namespace URI used on the WFS.
+         */
         featureNS: 'http://www.sfpark.org/SFenforce',
+
+        /**
+         * @cfg {String} prefix
+         * The prefix of the namespace.
+         */
         prefix: "SFenforce",
-        noDataLayerName: "No Data Spaces",
-        citationLayerName: "Citation opportunities",
-        style: null,
+
+        /**
+         * @cfg {Integer} defaultDispositionValue
+         * The default value to use in the disposition code combo box.
+         */
         defaultDispositionValue: 1,
+
+        /**
+         * @cfg {Array} featureTpl
+         * Template to be used in the feature info popup.
+         */
         featureTpl: ['{feature.attributes.POST_ID}<br/>',
             '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
             '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>'
         ],
+
+        /**
+         * @cfg {Array} featurePopupOffset
+         * The offset in the X and Y direction of the feature popup wrt the feature itself.
+         */
         featurePopupOffset: [15, 15],
+
+        /**
+         * @cfg {Array} featurePopupSize
+         * The width and height of the feature popup.
+         */
         featurePopupSize: [350, 150],
+
+        /**
+         * @cfg {Array} legendSize
+         * The width and height of the legend popup.
+         */
         legendSize: [200, 125],
 
-        /* classification */
+        /** classification */
         unpaidColor: "#FF0000",
         occupiedColor: "#EFEF20",
         citedColor: "#22FF11",
@@ -43,9 +82,9 @@ Ext.define('SFenforce.util.Config', {
             property: "DISPOSITION_CODE",
             value: 1
         }),
-        /* end classification */
+        /** end classification */
 
-        /* data model */
+        /** data model */
         beatField: "PCO_BEAT",
         parkingSessionField: "PARKING_SESSION_ID",
         dispositionCodeField: "DISPOSITION_CODE",
@@ -58,9 +97,11 @@ Ext.define('SFenforce.util.Config', {
         dispositionCodeLookupTextField: "DESCRIPTION",
         beatsFeatureType: "PCO_BEATS",
         dispositionCodesFeatureType: "DISPOSITION_CODES_TMP",
-        /* end data model */
+        /** end data model */
 
-        /* i18n */
+        /** i18n */
+        noDataLayerName: "No Data Spaces",
+        citationLayerName: "Citation opportunities",
         badgeValidationMsg: "Please enter badge number",
         loginFormInstructions: "Login to the enforcement application",
         loginNameLabel: "Badge number",
@@ -78,8 +119,13 @@ Ext.define('SFenforce.util.Config', {
         saveButtonText: "Save",
         doneButtonText: "Done",
         errorTitle: "Error",
-        transactionErrorText: "Failure updating disposition code"
-        /* end i18n */
+        transactionErrorText: "Failure updating disposition code",
+        /** end i18n */
+
+        /** private properties */
+        beatsBounds: null,
+        style: null
+        /** end private properties */
     },
 
     constructor: function(config) {
