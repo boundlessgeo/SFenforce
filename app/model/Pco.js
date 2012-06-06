@@ -14,7 +14,7 @@ Ext.define('SFenforce.model.Pco', {
             {name: 'zoomTo', type: 'string'}
         ],
         validations: [
-            {type: 'presence', name: 'badge', message: "Please enter badge number"}
+            {type: 'presence', name: 'badge', message: SFenforce.util.Config.getBadgeValidationMsg()}
         ],
         proxy: {
            type: 'localstorage',

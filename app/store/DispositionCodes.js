@@ -18,7 +18,7 @@ Ext.define('SFenforce.store.DispositionCodes', {
                 url: SFenforce.util.Config.getGeoserverUrl(),
                 version: "1.1.0",
                 srsName: "EPSG:900913",
-                featureType: "DISPOSITION_CODES_TMP",
+                featureType: SFenforce.util.Config.getDispositionCodesFeatureType(),
                 featureNS: SFenforce.util.Config.getFeatureNS(),
                 outputFormat: 'json',
                 readFormat: new OpenLayers.Format.GeoJSON()

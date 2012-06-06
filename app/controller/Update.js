@@ -19,10 +19,10 @@ Ext.define('SFenforce.controller.Update', {
     doTransaction: function() {
         var attributes = this.getPopup().getFeature().attributes;
         var fids = [];
-        var table = 'RT_CITATION_OPPORTUNITY';
+        var table = SFenforce.util.Config.getUpdateTable();
         var featureNS = SFenforce.util.Config.getFeatureNS();
-        var field = 'DISPOSITION_CODE';
-        var fields = ['MTR_EXPIRED_OPP_ID', 'OVER_TL_OPP_ID', 'COMML_OCC_OPP_ID'];
+        var field = SFenforce.util.Config.getDispositionCodeField();
+        var fields = SFenforce.util.Config.getOpportunityIdFields();
         for (var i=0, ii=fields.length; i<ii; ++i) {
             var value = attributes[fields[i]];
             if (value !== null) {
@@ -40,7 +40,7 @@ Ext.define('SFenforce.controller.Update', {
         }
         if (features.length > 0) {
             var format = new OpenLayers.Format.WFST({
-                featurePrefix: "SFenforce", 
+                featurePrefix: SFenforce.util.Config.getPrefix(), 
                 featureType: table, 
                 geometryName: null,
                 featureNS: featureNS, 
@@ -53,7 +53,7 @@ Ext.define('SFenforce.controller.Update', {
                 callback: function(response) {
                     var success = format.read(response.responseText).success;
                     if (!success) {
-                        Ext.Msg.alert('Error', 'Failure updating disposition code');
+                        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getTransactionErrorText());
                     } else {
                         this.getPopupPanel().hide();
                         var mapFeature = this.getPopup().getFeature();

@@ -22,7 +22,7 @@ Ext.define('SFenforce.store.Beats', {
                 url: SFenforce.util.Config.getGeoserverUrl(),
                 version: "1.1.0",
                 srsName: "EPSG:900913",
-                featureType: "PCO_BEATS",
+                featureType: SFenforce.util.Config.getBeatsFeatureType(),
                 featureNS: SFenforce.util.Config.getFeatureNS(),
                 outputFormat: 'json',
                 readFormat: new OpenLayers.Format.GeoJSON()

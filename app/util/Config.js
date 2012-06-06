@@ -18,6 +18,7 @@ Ext.define('SFenforce.util.Config', {
         ],
         featurePopupOffset: [15, 15],
         featurePopupSize: [350, 150],
+        legendSize: [200, 125],
 
         /* classification */
         unpaidColor: "#FF0000",
@@ -37,9 +38,17 @@ Ext.define('SFenforce.util.Config', {
         dispositionCodeField: "DISPOSITION_CODE",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
+        updateTable: "RT_CITATION_OPPORTUNITY",
+        opportunityIdFields: ['MTR_EXPIRED_OPP_ID', 'OVER_TL_OPP_ID', 'COMML_OCC_OPP_ID'],
+        beatNameField: "BEATNAME",
+        dispositionCodeLookupValueField: "VALUE",
+        dispositionCodeLookupTextField: "DESCRIPTION",
+        beatsFeatureType: "PCO_BEATS",
+        dispositionCodesFeatureType: "DISPOSITION_CODES_TMP",
         /* end data model */
 
         /* i18n */
+        badgeValidationMsg: "Please enter badge number",
         loginFormInstructions: "Login to the enforcement application",
         loginNameLabel: "Badge number",
         loginBeatsLabel: "Beats",
@@ -53,7 +62,10 @@ Ext.define('SFenforce.util.Config', {
         commercialRuleTitle: "Vehicle at commercial space",
         citedRuleTitle: "Cited",
         dispositionCodeLabel: "Category",
-        saveButtonText: "Save"
+        saveButtonText: "Save",
+        doneButtonText: "Done",
+        errorTitle: "Error",
+        transactionErrorText: "Failure updating disposition code"
         /* end i18n */
     },
 
