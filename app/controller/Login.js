@@ -122,8 +122,7 @@ Ext.define('SFenforce.controller.Login', {
                 xtype: 'maptoolbar'
             }, {
                 xtype: 'map',
-                beats: beats,
-                mapExtent: bounds.toArray()
+                beats: beats
             }]
         });
         Ext.Viewport.add(main);
@@ -134,6 +133,8 @@ Ext.define('SFenforce.controller.Login', {
            var locationButton = Ext.ComponentQuery.query('#locateButton > button')[0];
            locationToggle.setPressedButtons([locationButton]);
            locationToggle.fireEvent('toggle', locationToggle, locationButton, true);
+        } else {
+            main.down('map').getMap().zoomToExtent(bounds);
         }
     }
 });
