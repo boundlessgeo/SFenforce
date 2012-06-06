@@ -29,7 +29,7 @@ Ext.define('SFenforce.controller.Legend', {
                         xtype: 'gxm_renderer',
                         symbolType: "Point",
                         width: 25,
-                        symbolizers: [Ext.apply(Ext.apply({}, style.defaultStyle), rule.symbolizer)]
+                        symbolizers: [Ext.apply(Ext.applyIf({pointRadius: 5}, style.defaultStyle), rule.symbolizer)]
                     }, {
                         flex: 1,
                         xtype: 'label',
