@@ -10,7 +10,18 @@ Ext.define('SFenforce.util.Config', {
         noDataLayerName: "No Data Spaces",
         citationLayerName: "Citation opportunities",
         style: null,
-        defaultDispositionValue: 1
+        defaultDispositionValue: 1,
+
+        /* i18n */
+        loginFormInstructions: "Login to the enforcement application",
+        loginNameLabel: "Badge number",
+        loginBeatsLabel: "Beats",
+        loginButtonText: "Login",
+        loginZoomToLabel: "Zoom To : ",
+        loginMyBeatsLabel: "My Beats",
+        loginAllBeatsLabel: "All Beats",
+        loginMyLocationLabel: "My Location"
+        /* end i18n */
     },
 
     constructor: function(config) {
