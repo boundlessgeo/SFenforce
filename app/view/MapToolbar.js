@@ -23,6 +23,7 @@ Ext.define('SFenforce.view.MapToolbar', {
             iconCls: 'refresh'
         }, {
             id: 'lastRefresh',
+            cls: 'refreshLabel',
             xtype: 'label',
             width: 200
         },{
