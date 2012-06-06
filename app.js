@@ -20,7 +20,7 @@ Ext.application({
 
     views: ['Login', 'Main', 'Map'],
     stores: ['Beats', 'Pco', 'DispositionCodes'],
-    controllers: ['Login', 'Map', 'Update', 'Legend'],
+    controllers: ['Login', 'Map', 'Update', 'Legend', 'Main'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

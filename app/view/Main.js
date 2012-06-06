@@ -1,9 +1,8 @@
 Ext.define('SFenforce.view.Main', {
-    extend: 'Ext.navigation.View',
+    extend: 'Ext.Container',
     xtype: 'main',
 
     requires: [
-        'SFenforce.view.Login',
         'SFenforce.view.Map',
         'Ext.SegmentedButton',
         'Ext.Label'
@@ -12,15 +11,19 @@ Ext.define('SFenforce.view.Main', {
     config: {
         fullscreen: true,
         autoDestroy: false,
-
-        navigationBar: {
-            backButton: {
-                iconCls: 'back'
-            },
+        mapConfig: null,
+        layout: {
+            type: 'vbox',
+            align: 'stretch',
+            pack: 'top'
+        },
+        items: [{
+            xtype: 'toolbar',
+            docked: 'top',
+            id: 'mapToolbar',
             items: [{
                 xtype: 'segmentedbutton',
                 id: 'locateButton',
-                hidden: true,
                 items:[{
                     iconMask: true,
                     iconCls: 'locate'
@@ -28,31 +31,23 @@ Ext.define('SFenforce.view.Main', {
             }, {
                 id: 'refreshButton',
                 iconMask: true,
-                iconCls: 'refresh',
-                hidden: true
+                iconCls: 'refresh'
             }, {
                 id: 'lastRefresh',
-                hidden: true,
-                xtype: 'label'
+                xtype: 'label',
+                width: 200
             },{
                 xtype: 'spacer',
                 flex: 1
             }, {
                 id: 'zoomButton',
                 iconMask: true,
-                iconCls: 'favorites',
-                hidden: true
+                iconCls: 'favorites'
             }, {
                 id: 'legendButton',
                 iconMask: true,
-                iconCls: 'bookmarks',
-                hidden: true
+                iconCls: 'bookmarks'
             }]
-        }
-    },
-
-    pop: function() {
-        this.fireEvent('beforepop', this);
-        this.callParent(arguments);
+        }]
     }
 });

@@ -21,12 +21,6 @@ Ext.define('SFenforce.controller.Login', {
         },
 
         control: {
-            login: {
-                show: 'hideNavButtons'
-            },
-            map: {
-                show: 'showNavButtons'
-            },
             loginButton: {
                 tap: 'validateLogin'
             },
@@ -44,21 +38,10 @@ Ext.define('SFenforce.controller.Login', {
     },
 
     showLogin: function(){
-        this.getMain().push(Ext.create('SFenforce.view.Login'));
+        Ext.Viewport.add(Ext.create('SFenforce.view.Login'));
+        Ext.Viewport.setActiveItem(this.getLogin());
         this.setZoomTo(this.getZoomSelector());
     },    
-    
-    showNavButtons: function(){
-        Ext.each(Ext.ComponentQuery.query('main titlebar component component'),function(cmp){
-            cmp.show();
-        });
-    },
-    
-    hideNavButtons: function(){
-        Ext.each(Ext.ComponentQuery.query('main titlebar component component'),function(cmp){
-            cmp.hide();
-        });
-    },
     
     setZoomTo: function(btnGroup){
         var pressedBtn = btnGroup.getPressedButtons()[0]; //should always be 1 & only 1 pressed
@@ -141,12 +124,14 @@ Ext.define('SFenforce.controller.Login', {
     },
     
     showMap: function(bounds, beats){
-        var map = Ext.create('SFenforce.view.Map',{
-            beats: beats,
-            mapExtent: bounds.toArray()
+        var main = Ext.create('SFenforce.view.Main',{
+            mapConfig: {
+                beats: beats,
+                mapExtent: bounds.toArray()
+            }
         });
-        this.getMain().pop();
-        this.getMain().push(map);
+        Ext.Viewport.add(main);
+        Ext.Viewport.setActiveItem(main);
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
         if(SFenforce.userInfo.zoomTo == 'mylocation'){
            var locationToggle = this.getLocateButton();
@@ -154,7 +139,5 @@ Ext.define('SFenforce.controller.Login', {
            locationToggle.setPressedButtons([locationButton]);
            locationToggle.fireEvent('toggle', locationToggle, locationButton, true);
         }
-    },
-    
-    onMainBeforePop:Ext.emptyFn
+    }
 });
