@@ -44,7 +44,7 @@ Ext.define("SFenforce.view.Map",{
                 "http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png"
             ],
             OpenLayers.Util.applyDefaults({
-                attribution: "Tiles Courtesy of <a href='http://open.mapquest.co.uk/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png' border='0'>",
+                attribution: SFenforce.util.Config.getMapQuestAttribution(),
                 type: "osm"
             }, options)
         );
@@ -56,7 +56,7 @@ Ext.define("SFenforce.view.Map",{
             for (var i=0, ii=beats.length; i<ii; ++i) {
                 filters.push(new OpenLayers.Filter.Comparison({
                     type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                    property: 'PCO_BEAT',
+                    property: SFenforce.util.Config.getBeatField(),
                     value: beats[i]
                 }));
             }
@@ -71,7 +71,7 @@ Ext.define("SFenforce.view.Map",{
         }
         var sessionFilter = new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.GREATER_THAN,
-            property: 'PARKING_SESSION_ID',
+            property: SFenforce.util.Config.getParkingSessionField(),
             value: -1
         });
         var filter;
@@ -91,42 +91,43 @@ Ext.define("SFenforce.view.Map",{
             context: {
                 getSize: function(feature) {
                     var map = feature.layer.map;
-                    return (map.getScale() < 2500) ? 10 : 5;
+                    return (map.getScale() < SFenforce.util.Config.getScaleBreak()) ? 
+                        SFenforce.util.Config.getMaxPointRadius() : 
+                            SFenforce.util.Config.getMinPointRadius();
                 }
             },
             rules: [
                 new OpenLayers.Rule({
-                    name: 'Unpaid vehicle',
+                    name: SFenforce.util.Config.getUnpaidRuleTitle(),
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'METER_EXPIRED_FLAG',
+                        property: SFenforce.util.Config.getMeterExpiredField(),
                         value: 1
                     }),
                     symbolizer: {
-                        fillColor: '#FF0000'
+                        fillColor: SFenforce.util.Config.getUnpaidColor()
                     }
                 }),
                 new OpenLayers.Rule({
-                    name: 'Vehicle at commercial space',
+                    name: SFenforce.util.Config.getCommercialRuleTitle(),
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'COMMERCIAL_OCCUPIED_FLAG',
+                        property: SFenforce.util.Config.getCommercialOccupiedField(),
                         value: 1
                     }),
                     symbolizer: {
-                        fillColor: '#EFEF20'
+                        fillColor: SFenforce.util.Config.getOccupiedColor()
                     }
                 }),
                 new OpenLayers.Rule({
-                    name: 'Cited',
+                    name: SFenforce.util.Config.getCitedRuleTitle(),
                     filter: new OpenLayers.Filter.Comparison({
                         type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: 'DISPOSITION_CODE',
+                        property: SFenforce.util.Config.getDispositionCodeField(),
                         value: 1
                     }),
                     symbolizer: {
-                        fillColor: '#22FF11',
-                        pointRadius: 4
+                        fillColor: SFenforce.util.Config.getCitedColor()
                     }
                 })
             ]
@@ -134,12 +135,11 @@ Ext.define("SFenforce.view.Map",{
         SFenforce.util.Config.setStyle(style.clone());
         var styleMap = new OpenLayers.StyleMap(style);
         styleMap.styles["select"] = styleMap.styles["select"].clone();
-        styleMap.styles["select"].defaultStyle.strokeColor = 'blue';
+        styleMap.styles["select"].defaultStyle.strokeColor = SFenforce.util.Config.getSelectedStrokeColor();
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(), 
             SFenforce.util.Config.getGeoserverUrl(), {
-                layers:'SFenforce:CITATION_OPPORTUNITY_VW',
-                styles:'sfenforce_nodata',
+                layers: SFenforce.util.Config.getPrefix() + ":" + SFenforce.util.Config.getCitationView(),
                 version: '1.1.1',
                 transparent: true,
                 filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
@@ -154,9 +154,9 @@ Ext.define("SFenforce.view.Map",{
                 styleMap: styleMap,
                 protocol: new OpenLayers.Protocol.WFS({
                     url: SFenforce.util.Config.getGeoserverUrl(),
-                    featureType: "CITATION_OPPORTUNITY_VW",
+                    featureType: SFenforce.util.Config.getCitationView(),
                     featureNS: SFenforce.util.Config.getFeatureNS(),
-                    geometryName: "GEOM",
+                    geometryName: SFenforce.util.Config.getCitationGeomField(),
                     version: "1.1.0",
                     srsName: "EPSG:900913",
                     outputFormat: 'json',
@@ -211,10 +211,10 @@ Ext.define("SFenforce.view.Map",{
                                     scope: this
                                 },
                                 id: 'popuppanel',
-                                width: 350, 
-                                height: 150,
-                                top: xy.y + 15,
-                                left: xy.x + 15,
+                                width: SFenforce.util.Config.getFeaturePopupSize()[0], 
+                                height: SFenforce.util.Config.getFeaturePopupSize()[1],
+                                top: xy.y + SFenforce.util.Config.getFeaturePopupOffset()[1],
+                                left: xy.x + SFenforce.util.Config.getFeaturePopupOffset()[0],
                                 centered: true,
                                 modal: true, 
                                 hideOnMaskTap: true, 
@@ -222,12 +222,9 @@ Ext.define("SFenforce.view.Map",{
                                     xtype: 'carousel', 
                                     items: [{
                                         xtype: 'gxm_featurepopup',
-                                       centered: false, 
+                                        centered: false, 
                                         modal: false,
-                                        tpl: new Ext.XTemplate('{feature.attributes.POST_ID}<br/>', 
-                                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
-                                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>'
-                                        ),
+                                        tpl: new Ext.XTemplate(SFenforce.util.Config.getFeatureTpl()),
                                         feature: feature
                                     }, {
                                         xtype: 'formpanel',
@@ -235,14 +232,14 @@ Ext.define("SFenforce.view.Map",{
                                         items: [{
                                             xtype: 'selectfield',
                                             name: 'code',
-                                            label: "Category",
+                                            label: SFenforce.util.Config.getDispositionCodeLabel(),
                                             store:  Ext.getStore('DispositionCodes')
                                         }, {
                                             xtype: 'toolbar',
                                             items: [{
                                                 id: 'saveButton',
                                                 xtype: 'button',
-                                                text: 'Save'
+                                                text: SFenforce.util.Config.getSaveButtonText()
                                             }]
                                         }]
                                     }]
@@ -256,8 +253,8 @@ Ext.define("SFenforce.view.Map",{
                         } else {
                             this.popup.down('gxm_featurepopup').setFeature(feature);
                             this.popup.getItems().get(0).setActiveItem(0);
-                            this.popup.setTop(xy.y + 15);
-                            this.popup.setLeft(xy.x + 15);
+                            this.popup.setTop(xy.y + SFenforce.util.Config.getFeaturePopupOffset()[0]);
+                            this.popup.setLeft(xy.x + SFenforce.util.Config.getFeaturePopupOffset()[1]);
                             this.popup.show();
                         }
                     },
