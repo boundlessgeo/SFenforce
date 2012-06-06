@@ -1,6 +1,6 @@
 Ext.define('SFenforce.controller.Legend', {
     extend: 'Ext.app.Controller',
-    requires: ['Ext.Label', 'SFenforce.view.FeatureRenderer'],
+    requires: ['Ext.Label', 'GXM.FeatureRenderer'],
     config: {
         refs: {
             legendButton: '#legendButton'
@@ -26,10 +26,15 @@ Ext.define('SFenforce.controller.Legend', {
                     pack: 'start',
                     align: 'stretch',
                     items: [{
-                        xtype: 'featurerenderer',
+                        xtype: 'gxm_renderer',
                         symbolType: "Point",
                         width: 25,
-                        symbolizers: [Ext.apply(Ext.apply({}, style.defaultStyle), rule.symbolizer)]
+                        symbolizers: [Ext.apply(
+                            Ext.applyIf({
+                                pointRadius: SFenforce.util.Config.getMinPointRadius()
+                            }, style.defaultStyle), 
+                            rule.symbolizer
+                        )]
                     }, {
                         flex: 1,
                         xtype: 'label',
@@ -39,8 +44,8 @@ Ext.define('SFenforce.controller.Legend', {
             }
             this.legend = Ext.Viewport.add({
                 xtype: 'panel', 
-                width: 200, 
-                height: 125,                             
+                width: SFenforce.util.Config.getLegendSize()[0], 
+                height: SFenforce.util.Config.getLegendSize()[1],
                 centered: true,
                 modal: true,
                 hideOnMaskTap: true,

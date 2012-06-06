@@ -9,16 +9,13 @@ Ext.define('SFenforce.view.Login', {
         'SFenforce.store.Beats',
         'SFenforce.store.Pco'
     ],
-    formInstructions: "Login to the enforcement application",
-    nameLabel: "Badge number",
-    beatsLabel: "Beats",
     initialize: function() {
         var me = this;
         me.add([{
             xtype: 'fieldset',
             id: 'fieldset',
             instructions: {
-                title: this.formInstructions,
+                title: SFenforce.util.Config.getLoginFormInstructions(),
                 docked: 'top'
             },
             defaults: {
@@ -41,18 +38,18 @@ Ext.define('SFenforce.view.Login', {
                     id: 'loginButton',
                     flex: 1,
                     ui: 'confirm',
-                    text: 'Login'
+                    text: SFenforce.util.Config.getLoginButtonText()
                 }]
             }, {
                 xtype: 'numberfield',
                 name: 'badge',
-                label: this.nameLabel,
+                label: SFenforce.util.Config.getLoginNameLabel(),
                 clearIcon: true
             }, {
                 xtype: 'multiselectfield',
                 name: "beats",
                 required: false,
-                label: this.beatsLabel,
+                label: SFenforce.util.Config.getLoginBeatsLabel(),
                 usePicker: false,
                 displayField: 'name',
                 valueField: 'name',
@@ -66,7 +63,7 @@ Ext.define('SFenforce.view.Login', {
                 },
                 items: [{
                     xtype: 'label',
-                    html: 'Zoom To : ',
+                    html: SFenforce.util.Config.getLoginZoomToLabel(),
                     width: 100
                 }, {
                     xtype: 'segmentedbutton',
@@ -80,16 +77,16 @@ Ext.define('SFenforce.view.Login', {
                         pack: 'center'
                     },
                     items: [{
-                        text: "My Beats",
+                        text: SFenforce.util.Config.getLoginMyBeatsLabel(),
                         value: "mybeats",
                         pressed: true,
                         flex: 1
                     }, {
-                        text: "All Beats",
+                        text: SFenforce.util.Config.getLoginAllBeatsLabel(),
                         value: "allbeats",
                         flex: 1
                     }, {
-                        text: "My Location",
+                        text: SFenforce.util.Config.getLoginMyLocationLabel(),
                         value: "mylocation",
                         flex: 1
                     }]
