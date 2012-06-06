@@ -99,33 +99,21 @@ Ext.define("SFenforce.view.Map",{
             rules: [
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getUnpaidRuleTitle(),
-                    filter: new OpenLayers.Filter.Comparison({
-                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: SFenforce.util.Config.getMeterExpiredField(),
-                        value: 1
-                    }),
+                    filter: SFenforce.util.Config.getUnpaidRuleFilter(),
                     symbolizer: {
                         fillColor: SFenforce.util.Config.getUnpaidColor()
                     }
                 }),
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getCommercialRuleTitle(),
-                    filter: new OpenLayers.Filter.Comparison({
-                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: SFenforce.util.Config.getCommercialOccupiedField(),
-                        value: 1
-                    }),
+                    filter: SFenforce.util.Config.getCommercialRuleFilter(),
                     symbolizer: {
                         fillColor: SFenforce.util.Config.getOccupiedColor()
                     }
                 }),
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getCitedRuleTitle(),
-                    filter: new OpenLayers.Filter.Comparison({
-                        type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                        property: SFenforce.util.Config.getDispositionCodeField(),
-                        value: 1
-                    }),
+                    filter: SFenforce.util.Config.getCitedRuleFilter(),
                     symbolizer: {
                         fillColor: SFenforce.util.Config.getCitedColor()
                     }

@@ -28,18 +28,31 @@ Ext.define('SFenforce.util.Config', {
         scaleBreak: 2500,
         minPointRadius: 5,
         maxPointRadius: 10,
+        unpaidRuleFilter: new OpenLayers.Filter.Comparison({
+            type: OpenLayers.Filter.Comparison.EQUAL_TO,
+            property: "METER_EXPIRED_FLAG",
+            value: 1
+        }),
+        commercialRuleFilter: new OpenLayers.Filter.Comparison({
+            type: OpenLayers.Filter.Comparison.EQUAL_TO,
+            property: "COMMERCIAL_OCCUPIED_FLAG",
+            value: 1
+        }),
+        citedRuleFilter: new OpenLayers.Filter.Comparison({
+            type: OpenLayers.Filter.Comparison.EQUAL_TO,
+            property: "DISPOSITION_CODE",
+            value: 1
+        }),
         /* end classification */
 
         /* data model */
         beatField: "PCO_BEAT",
         parkingSessionField: "PARKING_SESSION_ID",
-        meterExpiredField: "METER_EXPIRED_FLAG",
-        commercialOccupiedField: "COMMERCIAL_OCCUPIED_FLAG",
         dispositionCodeField: "DISPOSITION_CODE",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
         updateTable: "RT_CITATION_OPPORTUNITY",
-        opportunityIdFields: ['MTR_EXPIRED_OPP_ID', 'OVER_TL_OPP_ID', 'COMML_OCC_OPP_ID'],
+        opportunityIdFields: ['MTR_EXPIRED_OPP_ID', 'COMML_OCC_OPP_ID'],
         beatNameField: "BEATNAME",
         dispositionCodeLookupValueField: "VALUE",
         dispositionCodeLookupTextField: "DESCRIPTION",
