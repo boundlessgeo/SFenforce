@@ -3,21 +3,14 @@ Ext.define('SFenforce.controller.Login', {
     requires: ['SFenforce.model.Pco','SFenforce.view.Main'],
     config: {
         refs: {
-            main: {
-                autoCreate: true,
-                xtype: 'main',
-                selector: 'main'
-            },
+            main: 'main',
             login: 'login',
             loginButton: '#loginButton',
             lastRefresh: '#lastRefresh',
             locateButton: '#locateButton',
             navbarItems: 'main titlebar component component',
             zoomSelector: '#zoomSelector',
-            zoomTo: 'login [name="zoomTo"]',
-            refreshButton: '#refreshButton',
-
-            legendButton: '#legendButton'
+            zoomTo: 'login [name="zoomTo"]'
         },
 
         control: {
@@ -125,10 +118,13 @@ Ext.define('SFenforce.controller.Login', {
     
     showMap: function(bounds, beats){
         var main = Ext.create('SFenforce.view.Main',{
-            mapConfig: {
+            items:[{
+                xtype: 'maptoolbar'
+            }, {
+                xtype: 'map',
                 beats: beats,
                 mapExtent: bounds.toArray()
-            }
+            }]
         });
         Ext.Viewport.add(main);
         Ext.Viewport.setActiveItem(main);
