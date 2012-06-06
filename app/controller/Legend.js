@@ -1,6 +1,6 @@
 Ext.define('SFenforce.controller.Legend', {
     extend: 'Ext.app.Controller',
-    requires: ['Ext.Label', 'SFenforce.view.FeatureRenderer'],
+    requires: ['Ext.Label', 'GXM.FeatureRenderer'],
     config: {
         refs: {
             legendButton: '#legendButton'
@@ -26,7 +26,7 @@ Ext.define('SFenforce.controller.Legend', {
                     pack: 'start',
                     align: 'stretch',
                     items: [{
-                        xtype: 'featurerenderer',
+                        xtype: 'gxm_renderer',
                         symbolType: "Point",
                         width: 25,
                         symbolizers: [Ext.apply(Ext.apply({}, style.defaultStyle), rule.symbolizer)]
