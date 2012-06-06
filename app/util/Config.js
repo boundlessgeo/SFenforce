@@ -1,6 +1,5 @@
 Ext.define('SFenforce.util.Config', {
     singleton : true,
-    requires: ['Ext.XTemplate'],
 
     config : {
         /* @private */
