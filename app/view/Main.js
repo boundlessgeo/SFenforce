@@ -4,50 +4,20 @@ Ext.define('SFenforce.view.Main', {
 
     requires: [
         'SFenforce.view.Map',
-        'Ext.SegmentedButton',
-        'Ext.Label'
+        'SFenforce.view.MapToolbar'
     ],
 
     config: {
         fullscreen: true,
         autoDestroy: false,
-        mapConfig: null,
         layout: {
-            type: 'vbox',
-            align: 'stretch',
-            pack: 'top'
+            type: 'fit'
         },
         items: [{
-            xtype: 'toolbar',
-            docked: 'top',
-            id: 'mapToolbar',
-            items: [{
-                xtype: 'segmentedbutton',
-                id: 'locateButton',
-                items:[{
-                    iconMask: true,
-                    iconCls: 'locate'
-                }]
-            }, {
-                id: 'refreshButton',
-                iconMask: true,
-                iconCls: 'refresh'
-            }, {
-                id: 'lastRefresh',
-                xtype: 'label',
-                width: 200
-            },{
-                xtype: 'spacer',
-                flex: 1
-            }, {
-                id: 'zoomButton',
-                iconMask: true,
-                iconCls: 'favorites'
-            }, {
-                id: 'legendButton',
-                iconMask: true,
-                iconCls: 'bookmarks'
-            }]
+            xtype: 'maptoolbar'
+        }, {
+            xtype: 'map',
+            mapExtent: SFenforce.util.Config.getBounds()
         }]
     }
 });
