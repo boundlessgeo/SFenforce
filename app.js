@@ -15,6 +15,10 @@ Ext.application({
     requires: [
         'Ext.MessageBox'
     ],
+    
+    viewport: {
+        autoMaximize: true
+    },
 
     userInfo: null,
 
