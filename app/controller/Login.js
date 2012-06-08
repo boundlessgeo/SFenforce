@@ -65,8 +65,9 @@ Ext.define('SFenforce.controller.Login', {
                     }
                 });
             }
+            var configBounds = OpenLayers.Bounds.fromArray(SFenforce.util.Config.getBounds());
             //store the beat bounds
-            SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
+            SFenforce.util.Config.setBeatsBounds(bounds || configBounds);
                                     
             if(values['zoomTo'] == 'allbeats') {
                 bounds = null;
@@ -80,7 +81,7 @@ Ext.define('SFenforce.controller.Login', {
             }
             
             this.storeLogin(userInfo);
-            this.showMap(bounds || SFenforce.util.Config.getBounds(), ids);
+            this.showMap(bounds || configBounds, ids);
         } else {
             var message = '';
             Ext.each(errors.items,function(rec,i){

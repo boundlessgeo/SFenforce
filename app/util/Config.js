@@ -3,10 +3,10 @@ Ext.define('SFenforce.util.Config', {
 
     config : {
         /**
-         * @cfg {OpenLayers.Bounds} bounds
+         * @cfg {Array} bounds
          * The bounds of the all the beats in EPSG:900913.
          */
-        bounds: new OpenLayers.Bounds(-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212),
+        bounds: [-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212],
 
         /**
          * @cfg {String} geoserverUrl
