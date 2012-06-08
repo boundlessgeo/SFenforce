@@ -10,16 +10,24 @@ Ext.define('SFenforce.view.MapToolbar', {
     config: {
         docked: 'top',
         id: 'mapToolbar',
+        defaults: {
+            iconMask: 'true'
+        },
         items: [{
+            id: 'zoomToPosition',
+            iconCls: 'user'
+        }, {
             xtype: 'segmentedbutton',
             id: 'locateButton',
             items:[{
-                iconMask: true,
+                iconMask: 'true',
                 iconCls: 'locate'
             }]
         }, {
+            xtype: 'spacer',
+            width: 48
+        }, {
             id: 'refreshButton',
-            iconMask: true,
             iconCls: 'refresh'
         }, {
             id: 'lastRefresh',
@@ -31,12 +39,10 @@ Ext.define('SFenforce.view.MapToolbar', {
             flex: 1
         }, {
             id: 'zoomButton',
-            iconMask: true,
             iconCls: 'favorites'
         }, {
             id: 'legendButton',
-            iconMask: true,
-            iconCls: 'bookmarks'
+            iconCls: 'maps'
         }]
     }
 });
