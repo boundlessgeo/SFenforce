@@ -132,10 +132,15 @@ Ext.define('SFenforce.controller.Login', {
         Ext.Viewport.setActiveItem(main);
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
         if(SFenforce.userInfo.zoomTo == 'mylocation'){
-           var locationToggle = this.getLocateButton();
-           var locationButton = Ext.ComponentQuery.query('#locateButton > button')[0];
-           locationToggle.setPressedButtons([locationButton]);
-           locationToggle.fireEvent('toggle', locationToggle, locationButton, true);
+            var tracker = main.down('map').getGeo();
+            if(tracker){
+                tracker.setUpdateAction('zoom');
+                tracker.on({
+                    'locationupdate':function(){this.setUpdateAction('none');},
+                    single: true,
+                    scope: tracker
+                });
+            }
         } else {
             main.down('map').getMap().zoomToExtent(bounds);
         }

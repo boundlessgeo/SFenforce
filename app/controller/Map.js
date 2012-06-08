@@ -7,6 +7,7 @@ Ext.define('SFenforce.controller.Map', {
             zoomButton: '#zoomButton',
             lastRefresh: '#lastRefresh',
             locateButton: '#locateButton',
+            myPositionButton: '#myPosition',
             map: 'map'
         },
 
@@ -19,6 +20,9 @@ Ext.define('SFenforce.controller.Map', {
             },
             locateButton: {
                 toggle: 'toggleTracker'
+            },
+            myPositionButton: {
+                tap: 'zoomToUser'
             }
         }
 
@@ -27,14 +31,7 @@ Ext.define('SFenforce.controller.Map', {
     zoomToBeats: function() {
         var bounds = OpenLayers.Bounds.fromArray(SFenforce.util.Config.getBeatsBounds());
         var map = this.getMap().getMap();
-        //turn off tracking if it is on
-        var locationToggle = this.getLocateButton();
-        var tracker = this.getMap().getGeo();
-        if(tracker && !tracker.getTrackSuspended()){
-            locationToggle.setPressedButtons([]);
-            locationToggle.fireEvent('toggle', locationToggle, locationToggle.query('> button')[0], false);            
-        }
-        map.zoomToExtent(bounds);
+        map.zoomToExtent(bounds || OpenLayers.Bounds.fromArray(SFenforce.util.Config.getBounds()));
     },
 
     doUpdate: function() {
@@ -54,13 +51,18 @@ Ext.define('SFenforce.controller.Map', {
     },
     
     toggleTracker: function(cmp, button, pressed){
-        var map = this.getMap();
-        var tracker = map.getGeo();
-        if(!tracker){
-            tracker = map._tracker;
-            tracker.init(map);
+        var tracker = this.getMap().getGeo();
+        if(tracker){
+            tracker.setUpdateAction((pressed)? 'center' : 'none');
         }
-        tracker.setTrackSuspended(!pressed);
         button.setUi((pressed) ? 'confirm' : 'action');
+    },
+    
+    zoomToUser: function(){
+        var map = this.getMap().getMap();
+        var tracker = this.getMap().getGeo();
+        if(tracker){
+            map.zoomToExtent(tracker.getVector().getDataExtent());
+        }
     }
 });

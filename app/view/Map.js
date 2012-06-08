@@ -273,8 +273,8 @@ Ext.define("SFenforce.view.Map",{
         
         this.setMap(map);
         
-        this._tracker = new GXM.plugin.Tracker({
-                trackSuspended: true,
+        this.setPlugins([new GXM.plugin.Tracker({
+                updateAction: 'none',
                 allowHighAccuracy: true,
                 locationStyle:{
                     graphicName: 'circle',
@@ -284,8 +284,11 @@ Ext.define("SFenforce.view.Map",{
                     fillColor: '#0000ff',
                     pointRadius: 8
                 }
-        });
-
+            })
+        ]);
+        
         this.callParent(arguments);
-    }
+    },
+    //overwrite so that we control in geolocation plugin
+    onGeoUpdate: Ext.emptyFn
 });
