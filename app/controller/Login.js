@@ -47,22 +47,24 @@ Ext.define('SFenforce.controller.Login', {
         var values = this.getLogin().getValues();
         var userInfo = Ext.create('SFenforce.model.Pco', values);
         var errors = userInfo.validate();
+        var store = Ext.getStore('Beats');
         if (errors.isValid()) {
             var bounds = null;
             var ids = values['beats'];
-            if (Ext.isString(ids)) { 
+            if (Ext.isString(ids)) {
                 ids = ids.split(",");
             }
-            var store = Ext.getStore('Beats');
-            store.each(function(record) {
-                if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
-                    if (bounds === null) {
-                        bounds = record.get('geometry').getBounds();
-                    } else {
-                        bounds.extend(record.get('geometry').getBounds());
+            if (Ext.isArray(ids)) {
+                store.each(function(record) {
+                    if (Ext.Array.indexOf(ids, record.get('name')) > -1) {
+                        if (bounds === null) {
+                            bounds = record.get('geometry').getBounds();
+                        } else {
+                            bounds.extend(record.get('geometry').getBounds());
+                        }
                     }
-                }
-            });
+                });
+            }
             //store the beat bounds
             SFenforce.util.Config.setBeatsBounds(bounds || SFenforce.util.Config.getBounds());
                                     
