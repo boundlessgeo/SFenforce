@@ -25,7 +25,7 @@ Ext.define('SFenforce.controller.Map', {
     },
 
     zoomToBeats: function() {
-        var bounds = SFenforce.util.Config.getBeatsBounds();
+        var bounds = OpenLayers.Bounds.fromArray(SFenforce.util.Config.getBeatsBounds());
         var map = this.getMap().getMap();
         //turn off tracking if it is on
         var locationToggle = this.getLocateButton();

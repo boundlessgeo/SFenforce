@@ -67,7 +67,7 @@ Ext.define('SFenforce.controller.Login', {
             }
             var configBounds = OpenLayers.Bounds.fromArray(SFenforce.util.Config.getBounds());
             //store the beat bounds
-            SFenforce.util.Config.setBeatsBounds(bounds || configBounds);
+            SFenforce.util.Config.setBeatsBounds(bounds.toArray() || SFenforce.util.Config.getBounds());
                                     
             if(values['zoomTo'] == 'allbeats') {
                 bounds = null;
