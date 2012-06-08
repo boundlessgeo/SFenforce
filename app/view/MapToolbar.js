@@ -14,7 +14,7 @@ Ext.define('SFenforce.view.MapToolbar', {
             iconMask: 'true'
         },
         items: [{
-            id: 'zoomToPosition',
+            id: 'myPosition',
             iconCls: 'user'
         }, {
             xtype: 'segmentedbutton',
