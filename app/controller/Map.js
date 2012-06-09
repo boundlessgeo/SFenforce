@@ -54,6 +54,7 @@ Ext.define('SFenforce.controller.Map', {
         var tracker = this.getMap().getGeo();
         if(tracker){
             tracker.setUpdateAction((pressed)? 'center' : 'none');
+            tracker.updateLocation();
         }
         button.setUi((pressed) ? 'confirm' : 'action');
     },
