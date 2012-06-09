@@ -8,7 +8,6 @@ Ext.define('SFenforce.controller.Login', {
             loginButton: '#loginButton',
             lastRefresh: '#lastRefresh',
             locateButton: '#locateButton',
-            navbarItems: 'main titlebar component component',
             zoomSelector: '#zoomSelector',
             zoomTo: 'login [name="zoomTo"]'
         },
@@ -39,7 +38,7 @@ Ext.define('SFenforce.controller.Login', {
     setZoomTo: function(btnGroup){
         var pressedBtn = btnGroup.getPressedButtons()[0]; //should always be 1 & only 1 pressed
         if(pressedBtn){
-            this.getZoomTo().setValue(pressedBtn.value);
+            this.getZoomTo().setValue(pressedBtn.getData());
         }
     },
     
@@ -108,11 +107,11 @@ Ext.define('SFenforce.controller.Login', {
         var idx = store.findExact('badge', ''+input.getValue()); //ensure we are using a string
         if (idx > -1) {
             var rec = store.getAt(idx);
-            var beatsFld = Ext.ComponentQuery.query('login [name="beats"]')[0];
-            var zoomType = Ext.ComponentQuery.query('#zoomSelector button[value='+rec.get('zoomTo')+']');
+            var beatsFld = this.getLogin().down('[name="beats"]');
+            var zoomType = this.getZoomSelector().down('button[data='+rec.get('zoomTo')+']');
             if (beatsFld && beatsFld.getValue() == null) {
                 beatsFld.setValue(rec.get('beats'));
-                if(zoomType.length){
+                if(zoomType){
                     this.setZoomTo(this.getZoomSelector().setPressedButtons(zoomType));
                 }
             }

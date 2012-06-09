@@ -79,16 +79,16 @@ Ext.define('SFenforce.view.Login', {
                     },
                     items: [{
                         text: SFenforce.util.Config.getLoginMyBeatsLabel(),
-                        value: "mybeats",
+                        data: "mybeats",
                         pressed: true,
                         flex: 1
                     }, {
                         text: SFenforce.util.Config.getLoginAllBeatsLabel(),
-                        value: "allbeats",
+                        data: "allbeats",
                         flex: 1
                     }, {
                         text: SFenforce.util.Config.getLoginMyLocationLabel(),
-                        value: "mylocation",
+                        data: "mylocation",
                         flex: 1
                     }]
                 }]
