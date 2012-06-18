@@ -1,5 +1,5 @@
 Ext.define("SFenforce.view.Map",{
-    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker', 'SFenforce.util.MockTracker'],
+    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
     extend: 'GXM.Map',
     config: {
         beats: null
@@ -273,7 +273,7 @@ Ext.define("SFenforce.view.Map",{
         
         this.setMap(map);
         
-        this.setPlugins([new SFenforce.util.MockTracker({
+        this.setPlugins([new GXM.plugin.Tracker({
                 updateAction: 'none',
                 allowHighAccuracy: true,
                 locationStyle:{
