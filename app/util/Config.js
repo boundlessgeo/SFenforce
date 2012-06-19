@@ -57,7 +57,7 @@ Ext.define('SFenforce.util.Config', {
          * @cfg {Array} legendSize
          * The width and height of the legend popup.
          */
-        legendSize: [200, 125],
+        legendSize: [200, 200],
 
         /** classification */
         unpaidColor: "#FF0000",
@@ -114,7 +114,8 @@ Ext.define('SFenforce.util.Config', {
         mapQuestAttribution: "Tiles Courtesy of <a href='http://open.mapquest.co.uk/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png' border='0'>",
         unpaidRuleTitle: "Unpaid vehicle",
         commercialRuleTitle: "Vehicle at commercial space",
-        citedRuleTitle: "Cited",
+        citedRuleTitle: "Vehicle already visited",
+        noDataRuleTitle: "Data unavailable, check in field",
         dispositionCodeLabel: "Category",
         saveButtonText: "Save",
         doneButtonText: "Done",

@@ -42,6 +42,27 @@ Ext.define('SFenforce.controller.Legend', {
                     }]
                 });
             }
+            // add another one for the WMS layer
+            items.push({
+                xtype: 'container',
+                layout: 'hbox',
+                pack: 'start',
+                align: 'stretch',
+                items: [{
+                    xtype: 'gxm_renderer',
+                    symbolType: "Point",
+                    width: 25,
+                    symbolizers: [{
+                        graphicName: "circle",
+                        pointRadius: 2,
+                        fillColor: "black"
+                    }]
+                }, {
+                    flex: 1,
+                    xtype: 'label',
+                    html: SFenforce.util.Config.getNoDataRuleTitle()
+                }]
+            });
             this.legend = Ext.Viewport.add({
                 xtype: 'panel', 
                 width: SFenforce.util.Config.getLegendSize()[0], 
