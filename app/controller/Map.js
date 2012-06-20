@@ -64,8 +64,8 @@ Ext.define('SFenforce.controller.Map', {
         var tracker = this.getMap().getGeo();
         if(tracker){
             tracker.updateLocation(function(geo){
-                var geoCenter = tracker.getVector().getDataExtent().getCentroid();
-                map.setCenter([geoCenter.x,geoCenter.y], SFenforce.util.Config.getGeolocationZoomLevel());    
+                var geoCenter = tracker.getVector().getDataExtent().getCenterLonLat();
+                map.setCenter(geoCenter, SFenforce.util.Config.getGeolocationZoomLevel());    
             });
         }
     }
