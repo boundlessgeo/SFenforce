@@ -2,7 +2,8 @@ Ext.define("SFenforce.view.Map",{
     requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
     extend: 'GXM.Map',
     config: {
-        beats: null
+        beats: null,
+        useCurrentLocation: false
     },
     alias: 'widget.map',
     initialize:function(){
@@ -276,6 +277,9 @@ Ext.define("SFenforce.view.Map",{
         this.setPlugins([new GXM.plugin.Tracker({
                 updateAction: 'none',
                 allowHighAccuracy: true,
+                frequency: 30*1000,
+                timeout: 90*1000,
+                maximumAge: 60*1000,
                 locationStyle:{
                     graphicName: 'circle',
                     strokeColor: '#ff0000',
