@@ -54,6 +54,7 @@ Ext.define('SFenforce.controller.Map', {
         var tracker = this.getMap().getGeo();
         if(tracker){
             tracker.setUpdateAction((pressed)? 'center' : 'none');
+            tracker.updateLocation();
         }
         button.setUi((pressed) ? 'confirm' : 'action');
     },
@@ -62,7 +63,10 @@ Ext.define('SFenforce.controller.Map', {
         var map = this.getMap().getMap();
         var tracker = this.getMap().getGeo();
         if(tracker){
-            map.zoomToExtent(tracker.getVector().getDataExtent());
+            tracker.updateLocation(function(geo){
+                var geoCenter = tracker.getVector().getDataExtent().getCentroid();
+                map.setCenter([geoCenter.x,geoCenter.y], SFenforce.util.Config.getGeolocationZoomLevel());    
+            });
         }
     }
 });

@@ -58,6 +58,12 @@ Ext.define('SFenforce.util.Config', {
          * The width and height of the legend popup.
          */
         legendSize: [200, 200],
+        
+        /**
+         * @cfg {Number} geolocationZoomLevel
+         * The new zoom level of the map after selecting 'zoom to my location'
+         */
+        geolocationZoomLevel: 18,
 
         /** classification */
         unpaidColor: "#FF0000",
