@@ -12,6 +12,10 @@
     <condition property="git" value="git.cmd" else="git">
         <os family="windows"/>
     </condition>
+	
+	<condition property="sencha" value="sencha.bat" else="sencha">
+	        <os family="windows"/>
+    </condition>
 
     <target name="init">
 
@@ -34,7 +38,7 @@
         <echo message="doing the application build through the Sencha SDK"/>
         <delete dir="${senchabuild}"/>
         <delete dir="${senchaarchive}"/>
-        <exec executable="sencha" failonerror="true">
+        <exec executable="${sencha}" failonerror="true">
             <arg line="app build production"/>
         </exec>
     </target>
