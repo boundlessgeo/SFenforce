@@ -18,13 +18,13 @@ Ext.define('SFenforce.util.Config', {
          * @cfg {String} featureNS
          * The namespace URI used on the WFS.
          */
-        featureNS: 'http://sfpark.org',
- 
+        featureNS: 'http://www.sfpark.org/SFenforce',
+
         /**
          * @cfg {String} prefix
          * The prefix of the namespace.
          */
-        prefix: "sfpark",
+        prefix: "SFenforce",
 
         /**
          * @cfg {Integer} defaultDispositionValue
@@ -78,11 +78,21 @@ Ext.define('SFenforce.util.Config', {
             property: "METER_EXPIRED_FLAG",
             value: 1
         }),
-        commercialRuleFilter: new OpenLayers.Filter.Comparison({
-            type: OpenLayers.Filter.Comparison.EQUAL_TO,
-            property: "COMMERCIAL_OCCUPIED_FLAG",
-            value: 1
-        }),
+        commercialRuleFilter:new OpenLayers.Filter.Logical({
+            type: OpenLayers.Filter.Logical.AND,
+            filters:[
+                new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                    property: "COMMERCIAL_OCCUPIED_FLAG",
+                    value: 1
+                }),
+                new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.NOT_EQUAL_TO,
+                    property: "METER_EXPIRED_FLAG",
+                    value: 1
+                })
+            ]
+        }), 
         citedRuleFilter: new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.EQUAL_TO,
             property: "DISPOSITION_CODE",
