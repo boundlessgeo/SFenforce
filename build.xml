@@ -17,7 +17,11 @@
 	        <os family="windows"/>
     </condition>
 
-    <target name="init">
+    <condition property="prodarg" value="-e production" else="production">
+            <os family="windows"/>
+    </condition>
+    
+	<target name="init">
 
         <echo message="pulling in submodules"/>
         <exec executable="${git}" failonerror="true">
@@ -39,7 +43,7 @@
         <delete dir="${senchabuild}"/>
         <delete dir="${senchaarchive}"/>
         <exec executable="${sencha}" failonerror="true">
-            <arg line="app build production"/>
+            <arg line="app build ${prodarg}"/>
         </exec>
     </target>
 
