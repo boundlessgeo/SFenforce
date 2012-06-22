@@ -112,7 +112,7 @@ Ext.define('SFenforce.util.Config', {
         loginFormInstructions: "Login to the enforcement application",
         loginNameLabel: "Badge number",
         loginBeatsLabel: "Beats",
-        loginButtonText: "Login",
+        loginButtonText: "Next",
         loginZoomToLabel: "Zoom To : ",
         loginMyBeatsLabel: "My Beats",
         loginAllBeatsLabel: "All Beats",

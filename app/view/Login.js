@@ -37,7 +37,7 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'button',
                     id: 'loginButton',
                     flex: 1,
-                    ui: 'confirm',
+                    ui: 'confirm forward',
                     text: SFenforce.util.Config.getLoginButtonText()
                 }]
             }, {
