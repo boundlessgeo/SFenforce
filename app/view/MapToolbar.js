@@ -14,6 +14,13 @@ Ext.define('SFenforce.view.MapToolbar', {
             iconMask: 'true'
         },
         items: [{
+            id: 'backLoginButton',
+            ui: 'back',
+            text: SFenforce.util.Config.getBackToLoginText()
+        }, {
+            xtype: 'spacer',
+            width: 32
+        }, {
             id: 'myPosition',
             iconCls: 'user'
         }, {
@@ -25,7 +32,7 @@ Ext.define('SFenforce.view.MapToolbar', {
             }]
         }, {
             xtype: 'spacer',
-            width: 48
+            width: 32
         }, {
             id: 'refreshButton',
             iconCls: 'refresh'

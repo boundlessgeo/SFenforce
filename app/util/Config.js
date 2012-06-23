@@ -18,13 +18,13 @@ Ext.define('SFenforce.util.Config', {
          * @cfg {String} featureNS
          * The namespace URI used on the WFS.
          */
-        featureNS: 'http://sfpark.org',
- 
+        featureNS: 'http://www.sfpark.org/SFenforce',
+
         /**
          * @cfg {String} prefix
          * The prefix of the namespace.
          */
-        prefix: "sfpark",
+        prefix: "SFenforce",
 
         /**
          * @cfg {Integer} defaultDispositionValue
@@ -78,11 +78,21 @@ Ext.define('SFenforce.util.Config', {
             property: "METER_EXPIRED_FLAG",
             value: 1
         }),
-        commercialRuleFilter: new OpenLayers.Filter.Comparison({
-            type: OpenLayers.Filter.Comparison.EQUAL_TO,
-            property: "COMMERCIAL_OCCUPIED_FLAG",
-            value: 1
-        }),
+        commercialRuleFilter: new OpenLayers.Filter.Logical({
+            type: OpenLayers.Filter.Logical.AND,
+            filters:[
+                new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                    property: "COMMERCIAL_OCCUPIED_FLAG",
+                    value: 1
+                }),
+                new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.NOT_EQUAL_TO,
+                    property: "METER_EXPIRED_FLAG",
+                    value: 1
+                })
+            ]
+        }), 
         citedRuleFilter: new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.EQUAL_TO,
             property: "DISPOSITION_CODE",
@@ -94,6 +104,7 @@ Ext.define('SFenforce.util.Config', {
         beatField: "PCO_BEAT",
         parkingSessionField: "PARKING_SESSION_ID",
         dispositionCodeField: "DISPOSITION_CODE",
+        dispositionFlagField: "DISPOSITION_CODE_FLAG",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
         updateTable: "RT_CITATION_OPPORTUNITY",
@@ -117,6 +128,7 @@ Ext.define('SFenforce.util.Config', {
         loginMyBeatsLabel: "My Beats",
         loginAllBeatsLabel: "All Beats",
         loginMyLocationLabel: "My Location",
+        backToLoginText: "Back",
         mapQuestAttribution: "Tiles Courtesy of <a href='http://open.mapquest.co.uk/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png' border='0'>",
         unpaidRuleTitle: "Unpaid vehicle",
         commercialRuleTitle: "Vehicle at commercial space",

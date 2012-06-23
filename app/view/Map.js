@@ -70,7 +70,22 @@ Ext.define("SFenforce.view.Map",{
                 beatFilter = filters[0];
             }
         }
-        var sessionFilter = new OpenLayers.Filter.Comparison({
+        var sessionFilter = new OpenLayers.Filter.Logical({
+            type: OpenLayers.Filter.Logical.AND,
+            filters: [
+                new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.GREATER_THAN,
+                    property: SFenforce.util.Config.getParkingSessionField(),
+                    value: -1
+                }),
+                new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                    property: SFenforce.util.Config.getDispositionFlagField(),
+                    value: 0
+                })
+            ]
+        }); 
+        new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.GREATER_THAN,
             property: SFenforce.util.Config.getParkingSessionField(),
             value: -1
@@ -116,7 +131,8 @@ Ext.define("SFenforce.view.Map",{
                     name: SFenforce.util.Config.getCitedRuleTitle(),
                     filter: SFenforce.util.Config.getCitedRuleFilter(),
                     symbolizer: {
-                        fillColor: SFenforce.util.Config.getCitedColor()
+                        //fillColor: SFenforce.util.Config.getCitedColor()
+                        display: 'none'
                     }
                 })
             ]

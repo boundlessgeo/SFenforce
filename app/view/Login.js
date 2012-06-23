@@ -9,10 +9,8 @@ Ext.define('SFenforce.view.Login', {
         'SFenforce.store.Beats',
         'SFenforce.store.Pco'
     ],
-    initialize: function() {
-        var me = this;
-        me.add([{
-            xtype: 'fieldset',
+    config: {
+            items:[{xtype: 'fieldset',
             id: 'fieldset',
             instructions: {
                 title: SFenforce.util.Config.getLoginFormInstructions(),
@@ -97,7 +95,6 @@ Ext.define('SFenforce.view.Login', {
                 name: 'zoomTo',
                 submit: false
             }]
-        }]);
-        me.callParent();
+        }]
     }
 });
