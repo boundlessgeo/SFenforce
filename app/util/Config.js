@@ -78,7 +78,7 @@ Ext.define('SFenforce.util.Config', {
             property: "METER_EXPIRED_FLAG",
             value: 1
         }),
-        commercialRuleFilter:new OpenLayers.Filter.Logical({
+        commercialRuleFilter: new OpenLayers.Filter.Logical({
             type: OpenLayers.Filter.Logical.AND,
             filters:[
                 new OpenLayers.Filter.Comparison({
@@ -104,6 +104,7 @@ Ext.define('SFenforce.util.Config', {
         beatField: "PCO_BEAT",
         parkingSessionField: "PARKING_SESSION_ID",
         dispositionCodeField: "DISPOSITION_CODE",
+        dispositionFlagField: "DISPOSITION_CODE_FLAG",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
         updateTable: "RT_CITATION_OPPORTUNITY",
