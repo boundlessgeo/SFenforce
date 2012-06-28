@@ -21,7 +21,8 @@ Ext.define('SFenforce.controller.Update', {
         var fids = [];
         var table = SFenforce.util.Config.getUpdateTable();
         var featureNS = SFenforce.util.Config.getFeatureNS();
-        var field = SFenforce.util.Config.getDispositionCodeField();
+        var dispositionCodeField = SFenforce.util.Config.getDispositionCodeField();
+        var badgeField = SFenforce.util.Config.getBadgeField();
         var fields = SFenforce.util.Config.getOpportunityIdFields();
         for (var i=0, ii=fields.length; i<ii; ++i) {
             var value = attributes[fields[i]];
@@ -32,7 +33,10 @@ Ext.define('SFenforce.controller.Update', {
         var features = [];
         for (var j=0, jj=fids.length;j<jj; ++j) {
             var attr = {};
-            attr[field] = this.getUpdateForm().getValues()['code'];
+            attr[dispositionCodeField] = this.getUpdateForm().getValues()['code'];
+            if (SFenforce.userInfo && SFenforce.userInfo['badge']) {
+                attr[badgeField] = SFenforce.userInfo['badge'];
+            }
             var feature = new OpenLayers.Feature.Vector(null, attr);
             feature.fid = fids[j];
             feature.state = OpenLayers.State.UPDATE;
@@ -58,7 +62,7 @@ Ext.define('SFenforce.controller.Update', {
                         this.getPopupPanel().hide();
                         var mapFeature = this.getPopup().getFeature();
                         if(mapFeature && mapFeature.layer){
-                            mapFeature.attributes[field] = 1;
+                            mapFeature.attributes[dispositionCodeField] = 1;
                             mapFeature.layer.drawFeature(mapFeature);    
                         }
                     }
