@@ -96,6 +96,8 @@ Ext.define('SFenforce.util.Config', {
         dispositionCodeField: "DISPOSITION_CODE",
         badgeField: "PCO_BADGE_NO",
         entryDateField: "DISPOSITION_ENTRY_DT",
+        lastUpdatedProgramField: "LAST_UPD_PGM",
+        lastUpdatedProgramValue: "Mobile device",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
         updateTable: "RT_CITATION_OPPORTUNITY",
