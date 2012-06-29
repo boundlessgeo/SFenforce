@@ -98,6 +98,8 @@ Ext.define('SFenforce.util.Config', {
         entryDateField: "DISPOSITION_ENTRY_DT",
         lastUpdatedProgramField: "LAST_UPD_PGM",
         lastUpdatedProgramValue: "Mobile device",
+        lastUpdatedUserField: "LAST_UPD_USER",
+        defaultLastUpdatedUser: "Mobile User",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
         updateTable: "RT_CITATION_OPPORTUNITY",
