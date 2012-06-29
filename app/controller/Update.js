@@ -23,6 +23,7 @@ Ext.define('SFenforce.controller.Update', {
         var featureNS = SFenforce.util.Config.getFeatureNS();
         var dispositionCodeField = SFenforce.util.Config.getDispositionCodeField();
         var badgeField = SFenforce.util.Config.getBadgeField();
+        var entryDateField = SFenforce.util.Config.getEntryDateField();
         var badgeValue = SFenforce.userInfo['badge'];
         var fields = SFenforce.util.Config.getOpportunityIdFields();
         for (var i=0, ii=fields.length; i<ii; ++i) {
@@ -33,10 +34,12 @@ Ext.define('SFenforce.controller.Update', {
         }
         var features = [];
         for (var j=0, jj=fids.length;j<jj; ++j) {
-            var attr = {};
             var code = this.getUpdateForm().getValues()['code'];
+            var attr = {};
+            var curTime = new Date().toISOString();
             attr[dispositionCodeField] = code;
             attr[badgeField] = badgeValue;
+            attr[entryDateField] = curTime;
             var feature = new OpenLayers.Feature.Vector(null, attr);
             feature.fid = fids[j];
             feature.state = OpenLayers.State.UPDATE;

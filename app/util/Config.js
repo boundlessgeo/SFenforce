@@ -95,6 +95,7 @@ Ext.define('SFenforce.util.Config', {
         parkingSessionField: "PARKING_SESSION_ID",
         dispositionCodeField: "DISPOSITION_CODE",
         badgeField: "PCO_BADGE_NO",
+        entryDateField: "DISPOSITION_ENTRY_DT",
         citationView: "CITATION_OPPORTUNITY_VW",
         citationGeomField: "GEOM",
         updateTable: "RT_CITATION_OPPORTUNITY",
