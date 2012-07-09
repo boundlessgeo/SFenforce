@@ -39,12 +39,11 @@
             <fileset dir="build/production"/>
         </copy>
 
-        <echo message="doing the application build through the Sencha SDK"/>
+        
         <delete dir="${senchabuild}"/>
         <delete dir="${senchaarchive}"/>
-        <exec executable="${sencha}" failonerror="true">
-            <arg line="app build ${prodarg}"/>
-        </exec>
+        
+		
     </target>
 
     <target name="clean" description="remove previous build">
@@ -52,11 +51,36 @@
     </target>
 
     <target name="dist" depends="init"/>
+	
+	<target name="senchabuild">
+		<echo message="doing the application build through the Sencha SDK"/>
+		<exec executable="${sencha}" failonerror="true">
+            <arg line="app build ${prodarg}"/>
+        </exec>
+	</target>
+	
+	<target name="sfpatch" depends="dist">
+		<exec executable="${git}">
+            <arg line="apply --whitespace=fix patches/sfconfig.patch" />
+        </exec>	
+	</target>
 
-    <target name="war" depends="dist">
+	<target name="sfunpatch" depends="sfpatch">
+        <exec executable="${git}">
+            <arg line="apply --whitespace=fix --reverse patches/sfconfig.patch" />
+        </exec> 
+    </target>
+	
+    <target name="war" depends="sfpatch,senchabuild,sfunpatch">
         <war needxmlfile="false" destfile="${build}/${ant.project.name}.war">
             <fileset dir="build/production"/>
         </war>
     </target>
 
+    <target name="devwar" depends="dist,senchabuild">
+        <war needxmlfile="false" destfile="${build}/${ant.project.name}.war">
+            <fileset dir="build/production"/>
+        </war>
+    </target>	
+	
 </project>
