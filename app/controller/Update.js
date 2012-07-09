@@ -21,7 +21,13 @@ Ext.define('SFenforce.controller.Update', {
         var fids = [];
         var table = SFenforce.util.Config.getUpdateTable();
         var featureNS = SFenforce.util.Config.getFeatureNS();
-        var field = SFenforce.util.Config.getDispositionCodeField();
+        var dispositionCodeField = SFenforce.util.Config.getDispositionCodeField();
+        var badgeField = SFenforce.util.Config.getBadgeField();
+        var entryDateField = SFenforce.util.Config.getEntryDateField();
+        var badgeValue = SFenforce.userInfo['badge'];
+        var programField = SFenforce.util.Config.getLastUpdatedProgramField();
+        var programValue = SFenforce.util.Config.getLastUpdatedProgramValue();
+        var userField = SFenforce.util.Config.getLastUpdatedUserField();
         var fields = SFenforce.util.Config.getOpportunityIdFields();
         for (var i=0, ii=fields.length; i<ii; ++i) {
             var value = attributes[fields[i]];
@@ -31,8 +37,15 @@ Ext.define('SFenforce.controller.Update', {
         }
         var features = [];
         for (var j=0, jj=fids.length;j<jj; ++j) {
+            var code = this.getUpdateForm().getValues()['code'];
             var attr = {};
-            attr[field] = this.getUpdateForm().getValues()['code'];
+            var curTime = new Date().toISOString();
+            var updatedUser = SFenforce.util.Config.getDefaultLastUpdatedUser();
+            attr[dispositionCodeField] = code;
+            attr[badgeField] = badgeValue;
+            attr[entryDateField] = curTime;
+            attr[programField] = programValue;
+            attr[userField] = updatedUser;
             var feature = new OpenLayers.Feature.Vector(null, attr);
             feature.fid = fids[j];
             feature.state = OpenLayers.State.UPDATE;
@@ -58,7 +71,7 @@ Ext.define('SFenforce.controller.Update', {
                         this.getPopupPanel().hide();
                         var mapFeature = this.getPopup().getFeature();
                         if(mapFeature && mapFeature.layer){
-                            mapFeature.attributes[field] = 1;
+                            mapFeature.attributes[dispositionCodeField] = 1;
                             mapFeature.layer.drawFeature(mapFeature);    
                         }
                     }
