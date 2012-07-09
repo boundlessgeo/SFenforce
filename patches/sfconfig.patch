@@ -1,0 +1,21 @@
+diff --git a/app/util/Config.js b/app/util/Config.js
+index 2ce1d09..fae5377 100644
+--- a/app/util/Config.js
++++ b/app/util/Config.js
+@@ -18,13 +18,13 @@ Ext.define('SFenforce.util.Config', {
+          * @cfg {String} featureNS
+          * The namespace URI used on the WFS.
+          */
+-        featureNS: 'http://www.sfpark.org/SFenforce',
+-
++        featureNS: 'http://sfpark.org',
++ 
+         /**
+          * @cfg {String} prefix
+          * The prefix of the namespace.
+          */
+-        prefix: "SFenforce",
++        prefix: "sfpark",
+ 
+         /**
+          * @cfg {Integer} defaultDispositionValue
