@@ -60,9 +60,6 @@
         },
         {
             "path": "externals/openlayers/theme/default/style.css"
-        },
-        {
-            "path": "externals/GXM/resources/css/gxm.css"
         }
     ],
 

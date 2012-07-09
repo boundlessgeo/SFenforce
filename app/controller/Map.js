@@ -8,7 +8,9 @@ Ext.define('SFenforce.controller.Map', {
             lastRefresh: '#lastRefresh',
             locateButton: '#locateButton',
             myPositionButton: '#myPosition',
-            map: 'map'
+            backButton: '#backLoginButton',
+            map: 'map',
+            login: 'login'
         },
 
         control: {
@@ -23,6 +25,9 @@ Ext.define('SFenforce.controller.Map', {
             },
             myPositionButton: {
                 tap: 'zoomToUser'
+            },
+            backButton: {
+                tap: 'backToLogin'
             }
         }
 
@@ -68,5 +73,9 @@ Ext.define('SFenforce.controller.Map', {
                 map.setCenter(geoCenter, SFenforce.util.Config.getGeolocationZoomLevel());    
             });
         }
+    },
+    
+    backToLogin: function(){
+        Ext.Viewport.setActiveItem(this.getLogin());
     }
 });
