@@ -37,19 +37,7 @@ Ext.define("SFenforce.view.Map",{
             tileOptions: {crossOriginKeyword: null}
         };
 
-        var streets = new OpenLayers.Layer.OSM("MapQuest OpenStreetMap",
-            [
-                "http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
-                "http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
-                "http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png",
-                "http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png"
-            ],
-            OpenLayers.Util.applyDefaults({
-                attribution: SFenforce.util.Config.getMapQuestAttribution(),
-                type: "osm"
-            }, options)
-        );
-
+        var streets = new OpenLayers.Layer.OSM(null, null, options);
         var beats = this.getBeats();
         var beatFilter = null;
         if (beats !== null) {
