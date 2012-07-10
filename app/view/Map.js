@@ -114,7 +114,7 @@ Ext.define("SFenforce.view.Map",{
                     symbolizer: {
                         fillColor: SFenforce.util.Config.getOccupiedColor()
                     }
-                }),
+                })/*,
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getCitedRuleTitle(),
                     filter: SFenforce.util.Config.getCitedRuleFilter(),
@@ -122,7 +122,7 @@ Ext.define("SFenforce.view.Map",{
                         //fillColor: SFenforce.util.Config.getCitedColor()
                         display: 'none'
                     }
-                })
+                })*/
             ]
         });
         SFenforce.util.Config.setStyle(style.clone());

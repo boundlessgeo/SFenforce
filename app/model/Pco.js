@@ -1,6 +1,7 @@
 // Parking Citation Officer
 Ext.define('SFenforce.model.Pco', {
     extend: 'Ext.data.Model',
+    idProperty: 'badge',
     config: {
         fields: [
             {name: 'badge', type: 'number'},
@@ -12,9 +13,12 @@ Ext.define('SFenforce.model.Pco', {
             }}, // array of string
             {name: 'zoomTo', type: 'string'}
         ],
-        validations: [
-            {type: 'presence', name: 'badge', message: SFenforce.util.Config.getBadgeValidationMsg()}
-        ],
+        validations: [{
+            type: 'format', 
+            field: 'badge',
+            matcher: SFenforce.util.Config.getBadgeFormat(),
+            message: SFenforce.util.Config.getBadgeValidationMsg()            
+        }],
         proxy: {
            type: 'localstorage',
            id: 'sfenforce-pco'

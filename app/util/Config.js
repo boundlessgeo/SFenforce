@@ -64,6 +64,12 @@ Ext.define('SFenforce.util.Config', {
          * The new zoom level of the map after selecting 'zoom to my location'
          */
         geolocationZoomLevel: 18,
+        
+        /**
+         * @cfg {RegEx} badgeFormat
+         * A regex for validating the badge number
+         */
+        badgeFormat: /^\d+$/,
 
         /** classification */
         unpaidColor: "#FF0000",
