@@ -71,8 +71,7 @@ Ext.define('SFenforce.controller.Update', {
                         this.getPopupPanel().hide();
                         var mapFeature = this.getPopup().getFeature();
                         if(mapFeature && mapFeature.layer){
-                            mapFeature.attributes[dispositionCodeField] = 1;
-                            mapFeature.layer.drawFeature(mapFeature);    
+                            mapFeature.layer.destroyFeatures([mapFeature]);    
                         }
                     }
                 },
