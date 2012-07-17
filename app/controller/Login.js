@@ -119,15 +119,20 @@ Ext.define('SFenforce.controller.Login', {
     },
     
     showMap: function(bounds, beats){
-        var main = Ext.create('SFenforce.view.Main',{
-            items:[{
-                xtype: 'maptoolbar'
-            }, {
-                xtype: 'map',
-                beats: beats
-            }]
-        });
-        Ext.Viewport.add(main);
+        var main = this.getMain();
+        if(!main){
+             main = Ext.create('SFenforce.view.Main',{
+                items:[{
+                    xtype: 'maptoolbar'
+                }, {
+                    xtype: 'map',
+                    beats: beats
+                }]
+            });
+            Ext.Viewport.add(main);
+        } else {
+            main.down('map').setBeats(beats);
+        }
         Ext.Viewport.setActiveItem(main);
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
         if(SFenforce.userInfo.zoomTo == 'mylocation'){

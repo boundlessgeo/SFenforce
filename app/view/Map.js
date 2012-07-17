@@ -3,9 +3,14 @@ Ext.define("SFenforce.view.Map",{
     extend: 'GXM.Map',
     config: {
         beats: null,
-        useCurrentLocation: false
+        useCurrentLocation: false,
+        filter: null
     },
     alias: 'widget.map',
+    /** @private **/
+    _beatsFilter: null,
+    /** @private **/
+    _sessionFilter: null,
     initialize:function(){
         var options = {
             projection: "EPSG:900913",
@@ -39,25 +44,7 @@ Ext.define("SFenforce.view.Map",{
 
         var streets = new OpenLayers.Layer.OSM(null, null, options);
         var beats = this.getBeats();
-        var beatFilter = null;
-        if (beats !== null) {
-            var filters = [];
-            for (var i=0, ii=beats.length; i<ii; ++i) {
-                filters.push(new OpenLayers.Filter.Comparison({
-                    type: OpenLayers.Filter.Comparison.EQUAL_TO,
-                    property: SFenforce.util.Config.getBeatField(),
-                    value: beats[i]
-                }));
-            }
-            if (filters.length > 1) {
-                beatFilter = new OpenLayers.Filter.Logical({
-                    type: OpenLayers.Filter.Logical.OR,
-                    filters: filters
-                });
-            } else {
-                beatFilter = filters[0];
-            }
-        }
+        var beatFilter = this.calculateBeatsFilter(beats);
         var sessionFilter = new OpenLayers.Filter.Logical({
             type: OpenLayers.Filter.Logical.AND,
             filters: [
@@ -72,12 +59,8 @@ Ext.define("SFenforce.view.Map",{
                     value: 0
                 })
             ]
-        }); 
-        new OpenLayers.Filter.Comparison({
-            type: OpenLayers.Filter.Comparison.GREATER_THAN,
-            property: SFenforce.util.Config.getParkingSessionField(),
-            value: -1
         });
+        this._sessionFilter = sessionFilter; 
         var filter;
         if (beatFilter !== null) {
             filter = new OpenLayers.Filter.Logical({
@@ -87,6 +70,9 @@ Ext.define("SFenforce.view.Map",{
         } else {
             filter = sessionFilter;
         }
+        
+        //store filter in the private config variable without triggering apply, update code
+        this._filter = filter;
 
         var style = new OpenLayers.Style({
             pointRadius: "${getSize}",
@@ -298,5 +284,57 @@ Ext.define("SFenforce.view.Map",{
         this.callParent(arguments);
     },
     //overwrite so that we control in geolocation plugin
-    onGeoUpdate: Ext.emptyFn
+    onGeoUpdate: Ext.emptyFn,
+    
+    /** @private **/
+    updateBeats: function(newBeats, oldBeats){
+        this._beatsFilter = this.calculateBeatsFilter(newBeats);
+        var filter;
+        if(this._beatsFilter){
+            filter = new OpenLayers.Filter.Logical({
+                type: OpenLayers.Filter.Logical.AND,
+                filters: [this._beatsFilter,this._sessionFilter]
+            });
+        } else {
+            filter = this._sessionFilter;
+        }
+        this.setFilter(filter);
+    },
+    
+    updateFilter: function(newFilter, oldFilter){
+        //get the filtered layers
+        var nodataLayer = this.layers.findRecord('name', SFenforce.util.Config.getNoDataLayerName()).getLayer();
+        var opsLayer = this.layers.findRecord('name', SFenforce.util.Config.getCitationLayerName()).getLayer();
+        //update the layer filters
+        nodataLayer.mergeNewParams({filter: this._beatsFilter !== null ?
+            new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(this._beatsFilter)) : undefined});
+        opsLayer.filter = newFilter;
+    },
+    
+    /** @private **/
+   calculateBeatsFilter: function(beats){
+        if (!beats) {beats = this.getBeats();}
+        if (beats !== null) {         
+            var filters = [];
+            for (var i=0, ii=beats.length; i<ii; ++i) {
+                filters.push(new OpenLayers.Filter.Comparison({
+                    type: OpenLayers.Filter.Comparison.EQUAL_TO,
+                    property: SFenforce.util.Config.getBeatField(),
+                    value: beats[i]
+                }));
+            }
+            if (filters.length > 1) {
+                beatFilter = new OpenLayers.Filter.Logical({
+                    type: OpenLayers.Filter.Logical.OR,
+                    filters: filters
+                });
+            } else {
+                beatFilter = filters[0];
+            }
+            this._beatsFilter = beatFilter;
+            return beatFilter;
+        } else {
+            return null;
+        }
+   }
 });
