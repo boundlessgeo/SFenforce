@@ -59,7 +59,7 @@ Ext.define('SFenforce.controller.Update', {
                 featureNS: featureNS, 
                 version: "1.1.0"
             });
-            var xml = format.write([feature]);
+            var xml = format.write(features);
             var url = SFenforce.util.Config.getGeoserverUrl();
             OpenLayers.Request.POST({
                 url: url,
