@@ -302,13 +302,16 @@ Ext.define("SFenforce.view.Map",{
     },
     
     updateFilter: function(newFilter, oldFilter){
-        //get the filtered layers
-        var nodataLayer = this.layers.findRecord('name', SFenforce.util.Config.getNoDataLayerName()).getLayer();
-        var opsLayer = this.layers.findRecord('name', SFenforce.util.Config.getCitationLayerName()).getLayer();
-        //update the layer filters
-        nodataLayer.mergeNewParams({filter: this._beatsFilter !== null ?
-            new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(this._beatsFilter)) : undefined});
-        opsLayer.filter = newFilter;
+        //test to ensure that the map has already been initialized
+        if(oldFilter != null && this.layers != null){
+            //get the filtered layers
+            var nodataLayer = this.layers.findRecord('name', SFenforce.util.Config.getNoDataLayerName()).getLayer();
+            var opsLayer = this.layers.findRecord('name', SFenforce.util.Config.getCitationLayerName()).getLayer();
+            //update the layer filters
+            nodataLayer.mergeNewParams({filter: this._beatsFilter !== null ?
+                new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(this._beatsFilter)) : undefined});
+            opsLayer.filter = newFilter;
+        }
     },
     
     /** @private **/
