@@ -311,6 +311,7 @@ Ext.define("SFenforce.view.Map",{
             nodataLayer.mergeNewParams({filter: this._beatsFilter !== null ?
                 new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(this._beatsFilter)) : undefined});
             opsLayer.filter = newFilter;
+            opsLayer.refresh({force: true});
         }
     },
     
