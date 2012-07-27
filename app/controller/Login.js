@@ -141,6 +141,10 @@ Ext.define('SFenforce.controller.Login', {
                 tracker.setUpdateAction('zoom');
                 tracker.on({
                     'locationupdate':function(){this.setUpdateAction('none');},
+                    'locationerror': function() {
+                        main.down('map').getMap().zoomToExtent(bounds);
+                        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+                    },
                     single: true,
                     scope: tracker
                 });

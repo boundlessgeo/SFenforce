@@ -151,6 +151,7 @@ Ext.define('SFenforce.util.Config', {
         doneButtonText: "Done",
         errorTitle: "Error",
         transactionErrorText: "Failure updating disposition code",
+        gpsErrorMsg: "No GPS data available. Please try again.",
         /** end i18n */
 
         /** private properties */

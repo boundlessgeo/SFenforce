@@ -58,6 +58,14 @@ Ext.define('SFenforce.controller.Map', {
     toggleTracker: function(cmp, button, pressed){
         var tracker = this.getMap().getGeo();
         if(tracker){
+            if (pressed) {
+                tracker.on({
+                    'locationerror': function() {
+                        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+                    },
+                    single: true
+                });
+            }
             tracker.setUpdateAction((pressed)? 'center' : 'none');
             tracker.updateLocation();
         }
