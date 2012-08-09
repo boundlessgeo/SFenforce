@@ -256,7 +256,12 @@ Ext.define("SFenforce.view.Map",{
                     }
                 }),
                 new OpenLayers.Control.Attribution(),
-                new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true})
+                new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true}),
+                new OpenLayers.Control.CacheWrite({
+                    autoActivate: true,
+                    imageFormat: "image/png"
+                }),
+                new OpenLayers.Control.CacheRead()
             ]
         });
 
