@@ -44,15 +44,9 @@ function init() {
     );
 
     var style = new OpenLayers.Style({
-        pointRadius: "${getSize}",
+        pointRadius: 10,
         graphicName: 'circle'
     }, {
-        context: {
-            getSize: function(feature) {
-                var map = feature.layer.map;
-                return (map.getScale() < 2500) ? 10 : 5;
-            }
-        },
         rules: [
             new OpenLayers.Rule({
                 name: 'x',
@@ -134,6 +128,6 @@ function init() {
         ]
     });
 
-    map.addLayers([streets, citation_vector, nodata_spaces]);
+    map.addLayers([streets, citation_vector/*, nodata_spaces*/]);
     map.zoomToExtent(new OpenLayers.Bounds(-13630460.905642, 4544450.3840456, -13624163.334642, 4552410.6141212));
 }
