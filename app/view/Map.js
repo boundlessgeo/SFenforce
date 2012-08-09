@@ -38,8 +38,7 @@ Ext.define("SFenforce.view.Map",{
             numZoomLevels: 19,
             units: "m",
             buffer: 1,
-            transitionEffect: "resize",
-            tileOptions: {crossOriginKeyword: null}
+            transitionEffect: "resize"
         };
 
         var streets = new OpenLayers.Layer.OSM(null, null, options);
