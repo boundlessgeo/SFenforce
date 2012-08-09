@@ -259,7 +259,7 @@ Ext.define("SFenforce.view.Map",{
                 new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true}),
                 new OpenLayers.Control.CacheWrite({
                     autoActivate: true,
-                    imageFormat: "image/png"
+                    layers: [streets]
                 }),
                 new OpenLayers.Control.CacheRead()
             ]
