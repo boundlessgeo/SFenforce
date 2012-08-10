@@ -55,11 +55,11 @@
      */
     "css": [
         {
-            "path": "resources/css/app.css",
-            "update": "delta"
+            "path": "externals/openlayers/theme/default/style.css"
         },
         {
-            "path": "externals/openlayers/theme/default/style.css"
+            "path": "resources/css/app.css",
+            "update": "delta"
         }
     ],
 
