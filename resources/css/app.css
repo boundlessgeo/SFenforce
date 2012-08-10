@@ -1,3 +1,10 @@
+.olLayerGrid .olTileImage {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: all 0 none;
+    transition: none;
+}
+
 div.olControlAttribution {
     border-top: 2px solid rgba(70,70,70,0.65);
     border-left: 2px solid rgba(70,70,70,0.65);
