@@ -128,8 +128,7 @@ Ext.define('SFenforce.view.MultiSelect', {
     onListSelect: function(item, record) {  //override with empty function
     },
 
-    onListTap: function(e) { 
-        e.makeUnpreventable();
+    onListTap: function() {  //override with empty function
     },
 
     onButtonTap: function() {
