@@ -20,7 +20,7 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             xtype: 'spacer',
             width: 32
-        }, {
+       /* }, {
             id: 'myPosition',
             iconCls: 'user'
         }, {
@@ -30,9 +30,9 @@ Ext.define('SFenforce.view.MapToolbar', {
                 iconMask: 'true',
                 iconCls: 'locate'
             }]
-        }, {
+        */}, {
             xtype: 'spacer',
-            width: 32
+            width: 32+32
         }, {
             id: 'refreshButton',
             iconCls: 'refresh'

@@ -2,7 +2,6 @@ Ext.Loader.setConfig({
     enabled: true,
     disableCaching: false,
     paths: {
-        GXM: "externals/GXM/lib/GXM",
         SFenforce: "app"
     }
 });
@@ -22,9 +21,9 @@ Ext.application({
 
     userInfo: null,
 
-    views: ['Login', 'Main'],
-    stores: ['Beats', 'Pco', 'DispositionCodes'],
-    controllers: ['Login', 'Map', 'Update', 'Legend'],
+    views: ['Login', 'Main', 'Popup'],
+    stores: ['Beats', 'Pco'],
+    controllers: ['Login', 'Map','Popup'],
 
     icon: {
         '57': 'resources/icons/Icon.png',

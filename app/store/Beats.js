@@ -2,9 +2,7 @@ Ext.define('SFenforce.store.Beats', {
     extend: 'Ext.data.JsonStore',
     
     requires: [
-        'SFenforce.model.Beat',
-        'GXM.data.proxy.Protocol',
-        'GXM.data.reader.Feature'
+        'SFenforce.model.Beat'
     ],
     
     config: {
@@ -17,17 +15,21 @@ Ext.define('SFenforce.store.Beats', {
         }],
 
         proxy: {
-            type: 'gxm_protocol',
-            protocol: new OpenLayers.Protocol.WFS({
-                url: SFenforce.util.Config.getGeoserverUrl(),
-                version: "1.1.0",
-                srsName: "EPSG:900913",
-                featureType: SFenforce.util.Config.getBeatsFeatureType(),
-                featureNS: SFenforce.util.Config.getFeatureNS(),
+            type: 'ajax',
+            enablePagingParams: false,
+            url: SFenforce.util.Config.getGeoserverUrl(),
+            extraParams: {
+                service:'WFS',
+                version: '1.1.0',
+                request: 'GetFeature',
+                typeName: SFenforce.util.Config.getPrefix()+':'+ SFenforce.util.Config.getBeatsFeatureType(),
                 outputFormat: 'json',
-                readFormat: new OpenLayers.Format.GeoJSON()
-            }),
-            reader: 'gxm_feature'
+                srsName: 'EPSG:900913'
+            },
+            reader: {
+                type: 'json',
+                rootProperty: 'features'
+            }
         }
     }
 });

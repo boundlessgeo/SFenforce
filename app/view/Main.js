@@ -10,14 +10,22 @@ Ext.define('SFenforce.view.Main', {
     config: {
         fullscreen: true,
         autoDestroy: false,
+        map: null,
         layout: {
             type: 'fit'
         },
         items: [{
             xtype: 'maptoolbar'
         }, {
-            xtype: 'map',
-            mapExtent: SFenforce.util.Config.getBounds()
+            xtype: 'component',
+            id: 'mapwrapper'
         }]
+    },
+    setMap: function(newMap){
+        var map = newMap && newMap.getMap();
+        if(map){
+            this.down('#mapwrapper').setHtml(map.div);
+            map.updateSize();
+        }
     }
 });

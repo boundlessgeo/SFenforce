@@ -122,12 +122,9 @@ Ext.define('SFenforce.controller.Login', {
         var main = this.getMain();
         if(!main){
              main = Ext.create('SFenforce.view.Main',{
-                items:[{
-                    xtype: 'maptoolbar'
-                }, {
-                    xtype: 'map',
+                map: Ext.create('SFenforce.view.Main',{
                     beats: beats
-                }]
+                })
             });
             Ext.Viewport.add(main);
         } else {
