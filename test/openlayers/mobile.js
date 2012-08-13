@@ -44,9 +44,14 @@ function init() {
     );
 
     var style = new OpenLayers.Style({
-        pointRadius: 10,
+        pointRadius: "${getSize}",
         graphicName: 'circle'
     }, {
+        context: {
+            getSize: function(feature) {
+                return 5 / feature.layer.map.getResolution();
+            }
+        },
         rules: [
             new OpenLayers.Rule({
                 name: 'x',
