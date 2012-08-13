@@ -76,9 +76,8 @@ Ext.define('SFenforce.util.Config', {
         occupiedColor: "#EFEF20",
         citedColor: "#22FF11",
         selectedStrokeColor: "blue",
-        scaleBreak: 2500,
-        minPointRadius: 5,
-        maxPointRadius: 10,
+        /* point size in meters */
+        pointSize: 5,
         unpaidRuleFilter: new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.EQUAL_TO,
             property: "METER_EXPIRED_FLAG",

@@ -79,10 +79,7 @@ Ext.define("SFenforce.view.Map",{
         }, {
             context: {
                 getSize: function(feature) {
-                    var map = feature.layer.map;
-                    return (map.getScale() < SFenforce.util.Config.getScaleBreak()) ? 
-                        SFenforce.util.Config.getMaxPointRadius() : 
-                            SFenforce.util.Config.getMinPointRadius();
+                    return SFenforce.util.Config.getPointSize() / feature.layer.map.getResolution();
                 }
             },
             rules: [
