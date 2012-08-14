@@ -138,14 +138,15 @@ Ext.define('SFenforce.controller.Login', {
         var map = main.down('map').getMap();
         if(SFenforce.userInfo.zoomTo == 'mylocation') {
             var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
-            // TODO these event listeners should ideally be single
             ctrl.events.register("locationfailed", this, function() {
                 map.zoomToExtent(bounds);
                 Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+                ctrl.events.unregister("locationfailed", this, arguments.callee);
             });
             ctrl.events.register("locationupdated", this, function() {
                 var vector = main.down('map').vector;
                 map.zoomToExtent(vector.getDataExtent());
+                ctrl.events.unregister("locationupdated", this, arguments.callee);
             });
             ctrl.getCurrentLocation();
         } else {
