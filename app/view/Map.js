@@ -1,5 +1,5 @@
 Ext.define("SFenforce.view.Map",{
-    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup', 'GXM.plugin.Tracker'],
+    requires: ['Ext.carousel.Carousel', 'GXM.widgets.FeaturePopup'],
     extend: 'GXM.Map',
     config: {
         beats: null,
@@ -253,6 +253,53 @@ Ext.define("SFenforce.view.Map",{
                 }),
                 new OpenLayers.Control.Attribution(),
                 new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true}),
+                new OpenLayers.Control.Geolocate({
+                    bind: false,
+                    autoActivate: true,
+                    eventListeners: {
+                        "locationupdated": function(e) {
+                            if (!this.vector) {
+                                this.vector = new OpenLayers.Layer.Vector();
+                                map.addLayers([this.vector]);
+                            }
+                            this.vector.removeAllFeatures();
+                            var circle = new OpenLayers.Feature.Vector(
+                                OpenLayers.Geometry.Polygon.createRegularPolygon(
+                                    new OpenLayers.Geometry.Point(e.point.x, e.point.y),
+                                    e.position.coords.accuracy/2,
+                                    40,
+                                    0
+                                ),
+                                {},
+                                {
+                                    fillColor: '#000',
+                                    fillOpacity: 0.1,
+                                    strokeWidth: 0
+                                }
+                            );
+                            this.vector.addFeatures([
+                                new OpenLayers.Feature.Vector(
+                                    e.point,
+                                    {},
+                                    {
+                                        graphicName: 'cross',
+                                        strokeColor: '#f00',
+                                        strokeWidth: 2,
+                                        fillOpacity: 0,
+                                        pointRadius: 10
+                                    }
+                                ),
+                                circle
+                            ]);
+                        },
+                        scope: this
+                    },
+                    geolocationOptions: {
+                        enableHighAccuracy: true,
+                        maximumAge: 0,
+                        timeout: 7000
+                    }
+                }),
                 new OpenLayers.Control.CacheWrite({
                     autoActivate: true,
                     layers: [streets]
@@ -264,23 +311,6 @@ Ext.define("SFenforce.view.Map",{
         map.addLayers([streets, citation_vector, nodata_spaces]);
         
         this.setMap(map);
-        
-        this.setPlugins([new GXM.plugin.Tracker({
-                updateAction: 'none',
-                allowHighAccuracy: true,
-                frequency: 30*1000,
-                timeout: 90*1000,
-                maximumAge: 60*1000,
-                locationStyle:{
-                    graphicName: 'circle',
-                    strokeColor: '#ff0000',
-                    strokeWidth: 1,
-                    fillOpacity: 0.5,
-                    fillColor: '#0000ff',
-                    pointRadius: 8
-                }
-            })
-        ]);
         
         this.callParent(arguments);
     },

@@ -54,33 +54,42 @@ Ext.define('SFenforce.controller.Map', {
         layer = map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0];
         layer.redraw(true);
     },
+
+    showLocationError: function() {
+        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+        var map = this.getMap().getMap();
+        var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
+        ctrl.events.unregister("locationfailed", this, this.showLocationError);
+    },
     
     toggleTracker: function(cmp, button, pressed){
-        var tracker = this.getMap().getGeo();
-        if(tracker){
-            if (pressed) {
-                tracker.on({
-                    'locationerror': function() {
-                        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
-                    },
-                    single: true
-                });
-            }
-            tracker.setUpdateAction((pressed)? 'center' : 'none');
-            tracker.updateLocation();
+        var map = this.getMap().getMap();
+        var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
+        if (pressed) {
+            ctrl.events.register("locationfailed", this, this.showLocationError);
+            ctrl.deactivate();
+            ctrl.watch = true;
+            ctrl.activate();
+        } else {
+            ctrl.deactivate();
+            ctrl.watch = false;
+            ctrl.activate();
         }
         button.setUi((pressed) ? 'confirm' : 'action');
+    },
+
+    onLocationUpdate: function(evt) {
+        var map = this.getMap().getMap();
+        map.setCenter(new OpenLayers.LonLat(evt.point.x, evt.point.y), SFenforce.util.Config.getGeolocationZoomLevel());
+        var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
+        ctrl.events.unregister("locationupdated", this, this.onLocationUpdate);
     },
     
     zoomToUser: function(){
         var map = this.getMap().getMap();
-        var tracker = this.getMap().getGeo();
-        if(tracker){
-            tracker.updateLocation(function(geo){
-                var geoCenter = tracker.getVector().getDataExtent().getCenterLonLat();
-                map.setCenter(geoCenter, SFenforce.util.Config.getGeolocationZoomLevel());    
-            });
-        }
+        var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
+        ctrl.events.register("locationupdated", this, this.onLocationUpdate);
+        ctrl.getCurrentLocation();
     },
     
     backToLogin: function(){

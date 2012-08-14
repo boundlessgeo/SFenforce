@@ -117,7 +117,7 @@ Ext.define('SFenforce.controller.Login', {
             }
         }
     },
-    
+
     showMap: function(bounds, beats){
         var main = this.getMain();
         if(!main){
@@ -135,22 +135,21 @@ Ext.define('SFenforce.controller.Login', {
         }
         Ext.Viewport.setActiveItem(main);
         this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
-        if(SFenforce.userInfo.zoomTo == 'mylocation'){
-            var tracker = main.down('map').getGeo();
-            if(tracker){
-                tracker.setUpdateAction('zoom');
-                tracker.on({
-                    'locationupdate':function(){this.setUpdateAction('none');},
-                    'locationerror': function() {
-                        main.down('map').getMap().zoomToExtent(bounds);
-                        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
-                    },
-                    single: true,
-                    scope: tracker
-                });
-            }
+        var map = main.down('map').getMap();
+        if(SFenforce.userInfo.zoomTo == 'mylocation') {
+            var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
+            // TODO these event listeners should ideally be single
+            ctrl.events.register("locationfailed", this, function() {
+                map.zoomToExtent(bounds);
+                Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+            });
+            ctrl.events.register("locationupdated", this, function() {
+                var vector = main.down('map').vector;
+                map.zoomToExtent(vector.getDataExtent());
+            });
+            ctrl.getCurrentLocation();
         } else {
-            main.down('map').getMap().zoomToExtent(bounds);
+            map.zoomToExtent(bounds);
         }
     }
 });
