@@ -248,7 +248,7 @@ Ext.define("SFenforce.view.Map",{
                 new OpenLayers.Control.TouchNavigation({
                     dragPanOptions : {
                         interval : 100,
-                        enableKinetic : true
+                        enableKinetic : false
                     }
                 }),
                 new OpenLayers.Control.Attribution(),
