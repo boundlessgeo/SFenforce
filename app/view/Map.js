@@ -299,12 +299,7 @@ Ext.define("SFenforce.view.Map",{
                         maximumAge: 0,
                         timeout: 7000
                     }
-                }),
-                new OpenLayers.Control.CacheWrite({
-                    autoActivate: true,
-                    layers: [streets]
-                }),
-                new OpenLayers.Control.CacheRead()
+                })
             ]
         });
 
