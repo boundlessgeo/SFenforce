@@ -58,9 +58,6 @@
             "path": "externals/openlayers/theme/default/style.css"
         },
         {
-            "path": "externals/openlayers/theme/default/style.mobile.css"
-        },
-        {
             "path": "resources/css/app.css",
             "update": "delta"
         }
