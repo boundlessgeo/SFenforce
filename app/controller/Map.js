@@ -68,13 +68,11 @@ Ext.define('SFenforce.controller.Map', {
         ctrl.events.register("locationfailed", this, this.showLocationError);
         if (pressed) {
             ctrl.deactivate();
-            ctrl.bind = true;
             ctrl.watch = true;
             ctrl.activate();
         } else {
             ctrl.deactivate();
-            ctrl.bind = false;
-            ctrl.watch = true;
+            ctrl.watch = false;
             ctrl.activate();
         }
         button.setUi((pressed) ? 'confirm' : 'action');
