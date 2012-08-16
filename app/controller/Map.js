@@ -75,7 +75,6 @@ Ext.define('SFenforce.controller.Map', {
             ctrl.watch = false;
             ctrl.activate();
         }
-        button.setUi((pressed) ? 'confirm' : 'action');
     },
 
     onLocationUpdate: function(evt) {
