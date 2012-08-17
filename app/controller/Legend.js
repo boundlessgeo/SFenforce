@@ -31,7 +31,7 @@ Ext.define('SFenforce.controller.Legend', {
                         width: 25,
                         symbolizers: [Ext.apply(
                             Ext.applyIf({
-                                pointRadius: SFenforce.util.Config.getMinPointRadius()
+                                pointRadius: 6
                             }, style.defaultStyle), 
                             rule.symbolizer
                         )]
