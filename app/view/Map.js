@@ -242,6 +242,7 @@ Ext.define("SFenforce.view.Map",{
         // OpenLayers specific setup
         var map = new OpenLayers.Map({
             projection: "EPSG:900913",
+            autoUpdateSize: false,
             theme: null,
             controls : [
                 new OpenLayers.Control.Zoom(),
@@ -301,6 +302,10 @@ Ext.define("SFenforce.view.Map",{
                     }
                 })
             ]
+        });
+
+        Ext.Viewport.on("orientationchange", function() {
+            map.updateSize();
         });
 
         map.addLayers([streets, citation_vector, nodata_spaces]);
