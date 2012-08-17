@@ -18,7 +18,8 @@ Ext.define('SFenforce.view.MultiSelect', {
                     xtype: 'list',
                     mode: 'MULTI', //set list to multi-select mode
                     store: this.getStore(),
-                    itemTpl: '<span class="x-list-label">{' + this.getDisplayField() + '}</span>',
+                    // put &nbsp; in front of string to prevent OS dialog
+                    itemTpl: '<span class="x-list-label">&nbsp;{' + this.getDisplayField() + '}</span>',
                     listeners: {
                         select : this.onListSelect,
                         itemtap  : this.onListTap,
