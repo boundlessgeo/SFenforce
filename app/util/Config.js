@@ -33,15 +33,6 @@ Ext.define('SFenforce.util.Config', {
         defaultDispositionValue: 1,
 
         /**
-         * @cfg {Array} featureTpl
-         * Template to be used in the feature info popup.
-         */
-        featureTpl: ['{feature.attributes.POST_ID}<br/>',
-            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
-            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>'
-        ],
-
-        /**
          * @cfg {Array} featurePopupOffset
          * The offset in the X and Y direction of the feature popup wrt the feature itself.
          */

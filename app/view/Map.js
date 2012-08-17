@@ -197,9 +197,18 @@ Ext.define("SFenforce.view.Map",{
                                     xtype: 'carousel', 
                                     items: [{
                                         xtype: 'gxm_featurepopup',
-                                        centered: false, 
+                                        centered: false,
                                         modal: false,
-                                        tpl: new Ext.XTemplate(SFenforce.util.Config.getFeatureTpl()),
+                                        tpl: new Ext.XTemplate(
+                                            '{feature.attributes.POST_ID:this.formatNumber}<br/>',
+                                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
+                                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>',
+                                            {
+                                                formatNumber: function(value) {
+                                                    return value.replace('-', '-&nbsp;');
+                                                }
+                                            }
+                                        ),
                                         feature: feature
                                     }, {
                                         xtype: 'formpanel',
