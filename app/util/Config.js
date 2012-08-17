@@ -131,7 +131,6 @@ Ext.define('SFenforce.util.Config', {
         loginAllBeatsLabel: "All Beats",
         loginMyLocationLabel: "My Location",
         backToLoginText: "Back",
-        mapQuestAttribution: "Tiles Courtesy of <a href='http://open.mapquest.co.uk/' target='_blank'>MapQuest</a> <img src='http://developer.mapquest.com/content/osm/mq_logo.png' border='0'>",
         unpaidRuleTitle: "Unpaid vehicle",
         commercialRuleTitle: "Vehicle at commercial space",
         citedRuleTitle: "Vehicle already visited",
