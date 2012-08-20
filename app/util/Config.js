@@ -69,6 +69,8 @@ Ext.define('SFenforce.util.Config', {
         selectedStrokeColor: "blue",
         /* point size in meters */
         pointSize: 5,
+        /* hit ratio for better touch selection */
+        hitRatio: 2.5,
         unpaidRuleFilter: new OpenLayers.Filter.Comparison({
             type: OpenLayers.Filter.Comparison.EQUAL_TO,
             property: "METER_EXPIRED_FLAG",

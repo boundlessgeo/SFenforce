@@ -73,13 +73,31 @@ Ext.define("SFenforce.view.Map",{
         //store filter in the private config variable without triggering apply, update code
         this._filter = filter;
 
+        var me = this;
+        me.pointRadiusCache = {};
+        me.strokeWidthCache = {};
         var style = new OpenLayers.Style({
             pointRadius: "${getSize}",
+            strokeWidth: "${getStrokeWidth}",
+            strokeOpacity: 0.01,
             graphicName: 'circle'
         }, {
             context: {
                 getSize: function(feature) {
-                    return SFenforce.util.Config.getPointSize() / feature.layer.map.getResolution();
+                    var map = feature.layer.map, zoom = map.getZoom();
+                    if (!me.pointRadiusCache[zoom]) {
+                        me.pointRadiusCache[zoom] = SFenforce.util.Config.getPointSize() / map.getResolution();
+                    }
+                    return me.pointRadiusCache[map.getZoom()];
+                },
+                getStrokeWidth: function(feature) {
+                    var map = feature.layer.map, zoom = map.getZoom();
+                    if (!me.strokeWidthCache[zoom]) {
+                        var size = (SFenforce.util.Config.getPointSize() / map.getResolution());
+                        var fraction = SFenforce.util.Config.getHitRatio()-1;
+                        me.strokeWidthCache[zoom] = Math.max(size*fraction, 1);
+                    }
+                    return me.strokeWidthCache[zoom];
                 }
             },
             rules: [
@@ -111,6 +129,8 @@ Ext.define("SFenforce.view.Map",{
         var styleMap = new OpenLayers.StyleMap(style);
         styleMap.styles["select"] = styleMap.styles["select"].clone();
         styleMap.styles["select"].defaultStyle.strokeColor = SFenforce.util.Config.getSelectedStrokeColor();
+        styleMap.styles["select"].defaultStyle.strokeWidth = 1;
+        styleMap.styles["select"].defaultStyle.strokeOpacity = 1;
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(), 
             SFenforce.util.Config.getGeoserverUrl(), {
