@@ -55,7 +55,7 @@ Ext.define('SFenforce.view.Login', {
             }, {
                 xtype: 'toolbar',
                 id: 'zoomSelectorToolbar',
-                layoyut: {
+                layout: {
                     pack: 'center',
                     align: 'center'
                 },
