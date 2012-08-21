@@ -1,5 +1,6 @@
 $base-color: #000000;
 $base-gradient: 'glossy';
+$confirm-color: #84c900;
 
 @import 'sencha-touch/default/all';
 
@@ -20,6 +21,17 @@ $base-gradient: 'glossy';
 @include sencha-msgbox;
 
 // Your custom code goes here...
+@include sencha-button-ui('zoom', #f17201, 'glossy');
+.x-toolbar-zoom .x-button {
+  .x-button-label {
+    font-size: 1.2em;
+  }
+}
+.x-toolbar .x-button-confirm {
+  .x-button-label {
+    font-size: 1.2em;
+  }
+}
 div.olControlZoom {
     position: absolute;
     top: 8px;
