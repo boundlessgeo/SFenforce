@@ -12,12 +12,6 @@ Ext.define('SFenforce.view.Main', {
         autoDestroy: false,
         layout: {
             type: 'fit'
-        },
-        items: [{
-            xtype: 'maptoolbar'
-        }, {
-            xtype: 'map',
-            mapExtent: SFenforce.util.Config.getBounds()
-        }]
+        }
     }
 });
