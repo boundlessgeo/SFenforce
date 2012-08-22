@@ -243,10 +243,6 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
-        Ext.Viewport.on("orientationchange", function() {
-            map.updateSize();
-        });
-
         map.addLayers([streets, citation_vector, nodata_spaces]);
         
         this.setMap(map);

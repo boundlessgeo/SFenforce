@@ -120,24 +120,75 @@ Ext.define('SFenforce.controller.Login', {
 
     showMap: function(bounds, beats){
         var main = this.getMain();
-        if(!main){
+        if(!main) {
+            // see: http://www.sencha.com/forum/showthread.php?214966-Ext.Viewport.getOrientation-gives-reversed-layout
+            // TODO check again with ST 2.1 upgrade
+            var orientation = Ext.Viewport.getOrientation();
+            if (Ext.os.is.Android3) {
+                orientation = (orientation === 'portrait') ? 'landscape' : 'portrait';
+            }
+            Ext.Viewport.on("orientationchange", function(vp) {
+                var orientation = vp.getOrientation();
+                if (Ext.os.is.Android3) {
+                    orientation = (orientation === 'portrait') ? 'landscape' : 'portrait';
+                }
+                if (orientation === 'landscape') {
+                    // move items to hbox container
+                    Ext.getCmp('vboxcontainer').items.each(function(item) {
+                        Ext.getCmp('vboxcontainer').remove(item, false);
+                        Ext.getCmp('hboxcontainer').add(item);
+                    });
+                    Ext.getCmp('vboxcontainer').hide();
+                    Ext.getCmp('hboxcontainer').show();
+                } else {
+                    // move items to vbox container
+                    Ext.getCmp('hboxcontainer').items.each(function(item) {
+                        Ext.getCmp('hboxcontainer').remove(item, false);
+                        Ext.getCmp('vboxcontainer').add(item);
+                    });
+                    Ext.getCmp('hboxcontainer').hide();
+                    Ext.getCmp('vboxcontainer').show();
+                }
+                this.getMain().down('map').getMap().updateSize();
+            });
             main = Ext.create('SFenforce.view.Main',{
                 layout: 'fit',
                 items: [{
                     xtype: 'maptoolbar'
                 }, {
-                    layout: 'hbox',
-                    items: [{
-                        width: '80%',
+                    layout: 'vbox',
+                    id: 'vboxcontainer',
+                    pack: 'start', 
+                    align: 'stretch',
+                    hidden: orientation !== 'portrait', 
+                    items: orientation === 'portrait' ? [{
+                        flex: 1,
                         layout: 'fit',
                         items: [{
                             xtype: 'map',
                             beats: beats
                         }]
                     }, {
-                        width: '20%',
+                        flex: 1,
                         id: 'featureinfo'
-                    }]
+                    }]: null
+                }, {
+                    layout: 'hbox',
+                    id: 'hboxcontainer',
+                    hidden: orientation !== 'landscape',
+                    pack: 'start',
+                    align: 'stretch',
+                    items: orientation === 'landscape' ? [{
+                        flex: 1,
+                        layout: 'fit',
+                        items: [{
+                            xtype: 'map',
+                            beats: beats
+                        }]
+                    }, {
+                        flex: 1,
+                        id: 'featureinfo'
+                    }]: null
                 }]
             });
             Ext.Viewport.add(main);
