@@ -136,6 +136,10 @@ Ext.define('SFenforce.controller.Login', {
                     // move items to hbox container
                     Ext.getCmp('vboxcontainer').items.each(function(item) {
                         Ext.getCmp('vboxcontainer').remove(item, false);
+                        if (item.initialConfig.flex === undefined) {
+                            item.setHeight(null);
+                            item.setWidth('20%');
+                        }
                         Ext.getCmp('hboxcontainer').add(item);
                     });
                     Ext.getCmp('vboxcontainer').hide();
@@ -144,6 +148,10 @@ Ext.define('SFenforce.controller.Login', {
                     // move items to vbox container
                     Ext.getCmp('hboxcontainer').items.each(function(item) {
                         Ext.getCmp('hboxcontainer').remove(item, false);
+                        if (item.initialConfig.flex === undefined) {
+                            item.setWidth(null);
+                            item.setHeight(Ext.Viewport.getHeight()*0.2);
+                        }
                         Ext.getCmp('vboxcontainer').add(item);
                     });
                     Ext.getCmp('hboxcontainer').hide();
@@ -162,14 +170,14 @@ Ext.define('SFenforce.controller.Login', {
                     align: 'stretch',
                     hidden: orientation !== 'portrait', 
                     items: orientation === 'portrait' ? [{
-                        flex: 1,
                         layout: 'fit',
+                        flex: 1,
                         items: [{
                             xtype: 'map',
                             beats: beats
                         }]
                     }, {
-                        flex: 1,
+                        height: Ext.Viewport.getHeight()*0.2,
                         id: 'featureinfo'
                     }]: null
                 }, {
@@ -186,7 +194,7 @@ Ext.define('SFenforce.controller.Login', {
                             beats: beats
                         }]
                     }, {
-                        flex: 1,
+                        width: '20%',
                         id: 'featureinfo'
                     }]: null
                 }]
