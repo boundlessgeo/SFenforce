@@ -9,9 +9,6 @@ Ext.define('SFenforce.view.Main', {
 
     config: {
         fullscreen: true,
-        autoDestroy: false,
-        layout: {
-            type: 'fit'
-        }
+        autoDestroy: false
     }
 });

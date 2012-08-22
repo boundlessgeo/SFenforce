@@ -121,12 +121,23 @@ Ext.define('SFenforce.controller.Login', {
     showMap: function(bounds, beats){
         var main = this.getMain();
         if(!main){
-             main = Ext.create('SFenforce.view.Main',{
-                items:[{
+            main = Ext.create('SFenforce.view.Main',{
+                layout: 'fit',
+                items: [{
                     xtype: 'maptoolbar'
                 }, {
-                    xtype: 'map',
-                    beats: beats
+                    layout: 'hbox',
+                    items: [{
+                        width: '80%',
+                        layout: 'fit',
+                        items: [{
+                            xtype: 'map',
+                            beats: beats
+                        }]
+                    }, {
+                        width: '20%',
+                        id: 'featureinfo'
+                    }]
                 }]
             });
             Ext.Viewport.add(main);

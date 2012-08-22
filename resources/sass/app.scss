@@ -22,6 +22,10 @@ $confirm-color: #84c900;
 
 // Your custom code goes here...
 @include sencha-button-ui('zoom', #f17201, 'glossy');
+#featureinfo {
+   background-color: $base-color;
+   color: white;
+}
 .x-form-fieldset-login .x-form-fieldset-instructions {
     font-weight: bold;
     font-size: 2em;

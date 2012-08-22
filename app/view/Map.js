@@ -160,107 +160,17 @@ Ext.define("SFenforce.view.Map",{
                 eventListeners: {
                     "featureselected": function(evt) {
                         var feature = evt.feature;
-                        var lonlat = new OpenLayers.LonLat(feature.geometry.x, feature.geometry.y); 
-                        var xy = this.getMap().getViewPortPxFromLonLat(lonlat);
-                        if (!this.popup) {
-                            this.popup = Ext.Viewport.add({
-                                xtype: 'panel', 
-                                layout: 'fit',
-                                listeners: {
-                                    'hide': function() {
-                                        if (!this.popup._silent) {
-                                            var ctrl = this.getMap().getControlsByClass('OpenLayers.Control.SelectFeature')[0];
-                                            ctrl.unselectAll();
-                                        }
-                                    },
-                                    'show': function() {
-                                        this.popup.down('#updateForm').getItems().get(0).setValue(SFenforce.util.Config.getDefaultDispositionValue());
-                                        var mapBox = Ext.fly(this.getMap().div).getBox(true);
-                                        //assumed viewport takes up whole body element of map panel
-                                        var popupPos =  [this.popup.getLeft(), this.popup.getTop()];
-                                        popupPos[0] -= mapBox.x;
-                                        popupPos[1] -= mapBox.y;
-                                        var panelSize = [mapBox.width, mapBox.height]; // [X,Y]
-                                        var popupSize = [this.popup.getWidth(), this.popup.getHeight()];
-                                        var newPos = [popupPos[0], popupPos[1]];
-                                        //For now, using native OpenLayers popup padding.  This may not be ideal.
-                                        var padding = this.getMap().paddingForPopups;
-                                        // X
-                                        if(popupPos[0] < padding.left) {
-                                            newPos[0] = padding.left;
-                                        } else if(popupPos[0] + popupSize[0] > panelSize[0] - padding.right) {
-                                            newPos[0] = panelSize[0] - padding.right - popupSize[0];
-                                        }
-                                        // Y
-                                        if(popupPos[1] < padding.top) {
-                                            newPos[1] = padding.top;
-                                        } else if(popupPos[1] + popupSize[1] > panelSize[1] - padding.bottom) {
-                                            newPos[1] = panelSize[1] - padding.bottom - popupSize[1];
-                                        }
-                                        var dx = popupPos[0] - newPos[0];
-                                        var dy = popupPos[1] - newPos[1];
-                                        this.getMap().pan(dx, dy);
-                                        this.popup.setLeft(newPos[0]+mapBox.x);
-                                        this.popup.setTop(newPos[1]+mapBox.y);
-                                    },
-                                    scope: this
-                                },
-                                id: 'popuppanel',
-                                width: SFenforce.util.Config.getFeaturePopupSize()[0], 
-                                height: SFenforce.util.Config.getFeaturePopupSize()[1],
-                                top: xy.y + SFenforce.util.Config.getFeaturePopupOffset()[1],
-                                left: xy.x + SFenforce.util.Config.getFeaturePopupOffset()[0],
-                                centered: true,
-                                modal: true, 
-                                hideOnMaskTap: true, 
-                                items: [{
-                                    xtype: 'carousel', 
-                                    items: [{
-                                        xtype: 'gxm_featurepopup',
-                                        centered: false,
-                                        modal: false,
-                                        tpl: new Ext.XTemplate(
-                                            '{feature.attributes.POST_ID:this.formatNumber}<br/>',
-                                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
-                                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>',
-                                            {
-                                                formatNumber: function(value) {
-                                                    return value.replace('-', '-&nbsp;');
-                                                }
-                                            }
-                                        ),
-                                        feature: feature
-                                    }, {
-                                        xtype: 'formpanel',
-                                        id: 'updateForm',
-                                        items: [{
-                                            xtype: 'selectfield',
-                                            name: 'code',
-                                            label: SFenforce.util.Config.getDispositionCodeLabel(),
-                                            store:  Ext.getStore('DispositionCodes')
-                                        }, {
-                                            xtype: 'toolbar',
-                                            items: [{
-                                                id: 'saveButton',
-                                                xtype: 'button',
-                                                text: SFenforce.util.Config.getSaveButtonText()
-                                            }]
-                                        }]
-                                    }]
-                                }]
-                            });
-                            // work around the issue that show is not fired the first time
-                            this.popup._silent = true;
-                            this.popup.hide();
-                            delete this.popup._silent;
-                            this.popup.show();
-                        } else {
-                            this.popup.down('gxm_featurepopup').setFeature(feature);
-                            this.popup.getItems().get(0).setActiveItem(0);
-                            this.popup.setTop(xy.y + SFenforce.util.Config.getFeaturePopupOffset()[0]);
-                            this.popup.setLeft(xy.x + SFenforce.util.Config.getFeaturePopupOffset()[1]);
-                            this.popup.show();
-                        }
+                        var tpl = new Ext.XTemplate(
+                            '{feature.attributes.POST_ID:this.formatNumber}<br/>',
+                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
+                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>',
+                            {
+                                formatNumber: function(value) {
+                                    return value.replace('-', '-&nbsp;');
+                                }
+                            }
+                        );
+                        Ext.getCmp('featureinfo').setHtml(tpl.applyTemplate({feature: feature}));
                     },
                     scope: this
                 },
