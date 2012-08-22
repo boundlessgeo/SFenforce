@@ -22,12 +22,19 @@ $confirm-color: #84c900;
 
 // Your custom code goes here...
 @include sencha-button-ui('zoom', #f17201, 'glossy');
-.x-toolbar-zoom .x-button {
-  .x-button-label {
-    font-size: 1.2em;
-  }
+.x-form-fieldset-login .x-form-fieldset-instructions {
+    font-weight: bold;
+    font-size: 2em;
 }
-.x-toolbar .x-button-confirm {
+.x-form-fieldset-login .x-form-label {
+    background-color: rgb(128,128,128);
+    color: white;
+}
+.zoomSelectorLabel {
+    background-color: rgb(128,128,128);
+    color: white;
+}
+.x-toolbar-zoom .x-button {
   .x-button-label {
     font-size: 1.2em;
   }
@@ -120,7 +127,7 @@ html, body {
         opacity: 0.8
     }
 }
-.zoomSelectorLabel, .refreshLabel {
+.refreshLabel {
     color: #FFF0F0;
     padding-left: 1em;
 }

@@ -11,6 +11,7 @@ Ext.define('SFenforce.view.Login', {
     ],
     config: {
             items:[{xtype: 'fieldset',
+            ui: 'login',
             id: 'fieldset',
             instructions: {
                 title: SFenforce.util.Config.getLoginFormInstructions(),
@@ -19,7 +20,7 @@ Ext.define('SFenforce.view.Login', {
             defaults: {
                 required: true,
                 labelAlign: 'left',
-                labelWidth: '40%'
+                labelWidth: '20%'
             },
             items: [{
                 xtype: 'toolbar',
@@ -35,7 +36,6 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'button',
                     id: 'loginButton',
                     flex: 1,
-                    ui: 'forward confirm',
                     text: SFenforce.util.Config.getLoginButtonText()
                 }]
             }, {
@@ -62,9 +62,8 @@ Ext.define('SFenforce.view.Login', {
                 },
                 items: [{
                     xtype: 'label',
-                    cls: 'zoomSelectorLabel',
                     html: SFenforce.util.Config.getLoginZoomToLabel(),
-                    width: 150
+                    width: '20%'
                 }, {
                     xtype: 'segmentedbutton',
                     id: "zoomSelector",
