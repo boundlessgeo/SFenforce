@@ -170,6 +170,7 @@ Ext.define("SFenforce.view.Map",{
                                 }
                             }
                         );
+                        Ext.getCmp('featureinfo').feature = feature;
                         Ext.getCmp('featureinfo').setHtml(tpl.applyTemplate({feature: feature}));
                     },
                     scope: this

@@ -4,8 +4,7 @@ Ext.define('SFenforce.controller.Update', {
         refs: {
             updateForm: '#updateForm',
             saveButton: '#saveButton',
-            popup: 'gxm_featurepopup',
-            popupPanel: '#popuppanel'
+            popup: '#featureinfo'
         },
 
         control: {
@@ -17,7 +16,7 @@ Ext.define('SFenforce.controller.Update', {
     },
 
     doTransaction: function() {
-        var attributes = this.getPopup().getFeature().attributes;
+        var attributes = this.getPopup().feature.attributes;
         var fids = [];
         var table = SFenforce.util.Config.getUpdateTable();
         var featureNS = SFenforce.util.Config.getFeatureNS();
@@ -73,8 +72,7 @@ Ext.define('SFenforce.controller.Update', {
                             promptConfig: false
                         });
                     } else {
-                        this.getPopupPanel().hide();
-                        var mapFeature = this.getPopup().getFeature();
+                        var mapFeature = this.getPopup().feature;
                         if(mapFeature && mapFeature.layer){
                             mapFeature.layer.destroyFeatures([mapFeature]);    
                         }

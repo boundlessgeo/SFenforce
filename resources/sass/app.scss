@@ -29,12 +29,12 @@ $button-color: #008ece;
 .x-item-selected .x-list-label {
     color: black;
 }
-#featureinfo {
+.featureinfo {
     padding: 0.5em;
     background-color: $base-color;
     color: $base-text-color;
 }
-#featureinfo p.emptytext {
+.featureinfo p.emptytext {
     color: $secondary-text-color;
     font-size: 0.8em;
 }

@@ -184,8 +184,27 @@ Ext.define('SFenforce.controller.Login', {
                         }]
                     }, {
                         height: Ext.Viewport.getHeight()*0.2,
-                        id: 'featureinfo',
-                        html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>'
+                        cls: 'featureinfo',
+                        items: [{
+                            id: 'featureinfo',
+                            html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>'
+                        }, {
+                            xtype: 'formpanel',
+                            id: 'updateForm',
+                            items: [{
+                                xtype: 'selectfield',
+                                name: 'code',
+                                label: SFenforce.util.Config.getDispositionCodeLabel(),
+                                store:  Ext.getStore('DispositionCodes')
+                            }, {
+                                xtype: 'toolbar',
+                                items: [{
+                                    id: 'saveButton',
+                                    xtype: 'button',
+                                    text: SFenforce.util.Config.getSaveButtonText()
+                                }]
+                            }]
+                        }]
                     }]: null
                 }, {
                     layout: 'hbox',
@@ -202,8 +221,28 @@ Ext.define('SFenforce.controller.Login', {
                         }]
                     }, {
                         width: '20%',
-                        html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
-                        id: 'featureinfo'
+                        cls: 'featureinfo',
+                        layout: 'vbox', defaults: {flex: 1},
+                        items: [{
+                            html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
+                            id: 'featureinfo'
+                        }, {
+                            xtype: 'formpanel',
+                            id: 'updateForm',
+                            items: [{
+                                xtype: 'selectfield',
+                                name: 'code',
+                                label: SFenforce.util.Config.getDispositionCodeLabel(),
+                                store:  Ext.getStore('DispositionCodes')
+                            }, {
+                                xtype: 'toolbar',
+                                items: [{
+                                    id: 'saveButton',
+                                    xtype: 'button',
+                                    text: SFenforce.util.Config.getSaveButtonText()
+                                }]
+                            }]
+                        }]
                     }]: null
                 }]
             });
