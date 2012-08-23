@@ -1,7 +1,7 @@
 $base-color: #000000;
 $base-gradient: 'glossy';
 $active-color: #d47800;
-
+$form-bg-color: #333;
 @import 'sencha-touch/default/all';
 
 // You may remove any of the following modules that you
@@ -24,31 +24,29 @@ $active-color: #d47800;
 $base-text-color: #FFFFFF;
 $secondary-text-color: #888888;
 $button-color: #008ece;
-@include sencha-button-ui('zoom', #f17201, 'glossy');
+@include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 .x-item-selected .x-list-label {
     color: black;
 }
 #featureinfo {
-   background-color: $base-color;
-   color: $base-text-color;
+    background-color: $base-color;
+    color: $base-text-color;
 }
 .x-form-fieldset-login .x-form-fieldset-instructions {
     font-weight: bold;
+    text-shadow: none;
     color: #ccc;
     font-size: 2em;
 }
 .x-form-fieldset-login .x-form-label {
-    background-color: rgb(128,128,128);
+    background-color: $form-bg-color;
     color: $base-text-color;
 }
-.zoomSelectorLabel {
-    background-color: rgb(128,128,128);
-    color: $base-text-color;
-}
-.x-toolbar-zoom .x-button {
+.x-toolbar-zoomselector .x-button {
   .x-button-label {
-    font-size: 1em;
+    color: $base-text-color;
+    font-size: 1.5em;
   }
 }
 div.olControlZoom {
