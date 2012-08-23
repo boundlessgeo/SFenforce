@@ -121,6 +121,7 @@ Ext.define('SFenforce.util.Config', {
         /** end data model */
 
         /** i18n */
+        featureInfoEmptyText: "Please select a space.",
         noDataLayerName: "No Data Spaces",
         citationLayerName: "Citation opportunities",
         badgeValidationMsg: "Please enter badge number",

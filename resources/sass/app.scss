@@ -30,8 +30,13 @@ $button-color: #008ece;
     color: black;
 }
 #featureinfo {
+    padding: 0.5em;
     background-color: $base-color;
     color: $base-text-color;
+}
+#featureinfo p.emptytext {
+    color: $secondary-text-color;
+    font-size: 0.8em;
 }
 .x-form-fieldset-login .x-form-fieldset-instructions {
     font-weight: bold;

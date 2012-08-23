@@ -184,7 +184,8 @@ Ext.define('SFenforce.controller.Login', {
                         }]
                     }, {
                         height: Ext.Viewport.getHeight()*0.2,
-                        id: 'featureinfo'
+                        id: 'featureinfo',
+                        html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>'
                     }]: null
                 }, {
                     layout: 'hbox',
@@ -201,6 +202,7 @@ Ext.define('SFenforce.controller.Login', {
                         }]
                     }, {
                         width: '20%',
+                        html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                         id: 'featureinfo'
                     }]: null
                 }]
