@@ -56,7 +56,12 @@ Ext.define('SFenforce.controller.Map', {
     },
 
     showLocationError: function() {
-        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+        Ext.Msg.show({
+            title: SFenforce.util.Config.getErrorTitle(),
+            message: SFenforce.util.Config.getGpsErrorMsg(),
+            buttons: [{text: 'OK', ui: 'sfbutton'}],
+            promptConfig: false
+        });
         var map = this.getMap().getMap();
         var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
         ctrl.events.unregister("locationfailed", this, this.showLocationError);

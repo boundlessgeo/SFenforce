@@ -86,7 +86,13 @@ Ext.define('SFenforce.controller.Login', {
             Ext.each(errors.items,function(rec,i){
                 message += rec._message+"<br>";
             });
-            Ext.Msg.alert(null, message, function(){});
+            Ext.Msg.show({
+                title: SFenforce.util.Config.getErrorTitle(),
+                message: message,
+                buttons: [{text: 'OK', ui: 'sfbutton'}],
+                promptConfig: false,
+                fn: function(){}
+            });
         }
     },
     
@@ -210,7 +216,12 @@ Ext.define('SFenforce.controller.Login', {
             var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
             ctrl.events.register("locationfailed", this, function() {
                 map.zoomToExtent(bounds);
-                Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getGpsErrorMsg());
+                Ext.Msg.show({
+                    title: SFenforce.util.Config.getErrorTitle(),
+                    message: SFenforce.util.Config.getGpsErrorMsg(),
+                    buttons: [{text: 'OK', ui: 'sfbutton'}],
+                    promptConfig: false
+                });
                 ctrl.events.unregister("locationfailed", this, arguments.callee);
             });
             ctrl.events.register("locationupdated", this, function() {

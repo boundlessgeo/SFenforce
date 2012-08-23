@@ -66,7 +66,12 @@ Ext.define('SFenforce.controller.Update', {
                 callback: function(response) {
                     var success = format.read(response.responseText).success;
                     if (!success) {
-                        Ext.Msg.alert(SFenforce.util.Config.getErrorTitle(), SFenforce.util.Config.getTransactionErrorText());
+                        Ext.Msg.show({
+                            title: SFenforce.util.Config.getErrorTitle(),
+                            message: SFenforce.util.Config.getTransactionErrorText(),
+                            buttons: [{text: 'OK', ui: 'sfbutton'}],
+                            promptConfig: false
+                        });
                     } else {
                         this.getPopupPanel().hide();
                         var mapFeature = this.getPopup().getFeature();
