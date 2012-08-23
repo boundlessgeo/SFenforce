@@ -1,6 +1,6 @@
 $base-color: #000000;
 $base-gradient: 'glossy';
-$confirm-color: #84c900;
+$active-color: #d47800;
 
 @import 'sencha-touch/default/all';
 
@@ -21,26 +21,34 @@ $confirm-color: #84c900;
 @include sencha-msgbox;
 
 // Your custom code goes here...
+$base-text-color: #FFFFFF;
+$secondary-text-color: #888888;
+$button-color: #008ece;
 @include sencha-button-ui('zoom', #f17201, 'glossy');
+@include sencha-button-ui('sfbutton', $button-color, 'glossy');
+.x-item-selected .x-list-label {
+    color: black;
+}
 #featureinfo {
    background-color: $base-color;
-   color: white;
+   color: $base-text-color;
 }
 .x-form-fieldset-login .x-form-fieldset-instructions {
     font-weight: bold;
+    color: #ccc;
     font-size: 2em;
 }
 .x-form-fieldset-login .x-form-label {
     background-color: rgb(128,128,128);
-    color: white;
+    color: $base-text-color;
 }
 .zoomSelectorLabel {
     background-color: rgb(128,128,128);
-    color: white;
+    color: $base-text-color;
 }
 .x-toolbar-zoom .x-button {
   .x-button-label {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 }
 div.olControlZoom {

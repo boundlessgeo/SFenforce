@@ -139,7 +139,7 @@ Ext.define('SFenforce.util.Config', {
         noDataRuleTitle: "Data unavailable, check in field",
         dispositionCodeLabel: "Category",
         saveButtonText: "Save",
-        doneButtonText: "Done",
+        doneButtonText: "DONE",
         errorTitle: "Error",
         transactionErrorText: "Failure updating disposition code",
         gpsErrorMsg: "No GPS data available. Please try again.",
