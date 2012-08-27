@@ -186,26 +186,27 @@ Ext.define('SFenforce.controller.Login', {
                     }, {
                         height: Ext.Viewport.getHeight()*0.2,
                         cls: 'featureinfo',
+                        layout: 'vbox',
                         items: [{
-                            id: 'featureinfo',
-                            html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>'
+                            height: 60,
+                            html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
+                            id: 'featureinfo'
                         }, {
-                            xtype: 'formpanel',
-                            id: 'updateForm',
+                            xtype: 'list',
+                            disableSelection: true,
+                            scrollable: false,
+                            flex: 1,
+                            id: 'updateList',
+                            store: Ext.getStore('DispositionCodes')
+                        }, {
+                            xtype: 'toolbar',
+                            height: 50,
+                            ui: 'sfbutton',
                             items: [{
-                                xtype: 'selectfield',
-                                name: 'code',
-                                label: SFenforce.util.Config.getDispositionCodeLabel(),
-                                store:  Ext.getStore('DispositionCodes')
-                            }, {
-                                xtype: 'toolbar',
+                                id: 'saveButton',
+                                xtype: 'button',
                                 ui: 'sfbutton',
-                                items: [{
-                                    id: 'saveButton',
-                                    xtype: 'button',
-                                    ui: 'sfbutton',
-                                    text: SFenforce.util.Config.getSaveButtonText()
-                                }]
+                                text: SFenforce.util.Config.getSaveButtonText()
                             }]
                         }]
                     }]: null

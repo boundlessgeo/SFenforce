@@ -2,7 +2,7 @@ Ext.define('SFenforce.controller.Update', {
     extend: 'Ext.app.Controller',
     config: {
         refs: {
-            updateForm: '#updateForm',
+            updateList: '#updateList',
             saveButton: '#saveButton',
             popup: '#featureinfo'
         },
@@ -36,7 +36,7 @@ Ext.define('SFenforce.controller.Update', {
         }
         var features = [];
         for (var j=0, jj=fids.length;j<jj; ++j) {
-            var code = this.getUpdateForm().getValues()['code'];
+            var code = this.getUpdateList().getSelection()[0].get('code');
             var attr = {};
             var curTime = new Date().toISOString();
             var updatedUser = SFenforce.util.Config.getDefaultLastUpdatedUser();
