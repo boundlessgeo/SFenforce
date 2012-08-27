@@ -178,6 +178,11 @@ Ext.define("SFenforce.view.Map",{
                         );
                         Ext.getCmp('featureinfo').feature = feature;
                         Ext.getCmp('featureinfo').setHtml(tpl.applyTemplate({feature: feature}));
+                        Ext.getCmp("updateList").setDisableSelection(false);
+                    },
+                    "featureunselected": function(evt) {
+                        Ext.getCmp("updateList").deselectAll();
+                        Ext.getCmp("updateList").setDisableSelection(true);
                     },
                     scope: this
                 },

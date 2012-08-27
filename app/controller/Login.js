@@ -227,18 +227,19 @@ Ext.define('SFenforce.controller.Login', {
                         cls: 'featureinfo',
                         layout: 'vbox',
                         items: [{
-                            height: 100,
+                            height: 60,
                             html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                             id: 'featureinfo'
                         }, {
-                            xtype: 'list', 
-                            scrollable: true,
+                            xtype: 'list',
+                            disableSelection: true,
+                            scrollable: false, 
                             flex: 1,
                             id: 'updateList',
                             store: Ext.getStore('DispositionCodes')
                         }, {
                             xtype: 'toolbar',
-                            height: 100,
+                            height: 50,
                             ui: 'sfbutton',
                             items: [{
                                 id: 'saveButton',
