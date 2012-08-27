@@ -1,5 +1,6 @@
 Ext.define('SFenforce.controller.Update', {
     extend: 'Ext.app.Controller',
+    requires: ['Ext.LoadMask'],
     config: {
         refs: {
             updateList: '#updateList',
@@ -35,6 +36,10 @@ Ext.define('SFenforce.controller.Update', {
             }
         }
         var features = [];
+        var hasSelection = this.getUpdateList().hasSelection();
+        if (fids.length === 0 || !hasSelection) {
+            return;
+        }
         for (var j=0, jj=fids.length;j<jj; ++j) {
             var code = this.getUpdateList().getSelection()[0].get('value');
             var attr = {};
@@ -60,23 +65,39 @@ Ext.define('SFenforce.controller.Update', {
             });
             var xml = format.write(features);
             var url = SFenforce.util.Config.getGeoserverUrl();
+            this.getUpdateList().mask({
+                xtype: 'loadmask', 
+                message: SFenforce.util.Config.getSaveLoadMask()
+            });
             OpenLayers.Request.POST({
                 url: url,
                 callback: function(response) {
+                    this.getUpdateList().unmask();
+                    var label, toolbar = this.getSaveButton().up('toolbar');
                     var success = format.read(response.responseText).success;
                     if (!success) {
-                        Ext.Msg.show({
-                            title: SFenforce.util.Config.getErrorTitle(),
-                            message: SFenforce.util.Config.getTransactionErrorText(),
-                            buttons: [{text: 'OK', ui: 'sfbutton'}],
-                            promptConfig: false
+                        label = toolbar.add({ 
+                            xtype: 'label', 
+                            cls: 'transactionLabel', 
+                            html: '&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionErrorText()
                         });
                     } else {
+                        label = toolbar.add({
+                            xtype: 'label', 
+                            cls: 'transactionLabel',
+                            html: '&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionSuccessText()
+                        });
                         var mapFeature = this.getPopup().feature;
                         if(mapFeature && mapFeature.layer){
                             mapFeature.layer.destroyFeatures([mapFeature]);    
                         }
                     }
+                    if (!this.task) {
+                        this.task = Ext.create('Ext.util.DelayedTask', function() {
+                            toolbar.remove(label);
+                        });
+                    }
+                    this.task.delay(5000);
                 },
                 scope: this,
                 data: xml

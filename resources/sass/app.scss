@@ -19,6 +19,7 @@ $form-bg-color: #333;
 @include sencha-carousel;
 @include sencha-form;
 @include sencha-msgbox;
+@include sencha-loading-spinner;
 
 // Your custom code goes here...
 $base-text-color: #FFFFFF;
@@ -28,6 +29,10 @@ $map-button-color: #555;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
+.transactionLabel {
+    color: $secondary-text-color;
+    font-size: 0.9em;
+}
 .lastupdateprefix {
     color: $secondary-text-color;
     font-size: 0.7em;
