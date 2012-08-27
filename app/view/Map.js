@@ -86,14 +86,20 @@ Ext.define("SFenforce.view.Map",{
                 getSize: function(feature) {
                     var map = feature.layer.map, zoom = map.getZoom();
                     if (!me.pointRadiusCache[zoom]) {
-                        me.pointRadiusCache[zoom] = SFenforce.util.Config.getPointSize() / map.getResolution();
+                        me.pointRadiusCache[zoom] = Math.max(
+                            SFenforce.util.Config.getMinPointRadius(), 
+                            SFenforce.util.Config.getPointSize() / map.getResolution()
+                        );
                     }
                     return me.pointRadiusCache[map.getZoom()];
                 },
                 getStrokeWidth: function(feature) {
                     var map = feature.layer.map, zoom = map.getZoom();
                     if (!me.strokeWidthCache[zoom]) {
-                        var size = (SFenforce.util.Config.getPointSize() / map.getResolution());
+                        var size = Math.max(
+                            SFenforce.util.Config.getMinPointRadius(), 
+                            SFenforce.util.Config.getPointSize() / map.getResolution()
+                        );
                         var fraction = SFenforce.util.Config.getHitRatio()-1;
                         me.strokeWidthCache[zoom] = Math.max(size*fraction, 1);
                     }
