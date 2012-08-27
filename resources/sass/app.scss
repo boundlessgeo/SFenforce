@@ -26,6 +26,14 @@ $secondary-text-color: #888888;
 $button-color: #008ece;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
+.lastupdateprefix {
+    color: $secondary-text-color;
+    font-size: 0.7em;
+}
+.lastupdatepostfix {
+    color: $base-text-color;
+    font-size: 1.0em;
+}
 .x-item-selected .x-list-label {
     color: black;
 }

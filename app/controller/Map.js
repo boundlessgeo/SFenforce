@@ -40,7 +40,7 @@ Ext.define('SFenforce.controller.Map', {
     },
 
     doUpdate: function() {
-        this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
+        this.getLastRefresh().setLastUpdate(new Date());
         var map = this.getMap().getMap();
         var layer = map.getLayersByClass('OpenLayers.Layer.Vector')[0];
         layer.events.un({'loadend': this.doUpdate, scope: this});

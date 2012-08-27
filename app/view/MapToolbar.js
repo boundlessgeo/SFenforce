@@ -4,7 +4,7 @@ Ext.define('SFenforce.view.MapToolbar', {
 
     requires: [
         'Ext.SegmentedButton',
-        'Ext.Label'
+        'SFenforce.view.RefreshLabel'        
     ],
 
     config: {
@@ -38,9 +38,8 @@ Ext.define('SFenforce.view.MapToolbar', {
             iconCls: 'refresh'
         }, {
             id: 'lastRefresh',
-            cls: 'refreshLabel',
-            xtype: 'label',
-            width: 200
+            xtype: 'refreshlabel',
+            width: 250
         },{
             xtype: 'spacer',
             flex: 1

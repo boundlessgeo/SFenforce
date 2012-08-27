@@ -255,7 +255,7 @@ Ext.define('SFenforce.controller.Login', {
             main.down('map').setBeats(beats);
         }
         Ext.Viewport.setActiveItem(main);
-        this.getLastRefresh().setHtml(Ext.Date.format(new Date(), 'H:i A'));
+        this.getLastRefresh().setLastUpdate(new Date());
         var map = main.down('map').getMap();
         if(SFenforce.userInfo.zoomTo == 'mylocation') {
             var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
