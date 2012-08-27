@@ -2,11 +2,6 @@ Ext.define('SFenforce.view.RefreshLabel', {
     extend: 'Ext.Label',
     xtype: 'refreshlabel',
 
-    requires: [
-        'Ext.util.DelayedTask',
-        'Ext.Label'
-    ],
-
     config: {
         lastUpdate: null
     },

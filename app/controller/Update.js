@@ -1,6 +1,6 @@
 Ext.define('SFenforce.controller.Update', {
     extend: 'Ext.app.Controller',
-    requires: ['Ext.LoadMask'],
+    requires: ['Ext.LoadMask', 'Ext.util.DelayedTask'],
     config: {
         refs: {
             updateList: '#updateList',
