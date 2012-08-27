@@ -165,6 +165,7 @@ Ext.define('SFenforce.controller.Login', {
                 }
                 this.getMain().down('map').getMap().updateSize();
             });
+            // TODO this should be moved into the view
             main = Ext.create('SFenforce.view.Main',{
                 layout: 'fit',
                 items: [{
@@ -198,9 +199,11 @@ Ext.define('SFenforce.controller.Login', {
                                 store:  Ext.getStore('DispositionCodes')
                             }, {
                                 xtype: 'toolbar',
+                                ui: 'sfbutton',
                                 items: [{
                                     id: 'saveButton',
                                     xtype: 'button',
+                                    ui: 'sfbutton',
                                     text: SFenforce.util.Config.getSaveButtonText()
                                 }]
                             }]
@@ -222,25 +225,26 @@ Ext.define('SFenforce.controller.Login', {
                     }, {
                         width: '20%',
                         cls: 'featureinfo',
-                        layout: 'vbox', defaults: {flex: 1},
+                        layout: 'vbox',
                         items: [{
+                            height: 100,
                             html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                             id: 'featureinfo'
                         }, {
-                            xtype: 'formpanel',
-                            id: 'updateForm',
+                            xtype: 'list', 
+                            scrollable: true,
+                            flex: 1,
+                            id: 'updateList',
+                            store: Ext.getStore('DispositionCodes')
+                        }, {
+                            xtype: 'toolbar',
+                            height: 100,
+                            ui: 'sfbutton',
                             items: [{
-                                xtype: 'selectfield',
-                                name: 'code',
-                                label: SFenforce.util.Config.getDispositionCodeLabel(),
-                                store:  Ext.getStore('DispositionCodes')
-                            }, {
-                                xtype: 'toolbar',
-                                items: [{
-                                    id: 'saveButton',
-                                    xtype: 'button',
-                                    text: SFenforce.util.Config.getSaveButtonText()
-                                }]
+                                id: 'saveButton',
+                                xtype: 'button',
+                                ui: 'sfbutton',
+                                text: SFenforce.util.Config.getSaveButtonText()
                             }]
                         }]
                     }]: null
