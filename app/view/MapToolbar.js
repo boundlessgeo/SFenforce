@@ -15,18 +15,20 @@ Ext.define('SFenforce.view.MapToolbar', {
         },
         items: [{
             id: 'backLoginButton',
-            ui: 'back',
+            ui: 'back mapbutton',
             text: SFenforce.util.Config.getBackToLoginText()
         }, {
             xtype: 'spacer',
             width: 32
         }, {
             id: 'myPosition',
+            ui: 'mapbutton',
             iconCls: 'user'
         }, {
             xtype: 'segmentedbutton',
             id: 'locateButton',
             items:[{
+                ui: 'mapbutton',
                 iconMask: 'true',
                 iconCls: 'locate'
             }]
@@ -35,6 +37,7 @@ Ext.define('SFenforce.view.MapToolbar', {
             width: 32
         }, {
             id: 'refreshButton',
+            ui: 'mapbutton',
             iconCls: 'refresh'
         }, {
             id: 'lastRefresh',
@@ -45,9 +48,11 @@ Ext.define('SFenforce.view.MapToolbar', {
             flex: 1
         }, {
             id: 'zoomButton',
+            ui: 'mapbutton',
             iconCls: 'favorites'
         }, {
             id: 'legendButton',
+            ui: 'mapbutton',
             iconCls: 'maps'
         }]
     }
