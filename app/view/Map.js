@@ -229,11 +229,12 @@ Ext.define("SFenforce.view.Map",{
                                     e.point,
                                     {},
                                     {
-                                        graphicName: 'cross',
-                                        strokeColor: '#f00',
-                                        strokeWidth: 2,
-                                        fillOpacity: 0,
-                                        pointRadius: 10
+                                        graphicName: 'circle',
+                                        strokeColor: '#ff0000',
+                                        strokeWidth: 1,
+                                        fillOpacity: 0.5,
+                                        fillColor: '#0000ff',
+                                        pointRadius: 8
                                     }
                                 ),
                                 circle
