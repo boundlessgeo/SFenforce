@@ -143,7 +143,7 @@ Ext.define('SFenforce.util.Config', {
         citedRuleTitle: "Vehicle already visited",
         noDataRuleTitle: "Data unavailable, check in field",
         dispositionCodeLabel: "Category",
-        saveButtonText: "Save",
+        saveButtonText: "Submit",
         doneButtonText: "DONE",
         errorTitle: "Sorry, but an error occurred.",
         transactionErrorText: "Failure updating disposition code",
