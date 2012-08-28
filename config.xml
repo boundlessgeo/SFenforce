@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns		= "http://www.w3.org/ns/widgets"
+	xmlns:gap	= "http://phonegap.com/ns/1.0"
+	id		= "org.opengeo.sfenforce"
+	version 	= "1.0.0">
+
+	<name>SFEnforce</name>
+
+	<description>
+		Enforcement app for the City of San Francisco
+	</description>
+
+	<author href="http://opengeo.org"
+		email="bartvde@opengeo.org">
+		Bart van den Eijnden
+	</author>
+
+	<icon src="icon.png" gap:role="default" />
+
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/>
+
+	<preference name="fullscreen" value="true" />
+</widget>
