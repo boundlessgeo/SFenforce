@@ -32,7 +32,7 @@ Ext.define('SFenforce.view.Main', {
                     beats: config.beats
                 }]
             }, {
-                height: Ext.Viewport.getHeight()*0.2, 
+                height: Ext.Viewport.getHeight()*0.25, 
                 cls: 'featureinfo',
                 layout: 'vbox', 
                 items: [{
@@ -72,7 +72,7 @@ Ext.define('SFenforce.view.Main', {
                     beats: config.beats
                 }]
             }, {
-                width: '20%',
+                width: '25%',
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
