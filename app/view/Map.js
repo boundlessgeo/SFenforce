@@ -133,6 +133,8 @@ Ext.define("SFenforce.view.Map",{
         });
         SFenforce.util.Config.setStyle(style.clone());
         var styleMap = new OpenLayers.StyleMap(style);
+        styleMap.styles["nostroke"] = styleMap.styles["select"].clone();
+        styleMap.styles["nostroke"].defaultStyle.stroke = false;
         styleMap.styles["select"] = styleMap.styles["select"].clone();
         styleMap.styles["select"].defaultStyle.strokeColor = SFenforce.util.Config.getSelectedStrokeColor();
         styleMap.styles["select"].defaultStyle.strokeWidth = 1;
@@ -163,6 +165,14 @@ Ext.define("SFenforce.view.Map",{
                     outputFormat: 'json',
                     readFormat: new OpenLayers.Format.GeoJSON()
                 }),
+                moveTo: function(bounds, zoomChanged, dragging) {
+                    OpenLayers.Layer.Vector.prototype.moveTo.apply(this, arguments);
+                    for (var i=0, len=this.features.length; i<len; i++) {
+                        this.renderer.locked = (i !== (len - 1));
+                        feature = this.features[i];
+                        this.drawFeature(feature, 'nostroke');
+                    }
+                },
                 eventListeners: {
                     "featureselected": function(evt) {
                         var feature = evt.feature;
