@@ -73,6 +73,7 @@ Ext.define('SFenforce.controller.Update', {
                 url: url,
                 callback: function(response) {
                     this.getUpdateList().unmask();
+                    this.getUpdateList().deselectAll();
                     var label, toolbar = this.getSaveButton().up('toolbar');
                     var success = format.read(response.responseText).success;
                     if (!success) {
