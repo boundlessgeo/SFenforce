@@ -165,92 +165,9 @@ Ext.define('SFenforce.controller.Login', {
                 }
                 this.getMain().down('map').getMap().updateSize();
             });
-            // TODO this should be moved into the view
             main = Ext.create('SFenforce.view.Main',{
-                layout: 'fit',
-                items: [{
-                    xtype: 'maptoolbar'
-                }, {
-                    layout: 'vbox',
-                    id: 'vboxcontainer',
-                    pack: 'start', 
-                    align: 'stretch',
-                    hidden: orientation !== 'portrait', 
-                    items: orientation === 'portrait' ? [{
-                        layout: 'fit',
-                        flex: 1,
-                        items: [{
-                            xtype: 'map',
-                            beats: beats
-                        }]
-                    }, {
-                        height: Ext.Viewport.getHeight()*0.2,
-                        cls: 'featureinfo',
-                        layout: 'vbox',
-                        items: [{
-                            height: 60,
-                            html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
-                            id: 'featureinfo'
-                        }, {
-                            xtype: 'list',
-                            disableSelection: true,
-                            scrollable: false,
-                            flex: 1,
-                            id: 'updateList',
-                            store: Ext.getStore('DispositionCodes')
-                        }, {
-                            xtype: 'toolbar',
-                            height: 50,
-                            ui: 'sfbutton',
-                            items: [{
-                                id: 'saveButton',
-                                xtype: 'button',
-                                ui: 'sfbutton',
-                                text: SFenforce.util.Config.getSaveButtonText()
-                            }]
-                        }]
-                    }]: null
-                }, {
-                    layout: 'hbox',
-                    id: 'hboxcontainer',
-                    hidden: orientation !== 'landscape',
-                    pack: 'start',
-                    align: 'stretch',
-                    items: orientation === 'landscape' ? [{
-                        flex: 1,
-                        layout: 'fit',
-                        items: [{
-                            xtype: 'map',
-                            beats: beats
-                        }]
-                    }, {
-                        width: '20%',
-                        cls: 'featureinfo',
-                        layout: 'vbox',
-                        items: [{
-                            height: 60,
-                            html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
-                            id: 'featureinfo'
-                        }, {
-                            xtype: 'list',
-                            disableSelection: true,
-                            scrollable: false, 
-                            flex: 1,
-                            id: 'updateList',
-                            store: Ext.getStore('DispositionCodes')
-                        }, {
-                            xtype: 'toolbar',
-                            height: 50,
-                            ui: 'sfbutton',
-                            items: [{
-                                id: 'saveButton',
-                                xtype: 'button',
-                                ui: 'sfbutton',
-                                text: SFenforce.util.Config.getSaveButtonText()
-                            }]
-                        }]
-                    }]: null
-                }]
+                beats: beats,
+                portrait: (orientation === 'portrait')
             });
             Ext.Viewport.add(main);
         } else {
