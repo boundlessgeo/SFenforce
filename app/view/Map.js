@@ -154,7 +154,7 @@ Ext.define("SFenforce.view.Map",{
                 filter: filter,
                 styleMap: styleMap,
                 protocol: new OpenLayers.Protocol.WFS({
-                    url: '/geoserver/wfs', //SFenforce.util.Config.getGeoserverUrl(),
+                    url: SFenforce.util.Config.getGeoserverUrl(),
                     featureType: SFenforce.util.Config.getCitationView(),
                     featureNS: SFenforce.util.Config.getFeatureNS(),
                     geometryName: SFenforce.util.Config.getCitationGeomField(),

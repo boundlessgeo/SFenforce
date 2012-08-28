@@ -12,6 +12,10 @@ Ext.define('SFenforce.view.RefreshLabel', {
         this.updateLabel();
     },
 
+    updateLastUpdate: function() {
+        this.updateLabel();
+    },
+
     updateLabel: function() {
         var diff;
         if (this.getLastUpdate() === null) {
