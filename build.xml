@@ -59,25 +59,7 @@
         </exec>
 	</target>
 	
-	<target name="sfpatch" depends="dist">
-		<exec executable="${git}">
-            <arg line="apply --whitespace=fix patches/sfconfig.patch" />
-        </exec>	
-	</target>
-
-	<target name="sfunpatch" depends="sfpatch">
-        <exec executable="${git}">
-            <arg line="apply --whitespace=fix --reverse patches/sfconfig.patch" />
-        </exec> 
-    </target>
-	
-    <target name="war" depends="sfpatch,senchabuild,sfunpatch">
-        <war needxmlfile="false" destfile="${build}/${ant.project.name}.war">
-            <fileset dir="build/production"/>
-        </war>
-    </target>
-
-    <target name="devwar" depends="dist,senchabuild">
+    <target name="war" depends="dist,senchabuild">
         <war needxmlfile="false" destfile="${build}/${ant.project.name}.war">
             <fileset dir="build/production"/>
         </war>

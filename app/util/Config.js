@@ -18,13 +18,13 @@ Ext.define('SFenforce.util.Config', {
          * @cfg {String} featureNS
          * The namespace URI used on the WFS.
          */
-        featureNS: 'http://www.sfpark.org/SFenforce',
+        featureNS: 'http://sfpark.org',
 
         /**
          * @cfg {String} prefix
          * The prefix of the namespace.
          */
-        prefix: "SFenforce",
+        prefix: "sfpark",
 
         /**
          * @cfg {Integer} defaultDispositionValue
