@@ -166,11 +166,13 @@ Ext.define("SFenforce.view.Map",{
                     readFormat: new OpenLayers.Format.GeoJSON()
                 }),
                 moveTo: function(bounds, zoomChanged, dragging) {
-                    OpenLayers.Layer.Vector.prototype.moveTo.apply(this, arguments);
-                    for (var i=0, len=this.features.length; i<len; i++) {
-                        this.renderer.locked = (i !== (len - 1));
-                        feature = this.features[i];
-                        this.drawFeature(feature, 'nostroke');
+                    OpenLayers.Layer.Vector.prototype.moveTo.apply(this, arguments); 
+                    if (zoomChanged) {
+                        for (var i=0, len=this.features.length; i<len; i++) {
+                            this.renderer.locked = (i !== (len - 1));
+                            feature = this.features[i];
+                            this.drawFeature(feature, 'nostroke');
+                        }
                     }
                 },
                 eventListeners: {
@@ -205,6 +207,9 @@ Ext.define("SFenforce.view.Map",{
             projection: "EPSG:900913",
             autoUpdateSize: false,
             theme: null,
+eventListeners: {
+                        "moveend": function(e) { console.log('move end');
+            }},
             controls : [
                 new OpenLayers.Control.Zoom(),
                 new OpenLayers.Control.TouchNavigation({
