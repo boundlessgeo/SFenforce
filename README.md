@@ -28,10 +28,6 @@ To create a production build perform the following steps:
 
     sencha app build production
 
-To create a war file for the development environment use:
-
-    ant devwar
-
-To create  a war file for SFMTA use:
+To create a war file:
 
     ant war
