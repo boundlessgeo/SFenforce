@@ -75,7 +75,8 @@ Ext.define("SFenforce.view.Map",{
 
         var style = new OpenLayers.Style({
             graphicWidth: 32,
-            graphicHeight: 37
+            graphicHeight: 37,
+            graphicYOffset: -37
         }, {
             rules: [
                 new OpenLayers.Rule({
