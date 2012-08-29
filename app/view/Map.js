@@ -73,52 +73,23 @@ Ext.define("SFenforce.view.Map",{
         //store filter in the private config variable without triggering apply, update code
         this._filter = filter;
 
-        var me = this;
-        me.pointRadiusCache = {};
-        me.strokeWidthCache = {};
         var style = new OpenLayers.Style({
-            pointRadius: "${getSize}",
-            strokeWidth: "${getStrokeWidth}",
-            strokeOpacity: 0.01,
-            graphicName: 'circle'
+            graphicWidth: 32,
+            graphicHeight: 37
         }, {
-            context: {
-                getSize: function(feature) {
-                    var map = feature.layer.map, zoom = map.getZoom();
-                    if (!me.pointRadiusCache[zoom]) {
-                        me.pointRadiusCache[zoom] = Math.max(
-                            SFenforce.util.Config.getMinPointRadius(), 
-                            SFenforce.util.Config.getPointSize() / map.getResolution()
-                        );
-                    }
-                    return me.pointRadiusCache[map.getZoom()];
-                },
-                getStrokeWidth: function(feature) {
-                    var map = feature.layer.map, zoom = map.getZoom();
-                    if (!me.strokeWidthCache[zoom]) {
-                        var size = Math.max(
-                            SFenforce.util.Config.getMinPointRadius(), 
-                            SFenforce.util.Config.getPointSize() / map.getResolution()
-                        );
-                        var fraction = SFenforce.util.Config.getHitRatio()-1;
-                        me.strokeWidthCache[zoom] = Math.max(size*fraction, 1);
-                    }
-                    return me.strokeWidthCache[zoom];
-                }
-            },
             rules: [
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getUnpaidRuleTitle(),
                     filter: SFenforce.util.Config.getUnpaidRuleFilter(),
                     symbolizer: {
-                        fillColor: SFenforce.util.Config.getUnpaidColor()
+                        externalGraphic: "resources/icons/parking-meter-red.png"
                     }
                 }),
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getCommercialRuleTitle(),
                     filter: SFenforce.util.Config.getCommercialRuleFilter(),
                     symbolizer: {
-                        fillColor: SFenforce.util.Config.getOccupiedColor()
+                        externalGraphic: "resources/icons/parking-meter-yellow.png"
                     }
                 })/*,
                 new OpenLayers.Rule({
@@ -133,12 +104,9 @@ Ext.define("SFenforce.view.Map",{
         });
         SFenforce.util.Config.setStyle(style.clone());
         var styleMap = new OpenLayers.StyleMap(style);
-        styleMap.styles["nostroke"] = styleMap.styles["select"].clone();
-        styleMap.styles["nostroke"].defaultStyle.stroke = false;
         styleMap.styles["select"] = styleMap.styles["select"].clone();
-        styleMap.styles["select"].defaultStyle.strokeColor = SFenforce.util.Config.getSelectedStrokeColor();
-        styleMap.styles["select"].defaultStyle.strokeWidth = 1;
-        styleMap.styles["select"].defaultStyle.strokeOpacity = 1;
+        styleMap.styles["select"].defaultStyle.externalGraphic = "resources/icons/parking-meter-blue.png";
+
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(), 
             SFenforce.util.Config.getGeoserverUrl(), {
@@ -165,16 +133,6 @@ Ext.define("SFenforce.view.Map",{
                     outputFormat: 'json',
                     readFormat: new OpenLayers.Format.GeoJSON()
                 }),
-                moveTo: function(bounds, zoomChanged, dragging) {
-                    OpenLayers.Layer.Vector.prototype.moveTo.apply(this, arguments); 
-                    if (zoomChanged) {
-                        for (var i=0, len=this.features.length; i<len; i++) {
-                            this.renderer.locked = (i !== (len - 1));
-                            feature = this.features[i];
-                            this.drawFeature(feature, 'nostroke');
-                        }
-                    }
-                },
                 eventListeners: {
                     "featureselected": function(evt) {
                         var feature = evt.feature;
@@ -198,7 +156,7 @@ Ext.define("SFenforce.view.Map",{
                     },
                     scope: this
                 },
-                renderers: ['Canvas'],
+                renderers: ['Marker'],
                 strategies: [new OpenLayers.Strategy.BBOX()]
         });
 
@@ -268,7 +226,7 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
 
-        map.addLayers([streets, citation_vector, nodata_spaces]);
+        map.addLayers([streets, nodata_spaces, citation_vector]);
         
         this.setMap(map);
         
