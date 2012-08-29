@@ -207,9 +207,6 @@ Ext.define("SFenforce.view.Map",{
             projection: "EPSG:900913",
             autoUpdateSize: false,
             theme: null,
-eventListeners: {
-                        "moveend": function(e) { console.log('move end');
-            }},
             controls : [
                 new OpenLayers.Control.Zoom(),
                 new OpenLayers.Control.TouchNavigation({
