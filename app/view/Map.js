@@ -59,7 +59,7 @@ Ext.define("SFenforce.view.Map",{
                 })
             ]
         });
-        this._sessionFilter = sessionFilter; 
+        this._sessionFilter = sessionFilter;
         var filter;
         if (beatFilter !== null) {
             filter = new OpenLayers.Filter.Logical({
@@ -69,7 +69,7 @@ Ext.define("SFenforce.view.Map",{
         } else {
             filter = sessionFilter;
         }
-        
+
         //store filter in the private config variable without triggering apply, update code
         this._filter = filter;
 
@@ -115,7 +115,7 @@ Ext.define("SFenforce.view.Map",{
         });
 
         var nodata_spaces = new OpenLayers.Layer.WMS(
-            SFenforce.util.Config.getNoDataLayerName(), 
+            SFenforce.util.Config.getNoDataLayerName(),
             SFenforce.util.Config.getGeoserverUrl(), {
                 layers: SFenforce.util.Config.getPrefix() + ":" + SFenforce.util.Config.getCitationView(),
                 version: '1.1.1',
@@ -162,7 +162,7 @@ Ext.define("SFenforce.view.Map",{
                         Ext.getCmp("updateList").deselectAll();
                         Ext.getCmp("updateList").setDisableSelection(true);
                         Ext.getCmp("updateList").addCls("list-disabled");
-                        
+
                     },
                     scope: this
                 },
@@ -175,6 +175,7 @@ Ext.define("SFenforce.view.Map",{
             projection: "EPSG:900913",
             autoUpdateSize: false,
             theme: null,
+            hasTransform3D: false,
             controls : [
                 new OpenLayers.Control.Zoom(),
                 new OpenLayers.Control.TouchNavigation({
@@ -237,14 +238,14 @@ Ext.define("SFenforce.view.Map",{
         });
 
         map.addLayers([streets, nodata_spaces, citation_vector]);
-        
+
         this.setMap(map);
-        
+
         this.callParent(arguments);
     },
     //overwrite so that we control in geolocation plugin
     onGeoUpdate: Ext.emptyFn,
-    
+
     /** @private **/
     updateBeats: function(newBeats, oldBeats){
         this._beatsFilter = this.calculateBeatsFilter(newBeats);
@@ -259,7 +260,7 @@ Ext.define("SFenforce.view.Map",{
         }
         this.setFilter(filter);
     },
-    
+
     updateFilter: function(newFilter, oldFilter){
         //test to ensure that the map has already been initialized
         if(oldFilter != null && this.layers != null){
@@ -273,11 +274,11 @@ Ext.define("SFenforce.view.Map",{
             opsLayer.refresh({force: true});
         }
     },
-    
+
     /** @private **/
    calculateBeatsFilter: function(beats){
         if (!beats) {beats = this.getBeats();}
-        if (beats !== null) {         
+        if (beats !== null) {
             var filters = [];
             for (var i=0, ii=beats.length; i<ii; ++i) {
                 filters.push(new OpenLayers.Filter.Comparison({
