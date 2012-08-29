@@ -37,7 +37,7 @@ Ext.define("SFenforce.view.Map",{
                 1.194328566789627, 0.5971642833948135],
             numZoomLevels: 19,
             units: "m",
-            buffer: 1,
+            buffer: 0,
             transitionEffect: "resize"
         };
 
@@ -147,7 +147,7 @@ Ext.define("SFenforce.view.Map",{
                 transparent: true,
                 filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
             },{
-                buffer: 1,
+                buffer: 0,
                 isBaseLayer: false
             }
         );
