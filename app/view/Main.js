@@ -17,8 +17,6 @@ Ext.define('SFenforce.view.Main', {
 
     constructor: function(config) {
         config.items = [{
-            xtype: 'maptoolbar'
-        }, {
             layout: 'vbox',
             id: 'vboxcontainer',
             pack: 'start',
@@ -28,6 +26,8 @@ Ext.define('SFenforce.view.Main', {
                 layout: 'fit',
                 flex: 1,
                 items: [{
+                    xtype: 'maptoolbar'
+                }, {
                     xtype: 'map',
                     beats: config.beats
                 }]
@@ -68,6 +68,8 @@ Ext.define('SFenforce.view.Main', {
                 flex: 1,
                 layout: 'fit',
                 items: [{
+                    xtype: 'maptoolbar'
+                }, {
                     xtype: 'map',
                     beats: config.beats
                 }]
