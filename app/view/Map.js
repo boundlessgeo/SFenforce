@@ -239,6 +239,11 @@ Ext.define("SFenforce.view.Map",{
 
         map.addLayers([streets, nodata_spaces, citation_vector]);
 
+        //force citation_vector layer above the layerContainerDiv
+        // 100 * 5 + 325 ->(OpenLayers.Map.Z_INDEX_BASE.Overlay) = 825
+        //TODO determine how to avoid this
+        map.setLayerZIndex(citation_vector, 100);
+
         this.setMap(map);
 
         this.callParent(arguments);
