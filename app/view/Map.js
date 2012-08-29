@@ -103,9 +103,15 @@ Ext.define("SFenforce.view.Map",{
             ]
         });
         SFenforce.util.Config.setStyle(style.clone());
-        var styleMap = new OpenLayers.StyleMap(style);
-        styleMap.styles["select"] = styleMap.styles["select"].clone();
-        styleMap.styles["select"].defaultStyle.externalGraphic = "resources/icons/parking-meter-blue.png";
+        var selectStyle = new OpenLayers.Style({
+            externalGraphic: "resources/icons/parking-meter-blue.png",
+            graphicWidth: 32,
+            graphicHeight: 37
+        });
+        var styleMap = new OpenLayers.StyleMap({
+            "default": style,
+            "select": selectStyle
+        });
 
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(), 
