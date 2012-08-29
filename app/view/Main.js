@@ -42,6 +42,7 @@ Ext.define('SFenforce.view.Main', {
                 }, {
                     xtype: 'list',
                     disableSelection: true,
+                    cls: 'list-disabled',
                     scrollable: false,
                     flex: 1,
                     id: 'updateList',
@@ -84,6 +85,7 @@ Ext.define('SFenforce.view.Main', {
                 }, {
                     xtype: 'list',
                     disableSelection: true,
+                    cls: 'list-disabled',
                     scrollable: false,
                     flex: 1,
                     id: 'updateList',
