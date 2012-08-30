@@ -142,9 +142,15 @@ Ext.define('SFenforce.controller.Login', {
                     // move items to hbox container
                     Ext.getCmp('vboxcontainer').items.each(function(item) {
                         Ext.getCmp('vboxcontainer').remove(item, false);
-                        if (item.initialConfig.flex === undefined) {
+                        if (item.initialConfig.cls === 'featureinfo') {
                             item.setHeight(null);
-                            item.setWidth('20%');
+                            item.setWidth('25%');
+                            item.items.each(function(i) {
+                                if (i.initialConfig.id === 'updateList') {
+                                    i.setHeight(500);
+                                    i.removeCls('portrait');
+                                }
+                            });
                         }
                         Ext.getCmp('hboxcontainer').add(item);
                     });
@@ -154,9 +160,15 @@ Ext.define('SFenforce.controller.Login', {
                     // move items to vbox container
                     Ext.getCmp('hboxcontainer').items.each(function(item) {
                         Ext.getCmp('hboxcontainer').remove(item, false);
-                        if (item.initialConfig.flex === undefined) {
+                        if (item.initialConfig.cls === 'featureinfo') {
                             item.setWidth(null);
-                            item.setHeight(Ext.Viewport.getHeight()*0.2);
+                            item.setHeight(Ext.Viewport.getHeight()*0.25);
+                            item.items.each(function(i) {
+                                if (i.initialConfig.id === 'updateList') {
+                                    i.setHeight(100);
+                                    i.addCls('portrait');
+                                }
+                            });
                         }
                         Ext.getCmp('vboxcontainer').add(item);
                     });
