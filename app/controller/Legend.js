@@ -27,11 +27,13 @@ Ext.define('SFenforce.controller.Legend', {
                     align: 'stretch',
                     items: [{
                         xtype: 'gxm_renderer',
+                        minWidth: 32,
+                        minHeight: 37,
                         symbolType: "Point",
-                        width: 25,
+                        width: 35,
                         symbolizers: [Ext.apply(
                             Ext.applyIf({
-                                pointRadius: 6
+                                graphicYOffset: -19
                             }, style.defaultStyle), 
                             rule.symbolizer
                         )]
@@ -51,7 +53,7 @@ Ext.define('SFenforce.controller.Legend', {
                 items: [{
                     xtype: 'gxm_renderer',
                     symbolType: "Point",
-                    width: 25,
+                    width: 37,
                     symbolizers: [{
                         graphicName: "circle",
                         pointRadius: 2,
@@ -64,7 +66,8 @@ Ext.define('SFenforce.controller.Legend', {
                 }]
             });
             this.legend = Ext.Viewport.add({
-                xtype: 'panel', 
+                xtype: 'panel',
+                zIndex: 1000,
                 width: SFenforce.util.Config.getLegendSize()[0], 
                 height: SFenforce.util.Config.getLegendSize()[1],
                 centered: true,
