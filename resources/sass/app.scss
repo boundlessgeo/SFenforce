@@ -29,10 +29,17 @@ $map-button-color: #333;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
+.x-toolbar .x-button-sfbutton .x-button-label {
+    font-size: 1em;
+}
+.featureinfo .x-list {
+    background-color: #222;
+}
 .featureinfo .list-disabled .x-list-item {
     background-color: #222;
 }
 .featureinfo .list-disabled .x-list-item-label {
+    font-size: 0.85em;
     color: #666;
     border-top: 1px solid #666 !important;
 }
@@ -41,6 +48,7 @@ $map-button-color: #333;
 }
 .featureinfo .x-list-item-label {
     color: $base-text-color;
+    font-size: 0.85em;
     border-top: 1px solid white !important;
 }
 .transactionLabel {

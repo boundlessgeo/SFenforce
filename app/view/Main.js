@@ -87,12 +87,12 @@ Ext.define('SFenforce.view.Main', {
                     disableSelection: true,
                     cls: 'list-disabled',
                     scrollable: false,
-                    flex: 1,
+                    height: 500,
                     id: 'updateList',
                     store: Ext.getStore('DispositionCodes')
                 }, {
                     xtype: 'toolbar',
-                    height: 50,
+                    flex: 2,
                     ui: 'sfbutton',
                     items: [{
                         id: 'saveButton',
