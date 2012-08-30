@@ -153,17 +153,21 @@ Ext.define("SFenforce.view.Map",{
                                 }
                             }
                         );
-                        Ext.getCmp('featureinfo').feature = feature;
-                        Ext.getCmp('featureinfo').setHtml(tpl.applyTemplate({feature: feature}));
-                        Ext.getCmp("updateList").setDisableSelection(false);
-                        Ext.getCmp("updateList").toggleCls("list-disabled");
+                        var featureinfo = Ext.getCmp('featureinfo'),
+                            updatelist = Ext.getCmp("updateList");
+                        featureinfo.feature = feature;
+                        featureinfo.setHtml(tpl.applyTemplate({feature: feature}));
+                        updatelist.setDisableSelection(false);
+                        updatelist.removeCls("list-disabled");
                     },
                     "featureunselected": function(evt) {
-                        delete Ext.getCmp('featureinfo').feature;
-                        Ext.getCmp("updateList").deselectAll();
-                        Ext.getCmp('featureinfo').setHtml('<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');
-                        Ext.getCmp("updateList").setDisableSelection(true);
-                        Ext.getCmp("updateList").toggleCls("list-disabled");
+                        var featureinfo = Ext.getCmp('featureinfo'),
+                            updatelist = Ext.getCmp("updateList");
+                        delete featureinfo.feature;
+                        updatelist.deselectAll();
+                        featureinfo.setHtml('<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');
+                        updatelist.setDisableSelection(true);
+                        updatelist.addCls("list-disabled");
 
                     },
                     scope: this
