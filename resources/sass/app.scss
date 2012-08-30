@@ -25,12 +25,23 @@ $form-bg-color: #333;
 $base-text-color: #FFFFFF;
 $secondary-text-color: #888888;
 $button-color: #008ece;
-$map-button-color: #555;
+$map-button-color: #333;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
-.list-disabled .x-list-item {
-    // placeholder for disabled list
+.featureinfo .list-disabled .x-list-item {
+    background-color: #222;
+}
+.featureinfo .list-disabled .x-list-item-label {
+    color: #666;
+    border-top: 1px solid #666 !important;
+}
+.featureinfo .x-list-item {
+    background-color: #333;
+}
+.featureinfo .x-list-item-label {
+    color: $base-text-color;
+    border-top: 1px solid white !important;
 }
 .transactionLabel {
     color: $secondary-text-color;
