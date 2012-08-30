@@ -34,22 +34,22 @@ Ext.define('SFenforce.view.Main', {
             }, {
                 height: Ext.Viewport.getHeight()*0.25, 
                 cls: 'featureinfo',
-                layout: 'vbox', 
+                layout: 'vbox',
                 items: [{
-                    height: 60,
+                    flex: 1,
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
                     xtype: 'list',
                     disableSelection: true,
-                    cls: 'list-disabled',
+                    cls: ['list-disabled', 'portrait'],
                     scrollable: false,
-                    flex: 1,
+                    flex: 2,
                     id: 'updateList',
                     store: Ext.getStore('DispositionCodes')
                 }, {
                     xtype: 'toolbar',
-                    height: 50,
+                    flex: 3,
                     ui: 'sfbutton',
                     items: [{
                         id: 'saveButton',
@@ -79,7 +79,7 @@ Ext.define('SFenforce.view.Main', {
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    height: 60,
+                    flex: 1,
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
