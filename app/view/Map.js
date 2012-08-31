@@ -38,8 +38,8 @@ Ext.define("SFenforce.view.Map",{
             numZoomLevels: 19,
             units: "m",
             buffer: 0,
-            tileLoadingDelay: 300,
-            transitionEffect: "resize"
+            transitionEffect: "resize",
+            tileLoadingDelay: 300
         };
 
         var streets = new OpenLayers.Layer.OSM(null, null, options);
@@ -112,7 +112,7 @@ Ext.define("SFenforce.view.Map",{
         var styleMap = new OpenLayers.StyleMap({
             "default": style,
             "select": selectStyle
-        }, {defaultRenderIntent: "headless"});
+        }, {defaultRenderIntent: 'headless'});
 
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(),
@@ -124,9 +124,8 @@ Ext.define("SFenforce.view.Map",{
                 filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
             },{
                 buffer: 0,
-                singleTile: true,
-                tileLoadingDelay: 300,
-                isBaseLayer: false
+                isBaseLayer: false,
+                singleTile: true
             }
         );
         var citation_vector = new OpenLayers.Layer.Vector(
@@ -190,7 +189,7 @@ Ext.define("SFenforce.view.Map",{
                 new OpenLayers.Control.TouchNavigation({
                     dragPanOptions : {
                         interval : 100,
-                        enableKinetic : false
+                        enableKinetic : true
                     }
                 }),
                 new OpenLayers.Control.Attribution(),
