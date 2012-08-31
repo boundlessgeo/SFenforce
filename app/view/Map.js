@@ -38,6 +38,7 @@ Ext.define("SFenforce.view.Map",{
             numZoomLevels: 19,
             units: "m",
             buffer: 0,
+            tileLoadingDelay: 300,
             transitionEffect: "resize"
         };
 
@@ -75,8 +76,7 @@ Ext.define("SFenforce.view.Map",{
 
         var style = new OpenLayers.Style({
             graphicWidth: 32,
-            graphicHeight: 37,
-            graphicYOffset: -37
+            graphicHeight: 37
         }, {
             rules: [
                 new OpenLayers.Rule({
@@ -112,7 +112,7 @@ Ext.define("SFenforce.view.Map",{
         var styleMap = new OpenLayers.StyleMap({
             "default": style,
             "select": selectStyle
-        });
+        }, {defaultRenderIntent: "headless"});
 
         var nodata_spaces = new OpenLayers.Layer.WMS(
             SFenforce.util.Config.getNoDataLayerName(),
@@ -120,9 +120,12 @@ Ext.define("SFenforce.view.Map",{
                 layers: SFenforce.util.Config.getPrefix() + ":" + SFenforce.util.Config.getCitationView(),
                 version: '1.1.1',
                 transparent: true,
+                styles: 'sfenforce_markers_nodata',
                 filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
             },{
                 buffer: 0,
+                singleTile: true,
+                tileLoadingDelay: 300,
                 isBaseLayer: false
             }
         );
@@ -172,7 +175,7 @@ Ext.define("SFenforce.view.Map",{
                     },
                     scope: this
                 },
-                renderers: ['Marker'],
+                renderers: ['Canvas'],
                 strategies: [new OpenLayers.Strategy.BBOX()]
         });
 
