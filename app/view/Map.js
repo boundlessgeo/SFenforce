@@ -194,7 +194,7 @@ Ext.define("SFenforce.view.Map",{
                     }
                 }),
                 new OpenLayers.Control.Attribution(),
-                /*new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true}),*/
+                new OpenLayers.Control.SelectFeature(citation_vector, {autoActivate: true}),
                 new OpenLayers.Control.Geolocate({
                     bind: false,
                     autoActivate: true,
@@ -243,7 +243,7 @@ Ext.define("SFenforce.view.Map",{
         });
 
         this.vector = new OpenLayers.Layer.Vector();
-        map.addLayers([streets, /*nodata_spaces,*/ this.vector, citation_vector]);
+        map.addLayers([streets, nodata_spaces, this.vector, citation_vector]);
 
         this.setMap(map);
 
