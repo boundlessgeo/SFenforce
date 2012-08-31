@@ -76,8 +76,9 @@ Ext.define("SFenforce.view.Map",{
 
         var style = new OpenLayers.Style({
             graphicWidth: 32,
-            graphicHeight: 37
-        }, {
+            graphicHeight: 37,
+            graphicYOffset: -34
+        }/*, {
             rules: [
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getUnpaidRuleTitle(),
@@ -92,7 +93,7 @@ Ext.define("SFenforce.view.Map",{
                     symbolizer: {
                         externalGraphic: "resources/icons/parking-meter-yellow.png"
                     }
-                })/*,
+                }),
                 new OpenLayers.Rule({
                     name: SFenforce.util.Config.getCitedRuleTitle(),
                     filter: SFenforce.util.Config.getCitedRuleFilter(),
@@ -100,14 +101,15 @@ Ext.define("SFenforce.view.Map",{
                         //fillColor: SFenforce.util.Config.getCitedColor()
                         display: 'none'
                     }
-                })*/
+                })
             ]
-        });
+        }*/);
         SFenforce.util.Config.setStyle(style.clone());
         var selectStyle = new OpenLayers.Style({
             externalGraphic: "resources/icons/parking-meter-blue.png",
             graphicWidth: 32,
-            graphicHeight: 37
+            graphicHeight: 37,
+            graphicYOffset: -34
         });
         var styleMap = new OpenLayers.StyleMap({
             "default": style,
