@@ -29,6 +29,10 @@ $map-button-color: #333;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
+#lastRefresh {
+  margin-left: 0.35em;
+  margin-top: 0.7em;
+}
 .portrait .feature-info-row {
   padding-left: 0.65em;
   display: inline-block;
@@ -75,11 +79,11 @@ $map-button-color: #333;
 }
 .lastupdateprefix {
     color: $secondary-text-color;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 .lastupdatepostfix {
     color: $base-text-color;
-    font-size: 1.0em;
+    font-size: 1.2em;
 }
 .x-item-selected .x-list-label {
     color: black;

@@ -8,14 +8,17 @@ Ext.define('SFenforce.view.MapToolbar', {
     ],
 
     config: {
+        minHeight: '3em',
         docked: 'top',
         id: 'mapToolbar',
         defaults: {
+            minHeight: '2.6em',
+            minWidth: '3.5em',
             iconMask: 'true'
         },
         items: [{
             id: 'backLoginButton',
-            ui: 'back mapbutton',
+            ui: 'mapbutton',
             text: SFenforce.util.Config.getBackToLoginText()
         }, {
             xtype: 'spacer',
@@ -27,7 +30,10 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             xtype: 'segmentedbutton',
             id: 'locateButton',
+
             items:[{
+                minHeight: '2.6em',
+                minWidth: '3.5em',
                 ui: 'mapbutton',
                 iconMask: 'true',
                 iconCls: 'locate'
