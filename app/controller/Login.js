@@ -146,7 +146,10 @@ Ext.define('SFenforce.controller.Login', {
                             item.setHeight(null);
                             item.setWidth('25%');
                             item.items.each(function(i) {
-                                if (i.initialConfig.id === 'updateList') {
+                                if (i.initialConfig.id === 'featureinfo') {
+                                    i.setHeight(70);
+                                }
+                                if (i.initialConfig.id === 'updateList' || i.initialConfig.id === 'featureinfo') {
                                     i.removeCls('portrait');
                                 }
                             });
@@ -161,9 +164,12 @@ Ext.define('SFenforce.controller.Login', {
                         Ext.getCmp('hboxcontainer').remove(item, false);
                         if (item.initialConfig.cls === 'featureinfo') {
                             item.setWidth(null);
-                            item.setHeight(Ext.Viewport.getHeight()*0.25);
+                            item.setHeight(Ext.Viewport.getHeight()*0.3);
                             item.items.each(function(i) {
-                                if (i.initialConfig.id === 'updateList') {
+                                if (i.initialConfig.id === 'featureinfo') {
+                                    i.setHeight(25);
+                                }
+                                if (i.initialConfig.id === 'updateList' || i.initialConfig.id === 'featureinfo') {
                                     i.addCls('portrait');
                                 }
                             });
