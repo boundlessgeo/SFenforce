@@ -30,7 +30,6 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             xtype: 'segmentedbutton',
             id: 'locateButton',
-
             items:[{
                 minHeight: '2.6em',
                 minWidth: '3.5em',
