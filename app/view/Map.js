@@ -158,21 +158,24 @@ Ext.define("SFenforce.view.Map",{
                             }
                         );
                         var featureinfo = Ext.getCmp('featureinfo'),
+                            savebutton = Ext.getCmp("saveButton"),
                             updatelist = Ext.getCmp("updateList");
                         featureinfo.feature = feature;
                         featureinfo.setHtml(tpl.applyTemplate({feature: feature}));
                         updatelist.setDisableSelection(false);
                         updatelist.removeCls("list-disabled");
+                        savebutton.enable();
                     },
                     "featureunselected": function(evt) {
                         var featureinfo = Ext.getCmp('featureinfo'),
+                            savebutton = Ext.getCmp("saveButton"),
                             updatelist = Ext.getCmp("updateList");
                         delete featureinfo.feature;
                         updatelist.deselectAll();
                         featureinfo.setHtml('<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');
                         updatelist.setDisableSelection(true);
                         updatelist.addCls("list-disabled");
-
+                        savebutton.disable();
                     },
                     scope: this
                 },

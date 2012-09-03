@@ -17,6 +17,7 @@ Ext.define('SFenforce.controller.Update', {
     },
 
     doTransaction: function() {
+console.log(this.getSaveButton());
         var attributes = this.getPopup().feature.attributes;
         var fids = [];
         var table = SFenforce.util.Config.getUpdateTable();
