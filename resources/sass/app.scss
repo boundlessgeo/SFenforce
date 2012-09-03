@@ -24,7 +24,7 @@ $form-bg-color: #333;
 // Your custom code goes here...
 $base-text-color: #FFFFFF;
 $secondary-text-color: #888888;
-$button-color: #008ece;
+$button-color: #2ec432;
 $map-button-color: #333;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
@@ -90,8 +90,19 @@ $map-button-color: #333;
 }
 .x-toolbar-zoomselector .x-button {
   .x-button-label {
+    color: #333;
+    font-size: 1.5em;
+  }
+}
+.x-toolbar-zoomselector .x-button-pressed {
+  .x-button-label {
     color: $base-text-color;
     font-size: 1.5em;
+  }
+}
+#loginButton {
+  .x-button-label {
+    color: $base-text-color;
   }
 }
 div.olMapViewport {

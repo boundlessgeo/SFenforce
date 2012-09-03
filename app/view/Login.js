@@ -14,11 +14,10 @@ Ext.define('SFenforce.view.Login', {
             ui: 'login',
             id: 'fieldset',
             instructions: {
-                title: SFenforce.util.Config.getLoginFormInstructions(),
+                title: null,
                 docked: 'top'
             },
             defaults: {
-                required: true,
                 labelAlign: 'left',
                 labelWidth: '20%'
             },
@@ -49,7 +48,6 @@ Ext.define('SFenforce.view.Login', {
             }, {
                 xtype: 'multiselectfield',
                 name: "beats",
-                required: false,
                 placeHolder: SFenforce.util.Config.getLoginBeatsPlaceholder(),
                 label: SFenforce.util.Config.getLoginBeatsLabel(),
                 usePicker: false,
@@ -72,7 +70,6 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'segmentedbutton',
                     id: "zoomSelector",
                     submit: false,
-                    required: false,
                     allowDepress: false,
                     allowMultiple: false,
                     flex: 1,
@@ -84,12 +81,12 @@ Ext.define('SFenforce.view.Login', {
                         flex: 1
                     },
                     items: [{
-                        text: SFenforce.util.Config.getLoginAllBeatsLabel(),
-                        data: "allbeats",
+                        text: SFenforce.util.Config.getLoginMyBeatsLabel(),
+                        data: "mybeats",
                         pressed: true
                     }, {
-                        text: SFenforce.util.Config.getLoginMyBeatsLabel(),
-                        data: "mybeats"
+                        text: SFenforce.util.Config.getLoginAllBeatsLabel(),
+                        data: "allbeats"
                     }, {
                         text: SFenforce.util.Config.getLoginMyLocationLabel(),
                         data: "mylocation"
