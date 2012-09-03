@@ -38,6 +38,9 @@ Ext.define('SFenforce.view.Login', {
                     id: 'loginButton',
                     flex: 1,
                     text: SFenforce.util.Config.getLoginButtonText()
+                }, {
+                    xtype: 'spacer',
+                    flex: 3
                 }]
             }, {
                 xtype: 'numberfield',
