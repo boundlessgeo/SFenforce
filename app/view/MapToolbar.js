@@ -13,18 +13,19 @@ Ext.define('SFenforce.view.MapToolbar', {
         id: 'mapToolbar',
         defaults: {
             minHeight: '2.6em',
-            minWidth: '3.5em',
             iconMask: 'true'
         },
         items: [{
             id: 'backLoginButton',
             ui: 'mapbutton',
+            minWidth: '3.5em',
             text: SFenforce.util.Config.getBackToLoginText()
         }, {
             xtype: 'spacer',
             width: 32
         }, {
             id: 'myPosition',
+            minWidth: '3.5em',
             ui: 'mapbutton',
             iconCls: 'user'
         }, {
@@ -43,6 +44,7 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             id: 'refreshButton',
             ui: 'mapbutton',
+            minWidth: '3.5em',
             iconCls: 'refresh'
         }, {
             id: 'lastRefresh',
@@ -54,10 +56,12 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             id: 'zoomButton',
             ui: 'mapbutton',
+            minWidth: '3.5em',
             iconCls: 'favorites'
         }, {
             id: 'legendButton',
             ui: 'mapbutton',
+            minWidth: '3.5em',
             iconCls: 'maps'
         }]
     }
