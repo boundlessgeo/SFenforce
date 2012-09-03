@@ -17,9 +17,25 @@ Ext.define('SFenforce.controller.Legend', {
     showLegend: function() {
         if (!this.legend) {
             var items = [];
-            var style = SFenforce.util.Config.getStyle();
-            for (var i=0, ii=style.rules.length; i<ii; ++i) {
-                var rule = style.rules[i];
+            var rules = [{
+                name: SFenforce.util.Config.getUnpaidRuleTitle(),
+                symbolizer: {
+                    graphicWidth: 32,
+                    graphicHeight: 37,
+                    graphicYOffset: -19,
+                    externalGraphic: "resources/icons/parking-meter-red.png"
+                }
+            }, {
+                name: SFenforce.util.Config.getCommercialRuleTitle(),
+                symbolizer: {
+                    graphicWidth: 32,
+                    graphicHeight: 37,
+                    graphicYOffset: -19,
+                    externalGraphic: "resources/icons/parking-meter-yellow.png"
+                }
+            }];
+            for (var i=0, ii=rules.length; i<ii; ++i) {
+                var rule = rules[i];
                 items.push({
                     xtype: 'container',
                     layout: 'hbox',
@@ -31,12 +47,9 @@ Ext.define('SFenforce.controller.Legend', {
                         minHeight: 37,
                         symbolType: "Point",
                         width: 35,
-                        symbolizers: [Ext.apply(
-                            Ext.applyIf({
-                                graphicYOffset: -19
-                            }, style.defaultStyle), 
+                        symbolizers: [
                             rule.symbolizer
-                        )]
+                        ]
                     }, {
                         flex: 1,
                         xtype: 'label',

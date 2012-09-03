@@ -47,7 +47,7 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             id: 'lastRefresh',
             xtype: 'refreshlabel',
-            width: 250
+            width: 275
         },{
             xtype: 'spacer',
             flex: 1

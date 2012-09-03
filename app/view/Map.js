@@ -78,33 +78,7 @@ Ext.define("SFenforce.view.Map",{
             graphicWidth: 32,
             graphicHeight: 37,
             graphicYOffset: -34
-        }/*, {
-            rules: [
-                new OpenLayers.Rule({
-                    name: SFenforce.util.Config.getUnpaidRuleTitle(),
-                    filter: SFenforce.util.Config.getUnpaidRuleFilter(),
-                    symbolizer: {
-                        externalGraphic: "resources/icons/parking-meter-red.png"
-                    }
-                }),
-                new OpenLayers.Rule({
-                    name: SFenforce.util.Config.getCommercialRuleTitle(),
-                    filter: SFenforce.util.Config.getCommercialRuleFilter(),
-                    symbolizer: {
-                        externalGraphic: "resources/icons/parking-meter-yellow.png"
-                    }
-                }),
-                new OpenLayers.Rule({
-                    name: SFenforce.util.Config.getCitedRuleTitle(),
-                    filter: SFenforce.util.Config.getCitedRuleFilter(),
-                    symbolizer: {
-                        //fillColor: SFenforce.util.Config.getCitedColor()
-                        display: 'none'
-                    }
-                })
-            ]
-        }*/);
-        SFenforce.util.Config.setStyle(style.clone());
+        });
         var selectStyle = new OpenLayers.Style({
             externalGraphic: "resources/icons/parking-meter-blue.png",
             graphicWidth: 32,

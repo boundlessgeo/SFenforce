@@ -152,8 +152,7 @@ Ext.define('SFenforce.util.Config', {
         /** end i18n */
 
         /** private properties */
-        beatsBounds: null,
-        style: null
+        beatsBounds: null
         /** end private properties */
     },
 
