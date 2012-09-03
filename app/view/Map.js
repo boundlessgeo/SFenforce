@@ -148,12 +148,12 @@ Ext.define("SFenforce.view.Map",{
                     "featureselected": function(evt) {
                         var feature = evt.feature;
                         var tpl = new Ext.XTemplate(
-                            '{feature.attributes.POST_ID:this.formatNumber}<br/>',
-                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1">Meter expired<br/></tpl>',
-                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1">Commercial occupied</tpl>',
+                            '<div>{feature.attributes.POST_ID:this.formatNumber}</div>',
+                            '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1"><div>Meter expired</div></tpl>',
+                            '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1"><div>Commercial occupied</div></tpl>',
                             {
                                 formatNumber: function(value) {
-                                    return value.replace('-', '-&nbsp;');
+                                    return value.replace('-', '&nbsp;-&nbsp;');
                                 }
                             }
                         );

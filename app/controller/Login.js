@@ -147,7 +147,6 @@ Ext.define('SFenforce.controller.Login', {
                             item.setWidth('25%');
                             item.items.each(function(i) {
                                 if (i.initialConfig.id === 'updateList') {
-                                    i.setHeight(500);
                                     i.removeCls('portrait');
                                 }
                             });
@@ -165,7 +164,6 @@ Ext.define('SFenforce.controller.Login', {
                             item.setHeight(Ext.Viewport.getHeight()*0.25);
                             item.items.each(function(i) {
                                 if (i.initialConfig.id === 'updateList') {
-                                    i.setHeight(100);
                                     i.addCls('portrait');
                                 }
                             });
