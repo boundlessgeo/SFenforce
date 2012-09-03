@@ -1,6 +1,6 @@
 $base-color: #000000;
 $base-gradient: 'glossy';
-$active-color: #d47800;
+$active-color: #2064ff;
 $form-bg-color: #333;
 @import 'sencha-touch/default/all';
 
@@ -29,6 +29,11 @@ $map-button-color: #333;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
+.x-select-overlay {
+  .x-list-label {
+    font-size: 1.2em;
+  }
+}
 .portrait .x-list-item {
     display: inline-block;
 }
