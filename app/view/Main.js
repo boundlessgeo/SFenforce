@@ -80,7 +80,7 @@ Ext.define('SFenforce.view.Main', {
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    flex: 1,
+                    height: 70,
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
@@ -88,12 +88,12 @@ Ext.define('SFenforce.view.Main', {
                     disableSelection: true,
                     cls: 'list-disabled',
                     scrollable: false,
-                    height: 500,
+                    flex: 1,
                     id: 'updateList',
                     store: Ext.getStore('DispositionCodes')
                 }, {
                     xtype: 'toolbar',
-                    flex: 3,
+                    height: 35,
                     ui: 'sfbutton',
                     items: [{
                         id: 'saveButton',

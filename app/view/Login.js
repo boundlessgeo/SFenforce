@@ -44,6 +44,11 @@ Ext.define('SFenforce.view.Login', {
                 }]
             }, {
                 xtype: 'numberfield',
+                listeners: {
+                    'blur': function() {
+                        Ext.Viewport.maximize();
+                    }
+                },
                 name: 'badge',
                 placeHolder: SFenforce.util.Config.getLoginNamePlaceholder(),
                 label: SFenforce.util.Config.getLoginNameLabel(),
