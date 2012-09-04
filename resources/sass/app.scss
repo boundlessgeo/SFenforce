@@ -22,6 +22,8 @@ $form-bg-color: #333;
 @include sencha-loading-spinner;
 
 // Your custom code goes here...
+@include pictos-iconmask('sflocate');
+@include pictos-iconmask('locate4');
 $base-text-color: #FFFFFF;
 $secondary-text-color: #888888;
 $button-color: #2ec432;

@@ -27,7 +27,7 @@ Ext.define('SFenforce.view.MapToolbar', {
             id: 'myPosition',
             minWidth: '3.5em',
             ui: 'mapbutton',
-            iconCls: 'user'
+            iconCls: 'sflocate'
         }, {
             xtype: 'segmentedbutton',
             id: 'locateButton',
@@ -36,7 +36,7 @@ Ext.define('SFenforce.view.MapToolbar', {
                 minWidth: '3.5em',
                 ui: 'mapbutton',
                 iconMask: 'true',
-                iconCls: 'locate'
+                iconCls: 'locate4'
             }]
         }, {
             xtype: 'spacer',
