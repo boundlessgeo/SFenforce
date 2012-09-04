@@ -10,13 +10,15 @@ Ext.define('SFenforce.view.Login', {
         'SFenforce.store.Pco'
     ],
     config: {
-            items:[{xtype: 'fieldset',
+        layout : {
+            type: 'vbox',
+            align: 'center',
+            pack: 'center'
+        },
+        items: [{xtype: 'fieldset',
             ui: 'login',
+            width: '40em',
             id: 'fieldset',
-            instructions: {
-                title: null,
-                docked: 'top'
-            },
             defaults: {
                 labelAlign: 'left',
                 labelWidth: '20%'
