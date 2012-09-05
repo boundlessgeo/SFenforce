@@ -80,9 +80,9 @@ Ext.define('SFenforce.controller.Update', {
                     var map = this.getMap().getMap();
                     var vectorLayer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
                     if (!success) {
-                        label.setHtml('&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionErrorText());
+                        label.setHtml(SFenforce.util.Config.getTransactionErrorText());
                     } else {
-                        label.setHtml('&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionSuccessText());
+                        label.setHtml(SFenforce.util.Config.getTransactionSuccessText());
                         var mapFeature = this.getPopup().feature;
                         if (mapFeature && mapFeature.layer) {
                             mapFeature.layer.events.triggerEvent("featureunselected", {feature: mapFeature});
