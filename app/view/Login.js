@@ -77,7 +77,7 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'label',
                     cls: 'zoom-label',
                     html: SFenforce.util.Config.getLoginZoomToLabel(),
-                    width: '25.5%'
+                    width: '25.4%'
                 }, {
                     xtype: 'segmentedbutton',
                     id: "zoomSelector",
