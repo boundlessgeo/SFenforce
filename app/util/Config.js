@@ -132,7 +132,7 @@ Ext.define('SFenforce.util.Config', {
         loginBeatsLabel: "Beats",
         loginBeatsPlaceholder: "Select Beats",
         loginButtonText: "Next",
-        loginZoomToLabel: "Zoom To : ",
+        loginZoomToLabel: "Zoom To",
         loginMyBeatsLabel: "My Beats",
         loginAllBeatsLabel: "All Beats",
         loginMyLocationLabel: "My Location",

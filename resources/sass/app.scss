@@ -1,7 +1,7 @@
 $base-color: #000000;
 $base-gradient: 'glossy';
 $active-color: #2064ff;
-$form-bg-color: #333;
+$form-bg-color: #000000;
 @import 'sencha-touch/default/all';
 
 // You may remove any of the following modules that you
@@ -106,7 +106,17 @@ $map-button-color: #333;
     font-size: 2em;
 }
 .x-form-fieldset-login .x-form-label {
-    background-color: $form-bg-color;
+    background-color: #888;
+    color: $base-text-color;
+}
+.zoom-label {
+    margin-left: -0.25em;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 0.85em;
+    height: 3.1em;
+    border-bottom-left-radius: 0.4em;
+    background-color: #888;
     color: $base-text-color;
 }
 .x-toolbar-zoomselector .x-button {
@@ -114,6 +124,9 @@ $map-button-color: #333;
     color: #333;
     font-size: 1.5em;
   }
+}
+.x-toolbar-zoomselector .x-first {
+    margin-left: 0.25em;
 }
 .x-toolbar-zoomselector .x-button-pressed {
   .x-button-label {

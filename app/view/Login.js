@@ -27,6 +27,7 @@ Ext.define('SFenforce.view.Login', {
                 xtype: 'toolbar',
                 ui: 'zoomselector',
                 docked: 'bottom',
+                margin: '2em',
                 layout: {
                     align: 'stretch',
                     pack: 'center'
@@ -74,8 +75,9 @@ Ext.define('SFenforce.view.Login', {
                 },
                 items: [{
                     xtype: 'label',
+                    cls: 'zoom-label',
                     html: SFenforce.util.Config.getLoginZoomToLabel(),
-                    width: '20%'
+                    width: '20.25%'
                 }, {
                     xtype: 'segmentedbutton',
                     id: "zoomSelector",
