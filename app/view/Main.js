@@ -53,7 +53,13 @@ Ext.define('SFenforce.view.Main', {
                     height: 35,
                     ui: 'sfbutton',
                     items: [{
+                        xtype: 'label',
+                        cls: 'transactionLabel',
+                        id: 'submitLabel',
+                        flex: 1
+                    }, {
                         id: 'saveButton',
+                        flex: 2,
                         xtype: 'button',
                         disabled: true,
                         ui: 'sfbutton',
@@ -100,8 +106,14 @@ Ext.define('SFenforce.view.Main', {
                         id: 'saveButton',
                         xtype: 'button',
                         disabled: true,
+                        flex: 1,
                         ui: 'sfbutton',
                         text: SFenforce.util.Config.getSaveButtonText()
+                    }, {
+                        xtype: 'label',
+                        cls: 'transactionLabel',
+                        id: 'submitLabel',
+                        flex: 1
                     }]
                 }]
             }]: null

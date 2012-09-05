@@ -75,22 +75,14 @@ Ext.define('SFenforce.controller.Update', {
                 callback: function(response) {
                     this.getUpdateList().unmask();
                     this.getUpdateList().deselectAll();
-                    var label, toolbar = this.getSaveButton().up('toolbar');
+                    var cfg, label = Ext.getCmp('submitLabel');
                     var success = format.read(response.responseText).success;
                     var map = this.getMap().getMap();
                     var vectorLayer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
                     if (!success) {
-                        label = toolbar.add({ 
-                            xtype: 'label', 
-                            cls: 'transactionLabel', 
-                            html: '&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionErrorText()
-                        });
+                        label.setHtml('&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionErrorText());
                     } else {
-                        label = toolbar.add({
-                            xtype: 'label', 
-                            cls: 'transactionLabel',
-                            html: '&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionSuccessText()
-                        });
+                        label.setHtml('&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionSuccessText());
                         var mapFeature = this.getPopup().feature;
                         if (mapFeature && mapFeature.layer) {
                             mapFeature.layer.events.triggerEvent("featureunselected", {feature: mapFeature});
@@ -101,13 +93,13 @@ Ext.define('SFenforce.controller.Update', {
                     }
                     if (!this.task) {
                         this.task = Ext.create('Ext.util.DelayedTask', function() {
-                            toolbar.remove(label);
+                            label.setHtml('');
                         });
                     }
                     if (vectorLayer) {
                         vectorLayer.events.on({
                             'featureselected': function() {
-                                toolbar.remove(label);
+                                label.setHtml('');
                             }
                         });
                     }
