@@ -107,14 +107,17 @@ $map-button-color: #333;
 }
 .x-form-fieldset-login .x-form-label {
     background-color: #888;
+    span {
+        font-size: 1.2em;
+    }
     color: $base-text-color;
 }
 .zoom-label {
     margin-left: -0.25em;
-    font-size: 0.8em;
+    margin-top: 0.05em;
+    font-size: 1.2em;
     font-weight: bold;
-    padding: 0.85em;
-    height: 3.1em;
+    padding: 0.5em;
     border-bottom-left-radius: 0.4em;
     background-color: #888;
     color: $base-text-color;

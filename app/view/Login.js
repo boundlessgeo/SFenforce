@@ -17,11 +17,11 @@ Ext.define('SFenforce.view.Login', {
         },
         items: [{xtype: 'fieldset',
             ui: 'login',
-            width: '40em',
+            width: '45em',
             id: 'fieldset',
             defaults: {
                 labelAlign: 'left',
-                labelWidth: '20%'
+                labelWidth: '25%'
             },
             items: [{
                 xtype: 'toolbar',
@@ -77,7 +77,7 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'label',
                     cls: 'zoom-label',
                     html: SFenforce.util.Config.getLoginZoomToLabel(),
-                    width: '20.25%'
+                    width: '25.5%'
                 }, {
                     xtype: 'segmentedbutton',
                     id: "zoomSelector",
