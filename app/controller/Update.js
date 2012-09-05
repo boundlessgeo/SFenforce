@@ -91,6 +91,7 @@ Ext.define('SFenforce.controller.Update', {
                         });
                         var mapFeature = this.getPopup().feature;
                         if(mapFeature && mapFeature.layer){
+                            mapFeature.layer.events.triggerEvent("featureunselected", {feature: mapFeature});
                             mapFeature.layer.destroyFeatures([mapFeature]);
                             // redraw the WMS layer
                             var map = this.getMap().getMap();
