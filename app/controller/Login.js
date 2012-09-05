@@ -164,7 +164,7 @@ Ext.define('SFenforce.controller.Login', {
                         Ext.getCmp('hboxcontainer').remove(item, false);
                         if (item.initialConfig.cls === 'featureinfo') {
                             item.setWidth(null);
-                            item.setHeight(Ext.Viewport.getHeight()*0.3);
+                            item.setHeight(Ext.Viewport.getSize().height*0.3);
                             item.items.each(function(i) {
                                 if (i.initialConfig.id === 'featureinfo') {
                                     i.setHeight(25);
