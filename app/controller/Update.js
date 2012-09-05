@@ -77,6 +77,8 @@ Ext.define('SFenforce.controller.Update', {
                     this.getUpdateList().deselectAll();
                     var label, toolbar = this.getSaveButton().up('toolbar');
                     var success = format.read(response.responseText).success;
+                    var map = this.getMap().getMap();
+                    var vectorLayer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
                     if (!success) {
                         label = toolbar.add({ 
                             xtype: 'label', 
@@ -90,13 +92,11 @@ Ext.define('SFenforce.controller.Update', {
                             html: '&nbsp;&nbsp;' + SFenforce.util.Config.getTransactionSuccessText()
                         });
                         var mapFeature = this.getPopup().feature;
-                        if(mapFeature && mapFeature.layer){
+                        if (mapFeature && mapFeature.layer) {
                             mapFeature.layer.events.triggerEvent("featureunselected", {feature: mapFeature});
                             mapFeature.layer.destroyFeatures([mapFeature]);
                             // redraw the WMS layer
-                            var map = this.getMap().getMap();
                             map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0].redraw(true);
-
                         }
                     }
                     if (!this.task) {
@@ -104,7 +104,14 @@ Ext.define('SFenforce.controller.Update', {
                             toolbar.remove(label);
                         });
                     }
-                    this.task.delay(5000);
+                    if (vectorLayer) {
+                        vectorLayer.events.on({
+                            'featureselected': function() {
+                                toolbar.remove(label);
+                            }
+                        });
+                    }
+                    this.task.delay(2500);
                 },
                 scope: this,
                 data: xml
