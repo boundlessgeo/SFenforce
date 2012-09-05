@@ -3,6 +3,7 @@ Ext.define('SFenforce.controller.Update', {
     requires: ['Ext.LoadMask', 'Ext.util.DelayedTask'],
     config: {
         refs: {
+            map: 'map',
             updateList: '#updateList',
             saveButton: '#saveButton',
             popup: '#featureinfo'
@@ -90,7 +91,11 @@ Ext.define('SFenforce.controller.Update', {
                         });
                         var mapFeature = this.getPopup().feature;
                         if(mapFeature && mapFeature.layer){
-                            mapFeature.layer.destroyFeatures([mapFeature]);    
+                            mapFeature.layer.destroyFeatures([mapFeature]);
+                            // redraw the WMS layer
+                            var map = this.getMap().getMap();
+                            map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0].redraw(true);
+
                         }
                     }
                     if (!this.task) {
