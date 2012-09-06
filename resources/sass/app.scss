@@ -28,6 +28,7 @@ $base-text-color: #FFFFFF;
 $secondary-text-color: #888888;
 $button-color: #2ec432;
 $map-button-color: #333;
+$form-field-bgcolor: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
@@ -110,7 +111,7 @@ $map-button-color: #333;
     font-size: 2em;
 }
 .x-form-fieldset-login .x-form-label {
-    background-color: #888;
+    background-color: $form-field-bgcolor;
     span {
         font-size: 1.2em;
     }
@@ -123,7 +124,7 @@ $map-button-color: #333;
     font-weight: bold;
     padding: 0.5em;
     border-bottom-left-radius: 0.75em;
-    background-color: #888;
+    background-color: $form-field-bgcolor;
     color: $base-text-color;
 }
 .x-toolbar-zoomselector .x-button {
