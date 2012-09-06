@@ -59,7 +59,7 @@ Ext.define('SFenforce.view.Main', {
                         flex: 1
                     }, {
                         id: 'saveButton',
-                        flex: 2,
+                        flex: 1,
                         xtype: 'button',
                         disabled: true,
                         ui: 'sfbutton',
@@ -110,7 +110,7 @@ Ext.define('SFenforce.view.Main', {
                         id: 'saveButton',
                         xtype: 'button',
                         disabled: true,
-                        flex: 2,
+                        flex: 1,
                         ui: 'sfbutton',
                         text: SFenforce.util.Config.getSaveButtonText()
                     }]
