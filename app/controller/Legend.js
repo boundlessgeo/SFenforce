@@ -23,7 +23,7 @@ Ext.define('SFenforce.controller.Legend', {
                     graphicWidth: 32,
                     graphicHeight: 37,
                     graphicYOffset: -19,
-                    externalGraphic: "resources/icons/parking-meter-red.png"
+                    externalGraphic: "resources/icons/parking-space.png"
                 }
             }, {
                 name: SFenforce.util.Config.getCommercialRuleTitle(),
@@ -31,7 +31,7 @@ Ext.define('SFenforce.controller.Legend', {
                     graphicWidth: 32,
                     graphicHeight: 37,
                     graphicYOffset: -19,
-                    externalGraphic: "resources/icons/parking-meter-yellow.png"
+                    externalGraphic: "resources/icons/parking-space-commercial.png"
                 }
             }];
             for (var i=0, ii=rules.length; i<ii; ++i) {
