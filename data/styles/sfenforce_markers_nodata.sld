@@ -45,7 +45,7 @@
                     <PointSymbolizer>
                         <Graphic>
                             <ExternalGraphic>
-                                <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://sfpark.demo.opengeo.org/SFenforceui/resources/icons/parking-meter-red-centered.png"/>
+                                <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="parking-space.png"/>
                                 <Format>image/png</Format>
                             </ExternalGraphic>
                           <Size>68</Size>
@@ -70,7 +70,7 @@
                     <PointSymbolizer>
                         <Graphic>
                             <ExternalGraphic>
-                                <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="http://sfpark.demo.opengeo.org/SFenforceui/resources/icons/parking-meter-yellow-centered.png"/>
+                                <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="parking-space-commercial.png"/>
                                 <Format>image/png</Format>
                             </ExternalGraphic>
                           <Size>68</Size>
