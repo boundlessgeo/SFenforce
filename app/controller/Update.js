@@ -103,7 +103,7 @@ Ext.define('SFenforce.controller.Update', {
                             }
                         });
                     }
-                    this.task.delay(2500);
+                    this.task.delay(3500);
                 },
                 scope: this,
                 data: xml
