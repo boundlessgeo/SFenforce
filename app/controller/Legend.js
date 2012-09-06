@@ -21,16 +21,16 @@ Ext.define('SFenforce.controller.Legend', {
                 name: SFenforce.util.Config.getUnpaidRuleTitle(),
                 symbolizer: {
                     graphicWidth: 32,
-                    graphicHeight: 37,
-                    graphicYOffset: -19,
+                    graphicHeight: 68,
+                    graphicYOffset: -17,
                     externalGraphic: "resources/icons/parking-space.png"
                 }
             }, {
                 name: SFenforce.util.Config.getCommercialRuleTitle(),
                 symbolizer: {
                     graphicWidth: 32,
-                    graphicHeight: 37,
-                    graphicYOffset: -19,
+                    graphicHeight: 68,
+                    graphicYOffset: -17,
                     externalGraphic: "resources/icons/parking-space-commercial.png"
                 }
             }];
