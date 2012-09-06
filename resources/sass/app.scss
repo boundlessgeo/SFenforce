@@ -63,23 +63,21 @@ $map-button-color: #333;
     background-color: #000;
 }
 .featureinfo .list-disabled .x-list-item {
-    background-color: #222;
+    background-color: #000;
+}
+.featureinfo .x-list-item-label {
+    border-top: none !important;
 }
 .featureinfo .list-disabled .x-list-item-label {
     font-size: 0.9em;
     color: #666;
-    border-top: 1px solid #666 !important;
 }
-.featureinfo .list-disabled .x-list-item:last-child .x-list-item-label {
-    border-bottom: 1px solid #666 !important;
-}
-.featureinfo .x-list-item {
-    background-color: #333;
+.featureinfo .x-list-item:last-child .x-list-item-label {
+    border-bottom: none !important;
 }
 .featureinfo .x-list-item-label {
     color: $base-text-color;
     font-size: 0.9em;
-    border-top: 1px solid white !important;
 }
 .transactionLabel {
     color: $secondary-text-color;
