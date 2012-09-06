@@ -138,6 +138,7 @@ Ext.define("SFenforce.view.Map",{
                         featureinfo.setHtml(tpl.applyTemplate({feature: feature}));
                         updatelist.setDisableSelection(false);
                         updatelist.removeCls("list-disabled");
+                        updatelist.addCls("list-enabled");
                         savebutton.enable();
                     },
                     "featureunselected": function(evt) {
@@ -149,6 +150,7 @@ Ext.define("SFenforce.view.Map",{
                         featureinfo.setHtml('<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');
                         updatelist.setDisableSelection(true);
                         updatelist.addCls("list-disabled");
+                        updatelist.removeCls("list-enabled");
                         savebutton.disable();
                     },
                     scope: this

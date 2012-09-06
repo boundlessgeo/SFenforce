@@ -3,6 +3,13 @@ Ext.define('SFenforce.util.Config', {
 
     config : {
         /**
+         * @cfg {Array} specialValues
+         * The disposition codes that should be treated as special.
+         * They look different in the UI.
+         */
+        specialValues: [1, 2, 3],
+
+        /**
          * @cfg {Array} bounds
          * The bounds of the all the beats in EPSG:900913.
          */

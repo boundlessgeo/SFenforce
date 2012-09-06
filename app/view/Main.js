@@ -4,7 +4,8 @@ Ext.define('SFenforce.view.Main', {
 
     requires: [
         'SFenforce.view.Map',
-        'SFenforce.view.MapToolbar'
+        'SFenforce.view.MapToolbar',
+        'SFenforce.view.DispositionList'
     ],
 
     config: {
@@ -41,10 +42,9 @@ Ext.define('SFenforce.view.Main', {
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
-                    xtype: 'list',
+                    xtype: 'sflist',
                     disableSelection: true,
                     cls: ['list-disabled', 'portrait'],
-                    scrollable: false,
                     flex: 1,
                     id: 'updateList',
                     store: Ext.getStore('DispositionCodes')
@@ -91,10 +91,9 @@ Ext.define('SFenforce.view.Main', {
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
-                    xtype: 'list',
+                    xtype: 'sflist',
                     disableSelection: true,
                     cls: 'list-disabled',
-                    scrollable: false,
                     flex: 1,
                     id: 'updateList',
                     store: Ext.getStore('DispositionCodes')
