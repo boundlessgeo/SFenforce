@@ -61,7 +61,7 @@ $list-special-color: #666;
     min-height: 3.55em;
   }
 }
-.x-toolbar .x-button-sfbutton .x-button-label {
+.x-toolbar .x-button-sfbutton .x-button-label, .x-toolbar .x-button-mapbutton .x-button-label {
     font-size: 1.2em;
 }
 .featureinfo .x-list {
