@@ -27,23 +27,20 @@ Ext.define('SFenforce.view.Login', {
                 xtype: 'toolbar',
                 ui: 'zoomselector',
                 docked: 'bottom',
-                margin: '2em',
+                margin: '2em 0 0 0',
                 layout: {
                     align: 'stretch',
                     pack: 'center'
                 },
                 items: [{
                     xtype: 'spacer',
-                    flex: 2
+                    flex: 1
                 }, {
                     xtype: 'button',
                     ui: 'sfbutton',
                     id: 'loginButton',
-                    flex: 1,
+                    width: '12.5em',
                     text: SFenforce.util.Config.getLoginButtonText()
-                }, {
-                    xtype: 'spacer',
-                    flex: 3
                 }]
             }, {
                 xtype: 'numberfield',
@@ -67,6 +64,8 @@ Ext.define('SFenforce.view.Login', {
                 store: 'Beats'
             }, {
                 xtype: 'toolbar',
+                docked: 'bottom',
+                margin: '0.2em',
                 ui: 'zoomselector',
                 id: 'zoomSelectorToolbar',
                 layout: {

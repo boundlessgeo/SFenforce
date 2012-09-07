@@ -115,27 +115,23 @@ $list-special-color: #666;
     color: #ccc;
     font-size: 0.9em;
 }
-.x-form-fieldset-login .x-form-fieldset-instructions {
-    font-weight: bold;
-    text-shadow: none;
-    color: #ccc;
-    font-size: 2em;
-}
 .x-form-fieldset-login .x-form-label {
     background-color: $form-field-bgcolor;
     span {
+        float: right;
         font-size: 1.2em;
     }
     color: $base-text-color;
 }
 .zoom-label {
-    margin-left: -0.25em;
-    margin-top: 0.05em;
+    div {
+        margin-right: 0.35em;
+        float: right;
+    }
     font-size: 1.2em;
     font-weight: bold;
     padding: 0.5em;
-    border-bottom-left-radius: 0.75em;
-    background-color: $form-field-bgcolor;
+    background-color: $base-color;
     color: $base-text-color;
 }
 .x-toolbar-zoomselector .x-button {
@@ -144,8 +140,8 @@ $list-special-color: #666;
     font-size: 1.5em;
   }
 }
-.x-toolbar-zoomselector .x-first {
-    margin-left: 0.25em;
+.x-toolbar-zoomselector {
+    background-color: $base-color;
 }
 .x-toolbar-zoomselector .x-button-pressed {
   .x-button-label {
