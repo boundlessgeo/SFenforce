@@ -26,6 +26,10 @@ Ext.define('SFenforce.view.Login', {
             items: [{
                 xtype: 'toolbar',
                 ui: 'zoomselector',
+                minHeight: '3em',
+                defaults: {
+                    minHeight: '3em'
+                },
                 docked: 'bottom',
                 margin: '2em 0 0 0',
                 layout: {
@@ -66,6 +70,10 @@ Ext.define('SFenforce.view.Login', {
                 xtype: 'toolbar',
                 docked: 'bottom',
                 margin: '0.2em',
+                minHeight: '3em',
+                defaults: {
+                    minHeight: '3em'
+                },
                 ui: 'zoomselector',
                 id: 'zoomSelectorToolbar',
                 layout: {

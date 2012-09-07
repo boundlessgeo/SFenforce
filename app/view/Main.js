@@ -50,7 +50,10 @@ Ext.define('SFenforce.view.Main', {
                     store: Ext.getStore('DispositionCodes')
                 }, {
                     xtype: 'toolbar',
-                    height: 40,
+                    minHeight: '3em',
+                    defaults: {
+                        minHeight: '3em'
+                    },
                     ui: 'sfbutton',
                     items: [{
                         xtype: 'label',
@@ -99,8 +102,11 @@ Ext.define('SFenforce.view.Main', {
                     store: Ext.getStore('DispositionCodes')
                 }, {
                     xtype: 'toolbar',
-                    height: 40,
                     ui: 'sfbutton',
+                    minHeight: '3em',
+                    defaults: {
+                        minHeight: '3em'
+                    },
                     items: [{
                         xtype: 'label',
                         cls: 'transactionLabel',
