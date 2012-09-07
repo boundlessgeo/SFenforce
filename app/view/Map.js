@@ -82,8 +82,8 @@ Ext.define("SFenforce.view.Map",{
         var selectStyle = new OpenLayers.Style({
             externalGraphic: "resources/icons/parking-space-selected.png",
             graphicWidth: 32,
-            graphicHeight: 68,
-            graphicYOffset: -34
+            graphicHeight: 36,
+            graphicYOffset: -33
         });
         var styleMap = new OpenLayers.StyleMap({
             "default": style,
