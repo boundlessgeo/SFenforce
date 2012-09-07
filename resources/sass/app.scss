@@ -33,6 +33,9 @@ $list-special-color: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
+.x-button-sfbutton.x-item-disabled {
+    @include toolbar-button(#208622, $button-gradient);
+}
 .x-field-select .x-component-outer::after {
     background-color: #000;
 }
