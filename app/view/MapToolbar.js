@@ -8,33 +8,31 @@ Ext.define('SFenforce.view.MapToolbar', {
     ],
 
     config: {
-        minHeight: '3em',
+        minHeight: '4.2em',
         docked: 'top',
         id: 'mapToolbar',
         defaults: {
-            minHeight: '2.6em',
+            minWidth: '4em',
+            minHeight: '4em',
             iconMask: 'true'
         },
         items: [{
             id: 'backLoginButton',
             ui: 'mapbutton',
-            minWidth: '3.5em',
             text: SFenforce.util.Config.getBackToLoginText()
         }, {
             xtype: 'spacer',
             width: 32
         }, {
             id: 'myPosition',
-            minWidth: '3.5em',
             ui: 'mapbutton',
             iconCls: 'sflocate'
         }, {
             xtype: 'segmentedbutton',
             id: 'locateButton',
             items:[{
-                minHeight: '2.6em',
-                minWidth: '3.5em',
                 ui: 'mapbutton',
+                minWidth: '4em',
                 iconMask: 'true',
                 iconCls: 'locate4'
             }]
@@ -44,7 +42,6 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             id: 'refreshButton',
             ui: 'mapbutton',
-            minWidth: '3.5em',
             iconCls: 'refresh'
         }, {
             id: 'lastRefresh',
@@ -56,12 +53,10 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             id: 'zoomButton',
             ui: 'mapbutton',
-            minWidth: '3.5em',
             iconCls: 'favorites'
         }, {
             id: 'legendButton',
             ui: 'mapbutton',
-            minWidth: '3.5em',
             iconCls: 'maps'
         }]
     }
