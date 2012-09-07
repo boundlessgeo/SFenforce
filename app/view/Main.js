@@ -33,11 +33,11 @@ Ext.define('SFenforce.view.Main', {
                     beats: config.beats
                 }]
             }, {
-                height: Ext.Viewport.getSize().height*0.3,
+                height: Ext.Viewport.getSize().height*0.35,
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    height: 25,
+                    height: 70,
                     cls: 'portrait',
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
