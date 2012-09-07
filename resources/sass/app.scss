@@ -36,6 +36,9 @@ $list-special-color: #666;
 .x-button-sfbutton.x-item-disabled {
     @include toolbar-button(#208622, $button-gradient);
 }
+.x-toolbar-mapbutton {
+    background-color: $base-color;
+}
 .x-button-mapbutton .x-button-icon.x-icon-mask {
     width: 2.5em;
     height: 2.5em;

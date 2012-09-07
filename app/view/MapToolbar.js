@@ -10,6 +10,7 @@ Ext.define('SFenforce.view.MapToolbar', {
     config: {
         minHeight: '4.2em',
         docked: 'top',
+        ui: 'mapbutton',
         id: 'mapToolbar',
         defaults: {
             minWidth: '4em',
