@@ -23,7 +23,7 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             xtype: 'spacer',
             minWidth: null,
-            width: '3em'
+            width: '1em'
         }, {
             id: 'myPosition',
             ui: 'mapbutton',
@@ -40,7 +40,7 @@ Ext.define('SFenforce.view.MapToolbar', {
         }, {
             xtype: 'spacer',
             minWidth: null,
-            width: '3em'
+            width: '1em'
         }, {
             id: 'refreshButton',
             ui: 'mapbutton',
@@ -49,6 +49,9 @@ Ext.define('SFenforce.view.MapToolbar', {
             id: 'lastRefresh',
             xtype: 'refreshlabel',
             width: 275
+        }, {
+            xtype: 'spacer',
+            flex: 1
         }, {
             id: 'zoomButton',
             ui: 'mapbutton',

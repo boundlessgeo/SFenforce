@@ -32,9 +32,14 @@ $form-field-bgcolor: #666;
 $list-special-color: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
-@include sencha-button-ui('mapbutton', $map-button-color, 'glossy');
+@include sencha-button-ui('mapbutton', $base-color, null);
 .x-button-sfbutton.x-item-disabled {
     @include toolbar-button(#208622, $button-gradient);
+}
+.x-button-mapbutton .x-button-icon.x-icon-mask {
+    width: 2.5em;
+    height: 2.5em;
+    -webkit-mask-size: 2.5em;
 }
 .x-field-select .x-component-outer::after {
     background-color: #000;
@@ -58,6 +63,9 @@ $list-special-color: #666;
 }
 .x-toolbar .x-button-sfbutton .x-button-label, .x-toolbar .x-button-mapbutton .x-button-label {
     font-size: 1.2em;
+}
+.x-toolbar .x-button-mapbutton .x-button-label {
+    color: $base-text-color;
 }
 .featureinfo .x-list {
     background-color: #000;
