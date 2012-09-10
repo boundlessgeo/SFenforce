@@ -71,8 +71,8 @@ Ext.define('SFenforce.controller.Map', {
     toggleTracker: function(cmp, button, pressed){
         var map = this.getMap().getMap();
         var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
-        ctrl.events.register("locationfailed", this, this.showLocationError);
         if (pressed) {
+            ctrl.events.register("locationfailed", this, this.showLocationError);
             ctrl.deactivate();
             ctrl.watch = true;
             ctrl.activate();
