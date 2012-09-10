@@ -2,6 +2,7 @@ $base-color: #000000;
 $base-gradient: 'glossy';
 $active-color: #2064ff;
 $form-bg-color: #000000;
+$list-pressed-color: #0040d0;
 @import 'sencha-touch/default/all';
 
 // You may remove any of the following modules that you
@@ -40,7 +41,10 @@ $list-special-color: #666;
     background-color: $base-color;
 }
 .x-button-mapbutton.x-button-pressed {
-    @include toolbar-button(#2ec432, null);
+    @include toolbar-button(#2064ff, null);
+}
+.x-button-mapbutton.x-button-pressing {
+    @include toolbar-button(#0040d0, null);
 }
 .x-button-mapbutton .x-button-icon.x-icon-mask {
     width: 2.5em;
