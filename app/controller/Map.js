@@ -57,6 +57,7 @@ Ext.define('SFenforce.controller.Map', {
 
     showLocationError: function() {
         Ext.Msg.show({
+            zIndex: 1000,
             title: SFenforce.util.Config.getErrorTitle(),
             message: SFenforce.util.Config.getGpsErrorMsg(),
             buttons: [{text: 'OK', ui: 'sfbutton'}],

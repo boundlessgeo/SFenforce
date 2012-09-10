@@ -87,6 +87,7 @@ Ext.define('SFenforce.controller.Login', {
                 message += rec._message+"<br>";
             });
             Ext.Msg.show({
+                zIndex: 1000,
                 title: SFenforce.util.Config.getErrorTitle(),
                 message: message,
                 buttons: [{text: 'OK', ui: 'sfbutton'}],
@@ -192,6 +193,7 @@ Ext.define('SFenforce.controller.Login', {
             ctrl.events.register("locationfailed", this, function() {
                 map.zoomToExtent(bounds);
                 Ext.Msg.show({
+                    zIndex: 1000,
                     title: SFenforce.util.Config.getErrorTitle(),
                     message: SFenforce.util.Config.getGpsErrorMsg(),
                     buttons: [{text: 'OK', ui: 'sfbutton'}],
