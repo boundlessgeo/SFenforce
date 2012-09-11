@@ -88,6 +88,8 @@ Ext.define('SFenforce.controller.Login', {
             });
             Ext.Msg.show({
                 zIndex: 1000,
+                showAnimation: null,
+                hideAnimation: null,
                 title: SFenforce.util.Config.getErrorTitle(),
                 message: message,
                 buttons: [{text: 'OK', ui: 'sfbutton'}],
