@@ -135,11 +135,7 @@ Ext.define('SFenforce.view.MultiSelect', {
     onButtonTap: function() {
         this.setValue('');
         this.listPanel.down('list').hide(); //force list hide event
-        this.listPanel.hide({
-            type : 'fade',
-            out  : true,
-            scope: this
-        });
+        this.listPanel.hide();
     },
 
     onListHide: function(cmp, opts) {
