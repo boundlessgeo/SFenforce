@@ -30,7 +30,6 @@ $secondary-text-color: #888888;
 $button-color: #2ec432;
 $map-button-color: #333;
 $form-field-bgcolor: #666;
-$list-special-color: #006d6c;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $base-color, null);
@@ -98,21 +97,20 @@ $list-special-color: #006d6c;
 .featureinfo .x-list.list-disabled .x-list-item .x-list-item-label {
     color: #666;
 }
-.featureinfo .list-enabled .x-list-item.special-item {
-    background-color: $list-special-color;
-    @include background-gradient($list-special-color, $list-active-gradient);
-    @include color-by-background($list-special-color);
-    @include bevel-by-background($list-special-color);
+.featureinfo .list-enabled .x-list-item.special-item .x-list-item-label {
     font-weight: bold;
+    font-size: 1.8em;
+    padding: 0.1em 0.1em 0.1em 0.15em;
+    min-height: 1.5em;
 }
 .featureinfo .x-list-item:last-child .x-list-item-label {
     border-bottom: none !important;
 }
 .featureinfo .x-list .x-list-item .x-list-item-label {
     color: $base-text-color;
-    font-size: 1.8em;
-    min-height: 1.5em;
-    padding: 0.1em;
+    font-size: 1.2em;
+    min-height: 2em;
+    padding: 0.3em;
 }
 .transactionLabel {
     color: $secondary-text-color;
