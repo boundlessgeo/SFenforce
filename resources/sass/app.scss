@@ -50,10 +50,10 @@ $form-field-bgcolor: #666;
     background-color: $base-color;
 }
 .x-button-mapbutton.x-button-pressed {
-    @include toolbar-button(#2064ff, 'glossy');
+    @include toolbar-button(#FFF, 'glossy');
 }
 .x-button-mapbutton.x-button-pressing {
-    @include toolbar-button(#0040d0, null);
+    @include toolbar-button(#bcbcbc, null);
 }
 .x-button-mapbutton .x-button-icon.x-icon-mask {
     width: 2.5em;
