@@ -50,9 +50,9 @@ Ext.define('SFenforce.view.Main', {
                     store: Ext.getStore('DispositionCodes')
                 }, {
                     xtype: 'toolbar',
-                    minHeight: '3em',
+                    minHeight: '4em',
                     defaults: {
-                        minHeight: '3em'
+                        minHeight: '4em'
                     },
                     ui: 'sfbutton',
                     items: [{
@@ -98,9 +98,9 @@ Ext.define('SFenforce.view.Main', {
                 }, {
                     xtype: 'toolbar',
                     ui: 'sfbutton',
-                    minHeight: '3em',
+                    minHeight: '4em',
                     defaults: {
-                        minHeight: '3em'
+                        minHeight: '4em'
                     },
                     items: [{
                         id: 'saveButton',
