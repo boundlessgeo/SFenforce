@@ -33,6 +33,9 @@ $form-field-bgcolor: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, null);
 @include sencha-button-ui('mapbutton', $base-color, null);
+#saveButton {
+    color: black;
+}
 .x-mask .x-mask-inner {
     background-color: white;
     color: black;
@@ -88,6 +91,9 @@ $form-field-bgcolor: #666;
 }
 .x-button-sfbutton .x-button-label, .x-button-mapbutton .x-button-label, .x-toolbar .x-button-sfbutton .x-button-label, .x-toolbar .x-button-mapbutton .x-button-label {
     font-size: 1.8em;
+}
+#saveButton .x-button-label {
+    font-size: 2.4em;
 }
 .x-toolbar .x-button-mapbutton .x-button-label {
     color: $base-text-color;
