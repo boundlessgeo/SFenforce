@@ -94,7 +94,10 @@ Ext.define('SFenforce.controller.Map', {
         var map = this.getMap().getMap();
         var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
         ctrl.events.register("locationupdated", this, this.onLocationUpdate);
+        var watch = ctrl.watch;
+        ctrl.watch = false;
         ctrl.getCurrentLocation();
+        ctrl.watch = watch;
     },
     
     backToLogin: function(){
