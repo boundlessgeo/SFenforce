@@ -149,7 +149,7 @@ $form-field-bgcolor: #666;
     background-color: $form-field-bgcolor;
     span {
         float: right;
-        font-size: 1.2em;
+        font-size: 1.45em;
     }
     color: $base-text-color;
 }
@@ -158,7 +158,7 @@ $form-field-bgcolor: #666;
         margin-right: 0.35em;
         float: right;
     }
-    font-size: 1.2em;
+    font-size: 1.45em;
     font-weight: bold;
     padding: 0.5em;
     background-color: $base-color;
@@ -167,7 +167,7 @@ $form-field-bgcolor: #666;
 .x-toolbar-zoomselector .x-button {
   .x-button-label {
     color: #333;
-    font-size: 1.5em;
+    font-size: 1.45em;
   }
 }
 .x-toolbar-zoomselector {
@@ -176,7 +176,7 @@ $form-field-bgcolor: #666;
 .x-toolbar-zoomselector .x-button-pressed {
   .x-button-label {
     color: $base-text-color;
-    font-size: 1.5em;
+    font-size: 1.8em;
   }
 }
 #loginButton {

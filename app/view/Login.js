@@ -21,14 +21,15 @@ Ext.define('SFenforce.view.Login', {
             id: 'fieldset',
             defaults: {
                 labelAlign: 'left',
-                labelWidth: '25%'
+                minHeight: '3.5em',
+                labelWidth: '27%'
             },
             items: [{
                 xtype: 'toolbar',
                 ui: 'zoomselector',
-                minHeight: '3em',
+                minHeight: '3.5em',
                 defaults: {
-                    minHeight: '3em'
+                    minHeight: '3.5em'
                 },
                 docked: 'bottom',
                 margin: '2em 0 0 0',
@@ -70,9 +71,9 @@ Ext.define('SFenforce.view.Login', {
                 xtype: 'toolbar',
                 docked: 'bottom',
                 margin: '0.2em',
-                minHeight: '3em',
+                minHeight: '3.5em',
                 defaults: {
-                    minHeight: '3em'
+                    minHeight: '3.5em'
                 },
                 ui: 'zoomselector',
                 id: 'zoomSelectorToolbar',
@@ -84,7 +85,7 @@ Ext.define('SFenforce.view.Login', {
                     xtype: 'label',
                     cls: 'zoom-label',
                     html: SFenforce.util.Config.getLoginZoomToLabel(),
-                    width: '25.4%'
+                    width: '27.4%'
                 }, {
                     xtype: 'segmentedbutton',
                     id: "zoomSelector",
