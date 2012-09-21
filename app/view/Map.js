@@ -259,7 +259,7 @@ Ext.define("SFenforce.view.Map",{
             var opsLayer = this.layers.findRecord('name', SFenforce.util.Config.getCitationLayerName()).getLayer();
             //update the layer filters
             nodataLayer.mergeNewParams({filter: this._beatsFilter !== null ?
-                new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(this._beatsFilter)) : undefined});
+                new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(this._beatsFilter)) : null});
             opsLayer.filter = newFilter;
             opsLayer.refresh({force: true});
         }
