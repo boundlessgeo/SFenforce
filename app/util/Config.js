@@ -55,7 +55,7 @@ Ext.define('SFenforce.util.Config', {
          * @cfg {Array} legendSize
          * The width and height of the legend popup.
          */
-        legendSize: [200, 200],
+        legendSize: [300, 300],
         
         /**
          * @cfg {Number} geolocationZoomLevel

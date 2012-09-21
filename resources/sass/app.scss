@@ -33,6 +33,9 @@ $form-field-bgcolor: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $base-color, null);
+.legend-rule {
+    font-size: 1.8em;
+}
 .x-button-sfbutton.x-item-disabled {
     @include toolbar-button(#208622, $button-gradient);
 }

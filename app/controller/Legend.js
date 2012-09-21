@@ -53,7 +53,7 @@ Ext.define('SFenforce.controller.Legend', {
                     }, {
                         flex: 1,
                         xtype: 'label',
-                        html: rule.name
+                        html: '<div class="legend-rule">' + rule.name + '</div>'
                     }]
                 });
             }
@@ -75,7 +75,7 @@ Ext.define('SFenforce.controller.Legend', {
                 }, {
                     flex: 1,
                     xtype: 'label',
-                    html: SFenforce.util.Config.getNoDataRuleTitle()
+                    html: '<div class="legend-rule">' + SFenforce.util.Config.getNoDataRuleTitle() + '</div>'
                 }]
             });
             this.legend = Ext.Viewport.add({
