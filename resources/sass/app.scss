@@ -95,9 +95,10 @@ $list-special-color: #006d6c;
 .featureinfo .x-list-item-label {
     border-top: none !important;
 }
-.featureinfo .list-disabled .x-list-item-label {
-    font-size: 0.9em;
+.featureinfo .x-list.list-disabled .x-list-item .x-list-item-label {
     color: #666;
+    min-height: 1.5em;
+    padding: 0.1em;
 }
 .featureinfo .list-enabled .x-list-item.special-item {
     background-color: $list-special-color;
@@ -109,9 +110,11 @@ $list-special-color: #006d6c;
 .featureinfo .x-list-item:last-child .x-list-item-label {
     border-bottom: none !important;
 }
-.featureinfo .x-list-item-label {
+.featureinfo .x-list .x-list-item .x-list-item-label {
     color: $base-text-color;
-    font-size: 0.9em;
+    font-size: 1.8em;
+    min-height: 1.5em;
+    padding: 0.1em;
 }
 .transactionLabel {
     color: $secondary-text-color;
