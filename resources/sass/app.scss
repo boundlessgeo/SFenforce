@@ -60,7 +60,10 @@ $list-special-color: #006d6c;
 }
 .x-select-overlay {
   .x-list-label {
-    font-size: 1.2em;
+    font-size: 1.8em;
+  }
+  .x-list-item-label {
+    height: 3.2em;
   }
 }
 .portrait .x-list-item {
@@ -71,8 +74,8 @@ $list-special-color: #006d6c;
     min-height: 3.55em;
   }
 }
-.x-toolbar .x-button-sfbutton .x-button-label, .x-toolbar .x-button-mapbutton .x-button-label {
-    font-size: 1.2em;
+.x-button-sfbutton .x-button-label, .x-button-mapbutton .x-button-label {
+    font-size: 1.8em;
 }
 .x-toolbar .x-button-mapbutton .x-button-label {
     color: $base-text-color;

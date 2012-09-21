@@ -151,7 +151,7 @@ Ext.define('SFenforce.util.Config', {
         dispositionCodeLabel: "Category",
         saveButtonText: "Submit",
         saveLoadMask: "Submitting...",
-        doneButtonText: "DONE",
+        doneButtonText: "Done",
         errorTitle: "Sorry, but an error occurred.",
         transactionErrorText: "An error occurred - please try saving again.",
         transactionSuccessText: "Data submitted.",
