@@ -37,7 +37,7 @@ Ext.define('SFenforce.view.Main', {
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    height: 70,
+                    height: 100,
                     cls: 'portrait',
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
@@ -90,7 +90,7 @@ Ext.define('SFenforce.view.Main', {
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    height: 70,
+                    height: 100,
                     html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {

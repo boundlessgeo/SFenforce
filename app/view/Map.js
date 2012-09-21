@@ -122,7 +122,7 @@ Ext.define("SFenforce.view.Map",{
                     "featureselected": function(evt) {
                         var feature = evt.feature;
                         var tpl = new Ext.XTemplate(
-                            '<div class="feature-info-row">{feature.attributes.POST_ID:this.formatNumber}</div>',
+                            '<div class="feature-info-row postid">{feature.attributes.POST_ID:this.formatNumber}</div>',
                             '<tpl if="feature.attributes.METER_EXPIRED_FLAG == 1"><div class="feature-info-row">Meter expired</div></tpl>',
                             '<tpl if="feature.attributes.COMMERCIAL_OCCUPIED_FLAG == 1"><div class="feature-info-row">Commercial occupied</div></tpl>',
                             {
