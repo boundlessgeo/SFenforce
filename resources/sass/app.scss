@@ -33,6 +33,9 @@ $form-field-bgcolor: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, null);
 @include sencha-button-ui('mapbutton', $base-color, null);
+#featureinfo {
+    padding: 0em 0em 0em 0.1em;
+}
 #saveButton {
     color: black;
 }
@@ -113,7 +116,7 @@ $form-field-bgcolor: #666;
 .featureinfo .list-enabled .x-list-item.special-item .x-list-item-label {
     font-weight: bold;
     font-size: 1.8em;
-    padding: 0.1em 0.1em 0.1em 0em;
+    padding: 0.1em 0.1em 0.1em 0.1em;
     min-height: 1.5em;
 }
 .featureinfo .x-list-item:last-child .x-list-item-label {
@@ -123,7 +126,7 @@ $form-field-bgcolor: #666;
     color: $base-text-color;
     font-size: 1.25em;
     min-height: 2em;
-    padding: 0.3em 0.3em 0.3em 0em;
+    padding: 0.3em 0.3em 0.3em 0.1em;
 }
 .lastupdateprefix {
     color: $base-text-color;
