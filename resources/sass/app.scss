@@ -115,10 +115,6 @@ $form-field-bgcolor: #666;
     min-height: 2em;
     padding: 0.3em 0.3em 0.3em 0em;
 }
-.transactionLabel {
-    color: $secondary-text-color;
-    font-size: 0.9em;
-}
 .lastupdateprefix {
     color: $base-text-color;
     font-size: 1.2em;
@@ -135,7 +131,7 @@ $form-field-bgcolor: #666;
     background-color: $base-color;
     color: $base-text-color;
 }
-.featureinfo p.emptytext {
+.featureinfo p.infotext {
     color: #ccc;
     font-size: 1.8em;
 }

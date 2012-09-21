@@ -39,7 +39,7 @@ Ext.define('SFenforce.view.Main', {
                 items: [{
                     height: 100,
                     cls: 'portrait',
-                    html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
+                    html: '<p class="infotext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
                     xtype: 'sflist',
@@ -56,11 +56,6 @@ Ext.define('SFenforce.view.Main', {
                     },
                     ui: 'sfbutton',
                     items: [{
-                        xtype: 'label',
-                        cls: 'transactionLabel',
-                        id: 'submitLabel',
-                        flex: 1
-                    }, {
                         id: 'saveButton',
                         flex: 1,
                         xtype: 'button',
@@ -91,7 +86,7 @@ Ext.define('SFenforce.view.Main', {
                 layout: 'vbox',
                 items: [{
                     height: 100,
-                    html: '<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
+                    html: '<p class="infotext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
                     xtype: 'sflist',
@@ -108,11 +103,6 @@ Ext.define('SFenforce.view.Main', {
                         minHeight: '3em'
                     },
                     items: [{
-                        xtype: 'label',
-                        cls: 'transactionLabel',
-                        id: 'submitLabel',
-                        flex: 1
-                    }, {
                         id: 'saveButton',
                         xtype: 'button',
                         disabled: true,

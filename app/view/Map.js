@@ -149,7 +149,9 @@ Ext.define("SFenforce.view.Map",{
                             updatelist = Ext.getCmp("updateList");
                         delete featureinfo.feature;
                         updatelist.deselectAll();
-                        featureinfo.setHtml('<p class="emptytext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');
+                        if (evt.setHtml !== false) {
+                            featureinfo.setHtml('<p class="infotext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');
+                        }
                         updatelist.setDisableSelection(true);
                         updatelist.addCls("list-disabled");
                         updatelist.removeCls("list-enabled");

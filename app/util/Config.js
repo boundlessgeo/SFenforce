@@ -130,7 +130,7 @@ Ext.define('SFenforce.util.Config', {
         /** end data model */
 
         /** i18n */
-        featureInfoEmptyText: "Select a space",
+        featureInfoEmptyText: "Select a space.",
         noDataLayerName: "No Data Spaces",
         citationLayerName: "Citation opportunities",
         badgeValidationMsg: "Please enter badge number",
@@ -154,7 +154,7 @@ Ext.define('SFenforce.util.Config', {
         doneButtonText: "Done",
         errorTitle: "Sorry, but an error occurred.",
         transactionErrorText: "An error occurred - please try saving again.",
-        transactionSuccessText: "Data submitted.",
+        transactionSuccessText: "Submitted.",
         gpsErrorMsg: "GPS information is currently unavailable. Please try again when GPS is available, or enable GPS for this application on your device.",
         /** end i18n */
 

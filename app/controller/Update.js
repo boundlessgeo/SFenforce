@@ -75,35 +75,21 @@ Ext.define('SFenforce.controller.Update', {
                 callback: function(response) {
                     this.getUpdateList().unmask();
                     this.getUpdateList().deselectAll();
-                    var cfg, label = Ext.getCmp('submitLabel');
+                    var cfg, label = Ext.getCmp('featureinfo');
                     var success = format.read(response.responseText).success;
                     var map = this.getMap().getMap();
-                    var vectorLayer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
                     if (!success) {
                         label.setHtml(SFenforce.util.Config.getTransactionErrorText());
                     } else {
-                        label.setHtml(SFenforce.util.Config.getTransactionSuccessText());
+                        label.setHtml('<p class="infotext">' + SFenforce.util.Config.getTransactionSuccessText() + '</p>');
                         var mapFeature = this.getPopup().feature;
                         if (mapFeature && mapFeature.layer) {
-                            mapFeature.layer.events.triggerEvent("featureunselected", {feature: mapFeature});
+                            mapFeature.layer.events.triggerEvent("featureunselected", {setHtml: false, feature: mapFeature});
                             mapFeature.layer.destroyFeatures([mapFeature]);
                             // redraw the WMS layer
                             map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0].redraw(true);
                         }
                     }
-                    if (!this.task) {
-                        this.task = Ext.create('Ext.util.DelayedTask', function() {
-                            label.setHtml('');
-                        });
-                    }
-                    if (vectorLayer) {
-                        vectorLayer.events.on({
-                            'featureselected': function() {
-                                label.setHtml('');
-                            }
-                        });
-                    }
-                    this.task.delay(3500);
                 },
                 scope: this,
                 data: xml
