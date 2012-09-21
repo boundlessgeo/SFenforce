@@ -27,7 +27,8 @@ Ext.define('SFenforce.view.Main', {
                 layout: 'fit',
                 flex: 1,
                 items: [{
-                    xtype: 'maptoolbar'
+                    xtype: 'maptoolbar',
+                    height: 90
                 }, {
                     xtype: 'map',
                     beats: config.beats
@@ -37,7 +38,7 @@ Ext.define('SFenforce.view.Main', {
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    height: 100,
+                    height: 90,
                     cls: 'portrait',
                     html: '<p class="infotext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
@@ -75,7 +76,8 @@ Ext.define('SFenforce.view.Main', {
                 flex: 1,
                 layout: 'fit',
                 items: [{
-                    xtype: 'maptoolbar'
+                    xtype: 'maptoolbar',
+                    height: 90
                 }, {
                     xtype: 'map',
                     beats: config.beats
@@ -85,7 +87,7 @@ Ext.define('SFenforce.view.Main', {
                 cls: 'featureinfo',
                 layout: 'vbox',
                 items: [{
-                    height: 100,
+                    height: 90,
                     html: '<p class="infotext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>',
                     id: 'featureinfo'
                 }, {
