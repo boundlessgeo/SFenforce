@@ -31,7 +31,7 @@ $button-color: #2ec432;
 $map-button-color: #333;
 $form-field-bgcolor: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
-@include sencha-button-ui('sfbutton', $button-color, 'glossy');
+@include sencha-button-ui('sfbutton', $button-color, null);
 @include sencha-button-ui('mapbutton', $base-color, null);
 .x-mask .x-mask-inner {
     background-color: white;
@@ -41,7 +41,7 @@ $form-field-bgcolor: #666;
     font-size: 1.8em;
 }
 .x-button-sfbutton.x-item-disabled {
-    @include toolbar-button(#208622, $button-gradient);
+    @include toolbar-button(#208622, null);
 }
 .x-toolbar-mapbutton {
     background-color: $base-color;
