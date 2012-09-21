@@ -33,6 +33,10 @@ $form-field-bgcolor: #666;
 @include sencha-button-ui('zoomselector', #f7b700, 'glossy');
 @include sencha-button-ui('sfbutton', $button-color, 'glossy');
 @include sencha-button-ui('mapbutton', $base-color, null);
+.x-mask .x-mask-inner {
+    background-color: white;
+    color: black;
+}
 .legend-rule {
     font-size: 1.8em;
 }
