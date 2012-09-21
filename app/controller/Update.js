@@ -85,9 +85,7 @@ Ext.define('SFenforce.controller.Update', {
                         var mapFeature = this.getPopup().feature;
                         if (mapFeature && mapFeature.layer) {
                             mapFeature.layer.events.triggerEvent("featureunselected", {setHtml: false, feature: mapFeature});
-                            mapFeature.layer.destroyFeatures([mapFeature]);
-                            // redraw the WMS layer
-                            map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0].redraw(true);
+                            SFenforce.app.getController('Map').doRefresh();
                         }
                     }
                 },
