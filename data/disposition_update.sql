@@ -12,3 +12,7 @@ insert into disposition_codes_tmp values(10, 'Vehicle attended');
 insert into disposition_codes_tmp values(11, 'Vehicle already visited');
 insert into disposition_codes_tmp values(12, 'Other');
 commit;
+
+alter table disposition_codes_tmp add (SPEC_HANDLING_FLAG VARCHAR2(1));
+UPDATE disposition_codes_tmp SET SPEC_HANDLING_FLAG = 'S' WHERE value in (1, 2, 3);
+commit;
