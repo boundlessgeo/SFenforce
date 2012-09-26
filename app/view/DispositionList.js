@@ -4,7 +4,7 @@ Ext.define('SFenforce.view.DispositionList', {
 
     config: {
         scrollable: false,
-        itemTpl: '<div class="value-{value}">{text}</div>'
+        itemTpl: '<div class="value-{special}">{text}</div>'
     },
 
     initialize: function() {
@@ -12,11 +12,8 @@ Ext.define('SFenforce.view.DispositionList', {
         for (var i=0, ii=this.container.getViewItems().length; i<ii; ++i) {
             var item = Ext.get(this.container.getViewItems()[i]);
             var last = item.last().last();
-            for (var j=0, jj=SFenforce.util.Config.getSpecialValues().length; j<jj; j++) {
-                var cls = 'value-' + SFenforce.util.Config.getSpecialValues()[j];
-                if (last.hasCls(cls)) {
-                    item.addCls('special-item');
-                }
+            if (last.hasCls('value-S')) {
+                item.addCls('special-item');
             }
        }
    }

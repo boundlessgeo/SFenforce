@@ -3,13 +3,6 @@ Ext.define('SFenforce.util.Config', {
 
     config : {
         /**
-         * @cfg {Array} specialValues
-         * The disposition codes that should be treated as special.
-         * They look different in the UI.
-         */
-        specialValues: [1, 2, 3],
-
-        /**
          * @cfg {Array} bounds
          * The bounds of the all the beats in EPSG:900913.
          */
@@ -125,6 +118,7 @@ Ext.define('SFenforce.util.Config', {
         beatNameField: "BEATNAME",
         dispositionCodeLookupValueField: "VALUE",
         dispositionCodeLookupTextField: "DESCRIPTION",
+        dispositionCodeSpecialField: "SPEC_HANDLING_FLAG",
         beatsFeatureType: "PCO_BEATS",
         dispositionCodesFeatureType: "DISPOSITION_CODES_TMP",
         /** end data model */

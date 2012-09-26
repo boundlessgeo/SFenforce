@@ -4,7 +4,8 @@ Ext.define('SFenforce.model.DispositionCode', {
     config: {
         fields: [
             {name: 'value', type: 'integer', mapping: 'attributes.' + SFenforce.util.Config.getDispositionCodeLookupValueField()},
-            {name: 'text', type: 'string', mapping: 'attributes.' + SFenforce.util.Config.getDispositionCodeLookupTextField()}
+            {name: 'text', type: 'string', mapping: 'attributes.' + SFenforce.util.Config.getDispositionCodeLookupTextField()},
+            {name: 'special', type: 'string', mapping: 'attributes.' + SFenforce.util.Config.getDispositionCodeSpecialField()}
         ]
     }
 });
