@@ -149,7 +149,7 @@ Ext.define('SFenforce.util.Config', {
         errorTitle: "Sorry, but an error occurred.",
         transactionErrorText: "An error occurred - please try saving again.",
         transactionSuccessText: "Submitted.",
-        gpsErrorMsg: "GPS information is currently unavailable. Please try again when GPS is available, or enable GPS for this application on your device.",
+        gpsErrorMsg: "GPS unavailable. Please try again later.",
         /** end i18n */
 
         /** private properties */

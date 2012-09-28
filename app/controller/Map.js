@@ -93,6 +93,7 @@ Ext.define('SFenforce.controller.Map', {
     zoomToUser: function(){
         var map = this.getMap().getMap();
         var ctrl = map.getControlsByClass('OpenLayers.Control.Geolocate')[0];
+        ctrl.events.register("locationfailed", this, this.showLocationError);
         ctrl.events.register("locationupdated", this, this.onLocationUpdate);
         var watch = ctrl.watch;
         ctrl.watch = false;
