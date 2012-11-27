@@ -137,7 +137,7 @@ Ext.define('SFenforce.controller.Login', {
             }
             Ext.Viewport.on("orientationchange", function(vp) {
                 var orientation = vp.getOrientation();
-                if (Ext.os.is.Android3) {
+                if (Ext.os.is.Android) {
                     orientation = (orientation === 'portrait') ? 'landscape' : 'portrait';
                 }
                 if (orientation === 'landscape') {
