@@ -132,7 +132,7 @@ Ext.define('SFenforce.controller.Login', {
             // see: http://www.sencha.com/forum/showthread.php?214966-Ext.Viewport.getOrientation-gives-reversed-layout
             // TODO check again with ST 2.1 upgrade
             var orientation = Ext.Viewport.getOrientation();
-            if (Ext.os.is.Android3) {
+            if (Ext.os.is.Android) {
                 orientation = (orientation === 'portrait') ? 'landscape' : 'portrait';
             }
             Ext.Viewport.on("orientationchange", function(vp) {
