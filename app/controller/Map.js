@@ -51,6 +51,8 @@ Ext.define('SFenforce.controller.Map', {
             for (var i=0, ii=layer.features.length; i<ii; ++i) {
                 var feature = layer.features[i];
                 if (feature.geometry.equals(geom)) {
+                    control.handlers.feature.lastFeature = null;
+                    control.handlers.feature.feature = null;
                     control.select(feature);
                     break;
                 }
