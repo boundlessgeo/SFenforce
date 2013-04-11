@@ -12,8 +12,8 @@ Ext.define('SFenforce.view.Login', {
     config: {
         layout : {
             type: 'vbox',
-            align: 'center',
-            pack: 'center'
+            align: 'start',
+            pack: 'start'
         },
         items: [{xtype: 'fieldset',
             ui: 'login',
