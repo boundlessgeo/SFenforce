@@ -168,7 +168,7 @@ Ext.define("SFenforce.view.Map",{
             projection: "EPSG:900913",
             autoUpdateSize: false,
             theme: null,
-            tileManager: new OpenLayers.TileManager(),
+            hasTransform3D: false,
             controls : [
                 new OpenLayers.Control.Zoom(),
                 new OpenLayers.Control.TouchNavigation({
