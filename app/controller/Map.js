@@ -3,6 +3,7 @@ Ext.define('SFenforce.controller.Map', {
     requires: ['SFenforce.view.Main', 'SFenforce.view.Map'],
     config: {
         refs: {
+            popup: '#featureinfo',
             refreshButton: '#refreshButton',
             zoomButton: '#zoomButton',
             lastRefresh: '#lastRefresh',
@@ -42,8 +43,19 @@ Ext.define('SFenforce.controller.Map', {
     doUpdate: function() {
         this.getLastRefresh().setLastUpdate(new Date());
         var map = this.getMap().getMap();
-        var layer = map.getLayersByClass('OpenLayers.Layer.Vector')[0];
+        var layer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
         layer.events.un({'loadend': this.doUpdate, scope: this});
+        var geom = this.getPopup().lastGeom;
+        if (geom) {
+            var control = map.getControlsByClass('OpenLayers.Control.SelectFeature')[0];
+            for (var i=0, ii=layer.features.length; i<ii; ++i) {
+                var feature = layer.features[i];
+                if (feature.geometry.equals(geom)) {
+                    control.select(feature);
+                    break;
+                }
+            }
+        }
     },
 
     doRefresh: function() {

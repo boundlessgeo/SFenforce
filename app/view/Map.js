@@ -136,6 +136,7 @@ Ext.define("SFenforce.view.Map",{
                             savebutton = Ext.getCmp("saveButton"),
                             updatelist = Ext.getCmp("updateList");
                         featureinfo.feature = feature;
+                        featureinfo.lastGeom = feature.geometry.clone();
                         featureinfo.setHtml(tpl.applyTemplate({feature: feature}));
                         updatelist.setDisableSelection(false);
                         updatelist.on("selectionchange", function(list, selection) {
@@ -149,6 +150,7 @@ Ext.define("SFenforce.view.Map",{
                             savebutton = Ext.getCmp("saveButton"),
                             updatelist = Ext.getCmp("updateList");
                         delete featureinfo.feature;
+                        delete featureinfo.lastGeom;
                         updatelist.deselectAll();
                         if (evt.setHtml !== false) {
                             featureinfo.setHtml('<p class="infotext">' + SFenforce.util.Config.getFeatureInfoEmptyText() + '</p>');

@@ -70,6 +70,7 @@ Ext.define('SFenforce.controller.Update', {
                 xtype: 'loadmask', 
                 message: SFenforce.util.Config.getSaveLoadMask()
             });
+            var previousFeature = this.getPopup().feature;
             OpenLayers.Request.POST({
                 url: url,
                 callback: function(response) {
@@ -81,12 +82,14 @@ Ext.define('SFenforce.controller.Update', {
                     if (!success) {
                         label.setHtml(SFenforce.util.Config.getTransactionErrorText());
                     } else {
-                        label.setHtml('<p class="infotext">' + SFenforce.util.Config.getTransactionSuccessText() + '</p>');
                         var mapFeature = this.getPopup().feature;
-                        if (mapFeature && mapFeature.layer) {
-                            mapFeature.layer.events.triggerEvent("featureunselected", {setHtml: false, feature: mapFeature});
-                            SFenforce.app.getController('Map').doRefresh();
+                        if (previousFeature === mapFeature) {
+                            label.setHtml('<p class="infotext">' + SFenforce.util.Config.getTransactionSuccessText() + '</p>');
+                            if (mapFeature && mapFeature.layer) {
+                                mapFeature.layer.events.triggerEvent("featureunselected", {setHtml: false, feature: mapFeature});
+                            }
                         }
+                        SFenforce.app.getController('Map').doRefresh();
                     }
                 },
                 scope: this,
