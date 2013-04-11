@@ -95,11 +95,12 @@ Ext.define("SFenforce.view.Map",{
             SFenforce.util.Config.getGeoserverUrl(), {
                 layers: SFenforce.util.Config.getPrefix() + ":" + SFenforce.util.Config.getCitationView(),
                 version: '1.1.1',
+                format: 'image/png; mode=8bit',
                 transparent: true,
                 styles: 'sfenforce_markers_nodata',
                 filter: beatFilter !== null ? new OpenLayers.Format.XML().write(new OpenLayers.Format.Filter({defaultVersion:'1.1.0'}).write(beatFilter)) : undefined
             },{
-                buffer: 0,
+                ratio: 1,
                 isBaseLayer: false,
                 singleTile: true
             }
