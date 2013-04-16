@@ -66,29 +66,19 @@ Ext.define('SFenforce.controller.Update', {
             });
             var xml = format.write(features);
             var url = SFenforce.util.Config.getGeoserverUrl();
-            this.getUpdateList().mask({
-                xtype: 'loadmask', 
-                message: SFenforce.util.Config.getSaveLoadMask()
-            });
-            var previousFeature = this.getPopup().feature;
+            var mapFeature = this.getPopup().feature;
+            var map = this.getMap().getMap();
+            map.getControlsByClass('OpenLayers.Control.SelectFeature')[0].unselectAll();
+            var label = Ext.getCmp('featureinfo');
+            label.setHtml('<p class="infotext">' + SFenforce.util.Config.getTransactionSuccessText() + '</p>');
+            this.getUpdateList().deselectAll();
             OpenLayers.Request.POST({
                 url: url,
                 callback: function(response) {
-                    this.getUpdateList().unmask();
-                    this.getUpdateList().deselectAll();
-                    var cfg, label = Ext.getCmp('featureinfo');
                     var success = format.read(response.responseText).success;
-                    var map = this.getMap().getMap();
                     if (!success) {
                         label.setHtml(SFenforce.util.Config.getTransactionErrorText());
                     } else {
-                        var mapFeature = this.getPopup().feature;
-                        if (previousFeature === mapFeature) {
-                            label.setHtml('<p class="infotext">' + SFenforce.util.Config.getTransactionSuccessText() + '</p>');
-                            if (mapFeature && mapFeature.layer) {
-                                mapFeature.layer.events.triggerEvent("featureunselected", {setHtml: false, feature: mapFeature});
-                            }
-                        }
                         SFenforce.app.getController('Map').doRefresh();
                     }
                 },
