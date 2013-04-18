@@ -48,7 +48,7 @@ Ext.define('SFenforce.util.Config', {
          * @cfg {Array} legendSize
          * The width and height of the legend popup.
          */
-        legendSize: [300, 300],
+        legendSize: [400, 300],
         
         /**
          * @cfg {Number} geolocationZoomLevel
@@ -140,6 +140,8 @@ Ext.define('SFenforce.util.Config', {
         backToLoginText: "Back",
         unpaidRuleTitle: "Unpaid vehicle",
         commercialRuleTitle: "Vehicle at commercial space",
+        selectedTitle: "Selected",
+        scheduledTitle: "Scheduled for deletion",
         citedRuleTitle: "Vehicle already visited",
         noDataRuleTitle: "Data unavailable, check in field",
         dispositionCodeLabel: "Category",

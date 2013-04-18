@@ -85,9 +85,17 @@ Ext.define("SFenforce.view.Map",{
             graphicHeight: 36,
             graphicYOffset: -33
         });
+        var scheduledStyle = new OpenLayers.Style({
+            externalGraphic: "resources/icons/parking-space-scheduled.png",
+            graphicWidth: 32,
+            graphicHeight: 36,
+            graphicYOffset: -33
+        });
+
         var styleMap = new OpenLayers.StyleMap({
             "default": style,
-            "select": selectStyle
+            "select": selectStyle,
+            "scheduled": scheduledStyle
         }, {defaultRenderIntent: 'headless'});
 
         var nodata_spaces = new OpenLayers.Layer.WMS(

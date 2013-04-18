@@ -33,6 +33,22 @@ Ext.define('SFenforce.controller.Legend', {
                     graphicYOffset: -17,
                     externalGraphic: "resources/icons/parking-space-commercial.png"
                 }
+            }, {
+                name: SFenforce.util.Config.getSelectedTitle(),
+                symbolizer: {
+                    graphicWidth: 32,
+                    graphicHeight: 36,
+                    graphicYOffset: -17,
+                    externalGraphic: "resources/icons/parking-space-selected.png"
+                }
+            }, {
+                name: SFenforce.util.Config.getScheduledTitle(),
+                symbolizer: {
+                    graphicWidth: 32,
+                    graphicHeight: 36,
+                    graphicYOffset: -17,
+                    externalGraphic: "resources/icons/parking-space-scheduled.png"
+                }
             }];
             for (var i=0, ii=rules.length; i<ii; ++i) {
                 var rule = rules[i];

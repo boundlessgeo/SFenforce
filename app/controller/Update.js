@@ -69,6 +69,10 @@ Ext.define('SFenforce.controller.Update', {
             var mapFeature = this.getPopup().feature;
             var map = this.getMap().getMap();
             map.getControlsByClass('OpenLayers.Control.SelectFeature')[0].unselectAll();
+            if (mapFeature && mapFeature.layer) {
+                mapFeature.renderIntent = 'scheduled';
+                mapFeature.layer.drawFeature(mapFeature);
+            }
             var label = Ext.getCmp('featureinfo');
             label.setHtml('<p class="infotext">' + SFenforce.util.Config.getTransactionSuccessText() + '</p>');
             OpenLayers.Request.POST({
