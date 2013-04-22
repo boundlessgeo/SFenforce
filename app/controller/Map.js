@@ -60,13 +60,23 @@ Ext.define('SFenforce.controller.Map', {
         }
     },
 
+    refreshVector: function() {
+        var map = this.getMap().getMap();
+        // unregister
+        var wms = map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0];
+        wms.events.un({'loadend': this.refreshVector, scope: this});
+        // reload vector
+        var vector = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
+        vector.events.on({'loadend': this.doUpdate, scope: this});
+        vector.refresh({force: true});
+    },
+
     doRefresh: function() {
         var map = this.getMap().getMap();
-        var layer = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
-        layer.events.on({'loadend': this.doUpdate, scope: this});
-        layer.refresh({force: true});
-        layer = map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0];
-        layer.redraw(true);
+        var wms = map.getLayersByName(SFenforce.util.Config.getNoDataLayerName())[0];
+        // if the WMS layer finishes loading, get the vector data
+        wms.events.on({'loadend': this.refreshVector, scope: this});
+        wms.redraw(true);
     },
 
     showLocationError: function() {

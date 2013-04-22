@@ -47,7 +47,6 @@ Ext.define('SFenforce.controller.Legend', {
                     graphicWidth: 32,
                     graphicHeight: 36,
                     graphicYOffset: -17,
-                    graphicOpacity: 0.75,
                     externalGraphic: "resources/icons/parking-space-scheduled.png"
                 }
             }];

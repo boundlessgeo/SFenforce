@@ -88,7 +88,6 @@ Ext.define("SFenforce.view.Map",{
         var scheduledStyle = new OpenLayers.Style({
             externalGraphic: "resources/icons/parking-space-scheduled.png",
             graphicWidth: 32,
-            graphicOpacity: 0.75,
             graphicHeight: 36,
             graphicYOffset: -33
         });
