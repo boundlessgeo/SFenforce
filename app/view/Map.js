@@ -128,6 +128,28 @@ Ext.define("SFenforce.view.Map",{
                     readFormat: new OpenLayers.Format.GeoJSON()
                 }),
                 eventListeners: {
+                    "loadend": function() {
+                        // remove scheduled clone
+                        var scheduled = SFenforce.util.Config.getScheduled().shift();
+                        var destroy = [];
+                        for (var i=0, ii=citation_vector.features.length; i<ii; ++i) {
+                            var f = citation_vector.features[i];
+                            if (f.fid === scheduled) {
+                                destroy.push(f);
+                            }
+                        }
+                        if (destroy.length > 0) {
+                            citation_vector.destroyFeatures(destroy, {silent: true});
+                        }
+                    },
+                    "beforefeatureremoved": function(evt) {
+                        if (evt.feature.renderIntent === 'scheduled') {
+                            var clone = evt.feature.clone();
+                            clone.renderIntent = 'scheduled';
+                            clone.fid = evt.feature.fid;
+                            citation_vector.addFeatures([clone]);
+                        }
+                    },
                     "beforefeatureselected": function(evt) {
                         return evt.feature.renderIntent !== 'scheduled';
                     },

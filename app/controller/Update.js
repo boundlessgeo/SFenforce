@@ -70,6 +70,7 @@ Ext.define('SFenforce.controller.Update', {
             var map = this.getMap().getMap();
             map.getControlsByClass('OpenLayers.Control.SelectFeature')[0].unselectAll();
             if (mapFeature && mapFeature.layer) {
+                SFenforce.util.Config.getScheduled().push(mapFeature.fid);
                 mapFeature.renderIntent = 'scheduled';
                 mapFeature.layer.drawFeature(mapFeature);
             }

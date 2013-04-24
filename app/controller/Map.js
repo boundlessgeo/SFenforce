@@ -68,7 +68,7 @@ Ext.define('SFenforce.controller.Map', {
         // reload vector
         var vector = map.getLayersByName(SFenforce.util.Config.getCitationLayerName())[0];
         vector.events.on({'loadend': this.doUpdate, scope: this});
-        vector.refresh({force: true});
+        vector.refresh({force: true, noAbort: true});
     },
 
     doRefresh: function() {
