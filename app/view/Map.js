@@ -128,6 +128,9 @@ Ext.define("SFenforce.view.Map",{
                     readFormat: new OpenLayers.Format.GeoJSON()
                 }),
                 eventListeners: {
+                    "beforefeatureselected": function(evt) {
+                        return evt.feature.renderIntent !== 'scheduled';
+                    },
                     "featureselected": function(evt) {
                         var feature = evt.feature;
                         var tpl = new Ext.XTemplate(
